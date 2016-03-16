@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="transcoding">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/transcoding.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

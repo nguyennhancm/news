@@ -1,0 +1,19 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" build-on-make="true" name="Travel_Production">
+    <output-path>D:/backup/deploy/ztp/temp</output-path>
+    <root id="root">
+      <element id="directory" name="NewsCore.ear">
+        <element id="artifact" artifact-name="NewsCore.ear" />
+      </element>
+      <element id="directory" name="portal.war">
+        <element id="artifact" artifact-name="PortalManager:war exploded" />
+      </element>
+      <element id="directory" name="travel.war">
+        <element id="artifact" artifact-name="TravelPage:war exploded" />
+      </element>
+      <element id="directory" name="airline.war">
+        <element id="artifact" artifact-name="Airline:war explored" />
+      </element>
+    </root>
+  </artifact>
+</component>

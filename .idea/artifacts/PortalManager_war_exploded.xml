@@ -1,0 +1,25 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="PortalManager:war exploded">
+    <output-path>$PROJECT_DIR$/PortalManager/portal.war</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="PortalManager/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="PortalManager" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="primefaces-4.0" />
+          <element id="library" level="project" name="jsf2" />
+          <element id="library" level="project" name="hibernate-envers-4.1.2.Final" />
+          <element id="library" level="project" name="gson-2.2.4" />
+          <element id="library" level="project" name="log4j" />
+          <element id="library" level="project" name="thumbnailator-0.4.5" />
+          <element id="library" level="project" name="commons-io-2.1" />
+          <element id="library" level="project" name="commons-fileupload-1.2.2" />
+          <element id="library" level="project" name="javaee-api-7.0" />
+          <element id="library" level="project" name="commons-validator-1.4.0" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

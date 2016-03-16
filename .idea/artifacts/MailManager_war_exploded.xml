@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="MailManager:war exploded">
+    <output-path>$PROJECT_DIR$/MailManager/email.war</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="MailManager/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MailManager" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="jsf2" />
+          <element id="library" level="project" name="primefaces-5.0.2" />
+          <element id="library" level="project" name="commons-fileupload-1.2.2" />
+          <element id="library" level="project" name="commons-io-2.1" />
+          <element id="library" level="project" name="javaee-api-7.0" />
+          <element id="library" level="project" name="commons-lang3-3.1" />
+          <element id="library" level="project" name="poi-3" />
+          <element id="library" level="project" name="smtp" />
+          <element id="library" level="project" name="freemaker-2.3" />
+          <element id="library" level="project" name="commons-validator-1.4.0" />
+          <element id="library" level="project" name="httpClient" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source source="LOCAL" name="MySQL - @127.0.0.1" uuid="0166e684-3364-4003-b6c2-aed4196cadc0">
+    <database-info product="MySQL" version="5.6.24-enterprise-commercial-advanced-log" jdbc-version="4.0" driver-name="MySQL-AB JDBC Driver" driver-version="mysql-connector-java-5.1.17 ( Revision: ${bzr.revision-id} )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
+    <schema name="" catalog="email"/>
+    <table name="email" schema="" catalog="email" type="TABLE">
+      <column name="email_address" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="file_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="email_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="postal_address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="phone_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="update_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="email_address,file_id"/>
+      <foreign-key name="FKEMAIL503124" columns="status_id" ref-table="status" ref-schema="" ref-catalog="email" ref-columns="status_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKEMAIL762805" columns="file_id" ref-table="file" ref-schema="" ref-catalog="email" ref-columns="file_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKSEND_EMAIL472255" table="send_email" schema="" catalog="email" columns="email_to"/>
+      <index name="FKEMAIL762805" unique="false" columns="file_id"/>
+      <index name="FKEMAIL503124" unique="false" columns="status_id"/>
+    </table>
+    <table name="email_account" schema="" catalog="email" type="TABLE">
+      <column name="email_account" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="from_date" sqlType="TIMESTAMP" precision="19" scale="0" nullable="false" jdbcType="93" def="Q1VSUkVOVF9USU1FU1RBTVA="/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email_smtp" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="update_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="status_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="port" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4" def="MjU="/>
+      <column name="ssl" sqlType="CHAR" precision="1" scale="0" nullable="true" jdbcType="1" def="J04n"/>
+      <primary-key name="PRIMARY" columns="email_account,user_id,from_date"/>
+      <foreign-key name="FKEMAIL_ACCO710333" columns="user_id" ref-table="user" ref-schema="" ref-catalog="email" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKEMAIL_ACCO878531" columns="status_id" ref-table="status" ref-schema="" ref-catalog="email" ref-columns="status_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKSEND_EMAIL460524" table="send_email" schema="" catalog="email" columns="email_from"/>
+      <index name="FKEMAIL_ACCO710333" unique="false" columns="user_id"/>
+      <index name="FKEMAIL_ACCO878531" unique="false" columns="status_id"/>
+    </table>
+    <table name="file" schema="" catalog="email" type="TABLE">
+      <column name="file_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="file_type_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="file_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="update_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="user_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="file_id"/>
+      <foreign-key name="FKFILE426900" columns="status_id" ref-table="status" ref-schema="" ref-catalog="email" ref-columns="status_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKFILE924745" columns="file_type_id" ref-table="file_type" ref-schema="" ref-catalog="email" ref-columns="file_type_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="file_ibfk_1" columns="user_id" ref-table="user" ref-schema="" ref-catalog="email" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="file_ibfk_2" columns="user_id" ref-table="user" ref-schema="" ref-catalog="email" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKEMAIL762805" table="email" schema="" catalog="email" columns="file_id"/>
+      <exported-key name="send_email_ibfk_1" table="send_email" schema="" catalog="email" columns="file_id"/>
+      <index name="FKFILE924745" unique="false" columns="file_type_id"/>
+      <index name="FKFILE426900" unique="false" columns="status_id"/>
+    </table>
+    <table name="file_type" schema="" catalog="email" type="TABLE">
+      <column name="file_type_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="type_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="extension" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="file_type_id"/>
+      <exported-key name="FKFILE924745" table="file" schema="" catalog="email" columns="file_type_id"/>
+    </table>
+    <table name="send_email" schema="" catalog="email" type="TABLE">
+      <column name="send_email_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="cc" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="bcc" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="subject" sqlType="VARCHAR" precision="1000" scale="0" nullable="true" jdbcType="12"/>
+      <column name="content" sqlType="TEXT" precision="65535" scale="0" nullable="true" jdbcType="-1"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="update_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="email_to" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="template_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email_from" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="file_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="send_email_id"/>
+      <foreign-key name="FKSEND_EMAIL153048" columns="template_id" ref-table="template" ref-schema="" ref-catalog="email" ref-columns="template_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKSEND_EMAIL171098" columns="status_id" ref-table="status" ref-schema="" ref-catalog="email" ref-columns="status_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKSEND_EMAIL460524" columns="email_from" ref-table="email_account" ref-schema="" ref-catalog="email" ref-columns="email_account" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKSEND_EMAIL472255" columns="email_to" ref-table="email" ref-schema="" ref-catalog="email" ref-columns="email_address" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="send_email_ibfk_1" columns="file_id" ref-table="file" ref-schema="" ref-catalog="email" ref-columns="file_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <index name="FKSEND_EMAIL171098" unique="false" columns="status_id"/>
+      <index name="FKSEND_EMAIL153048" unique="false" columns="template_id"/>
+      <index name="FKSEND_EMAIL472255" unique="false" columns="email_to"/>
+      <index name="FKSEND_EMAIL460524" unique="false" columns="email_from"/>
+    </table>
+    <table name="sequence_value_item" schema="" catalog="email" type="TABLE">
+      <column name="SEQ_NAME" sqlType="VARCHAR" precision="60" scale="0" nullable="false" jdbcType="12"/>
+      <column name="SEQ_ID" sqlType="DECIMAL" precision="20" scale="0" nullable="true" jdbcType="3"/>
+      <column name="LAST_UPDATED_STAMP" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="LAST_UPDATED_TX_STAMP" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="CREATED_STAMP" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="CREATED_TX_STAMP" sqlType="DATETIME" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="SEQ_NAME"/>
+      <index name="SQNC_VL_ITM_TXSTMP" unique="false" columns="LAST_UPDATED_TX_STAMP"/>
+      <index name="SQNC_VL_ITM_TXCRTS" unique="false" columns="CREATED_TX_STAMP"/>
+    </table>
+    <table name="status" schema="" catalog="email" type="TABLE">
+      <column name="status_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="update_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="status_id"/>
+      <exported-key name="FKEMAIL503124" table="email" schema="" catalog="email" columns="status_id"/>
+      <exported-key name="FKEMAIL_ACCO878531" table="email_account" schema="" catalog="email" columns="status_id"/>
+      <exported-key name="FKFILE426900" table="file" schema="" catalog="email" columns="status_id"/>
+      <exported-key name="FKSEND_EMAIL171098" table="send_email" schema="" catalog="email" columns="status_id"/>
+      <exported-key name="FKTEMPLATE466387" table="template" schema="" catalog="email" columns="status_id"/>
+      <exported-key name="FKUSER970628" table="user" schema="" catalog="email" columns="status_id"/>
+    </table>
+    <table name="template" schema="" catalog="email" type="TABLE">
+      <column name="template_id" sqlType="VARCHAR" precision="20" scale="0" nullable="false" jdbcType="12"/>
+      <column name="user_id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="status_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="template_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="description" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="update_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="file_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="title" sqlType="VARCHAR" precision="4000" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="template_id"/>
+      <foreign-key name="FKTEMPLATE466387" columns="status_id" ref-table="status" ref-schema="" ref-catalog="email" ref-columns="status_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="FKTEMPLATE572251" columns="user_id" ref-table="user" ref-schema="" ref-catalog="email" ref-columns="user_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKSEND_EMAIL153048" table="send_email" schema="" catalog="email" columns="template_id"/>
+      <index name="FKTEMPLATE466387" unique="false" columns="status_id"/>
+      <index name="FKTEMPLATE572251" unique="false" columns="user_id"/>
+    </table>
+    <table name="user" schema="" catalog="email" type="TABLE">
+      <column name="user_id" sqlType="VARCHAR" precision="255" scale="0" nullable="false" jdbcType="12"/>
+      <column name="password" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="last_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="first_name" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="gender" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="date_of_birth" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="phone_number" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="email" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="address" sqlType="VARCHAR" precision="255" scale="0" nullable="true" jdbcType="12"/>
+      <column name="status_id" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="create_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <column name="update_time" sqlType="TIMESTAMP" precision="19" scale="0" nullable="true" jdbcType="93"/>
+      <primary-key name="PRIMARY" columns="user_id"/>
+      <foreign-key name="FKUSER970628" columns="status_id" ref-table="status" ref-schema="" ref-catalog="email" ref-columns="status_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="FKEMAIL_ACCO710333" table="email_account" schema="" catalog="email" columns="user_id"/>
+      <exported-key name="file_ibfk_1" table="file" schema="" catalog="email" columns="user_id"/>
+      <exported-key name="file_ibfk_2" table="file" schema="" catalog="email" columns="user_id"/>
+      <exported-key name="FKTEMPLATE572251" table="template" schema="" catalog="email" columns="user_id"/>
+      <index name="FKUSER970628" unique="false" columns="status_id"/>
+    </table>
+  </data-source>
+</component>

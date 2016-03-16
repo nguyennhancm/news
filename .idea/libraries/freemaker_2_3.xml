@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="freemaker-2.3">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/freemaker-2.3.19" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/freemaker-2.3.19" recursive="false" />
+  </library>
+</component>

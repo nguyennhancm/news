@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="TravelPage:war exploded">
+    <output-path>$PROJECT_DIR$/TravelPage/travel.war</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="TravelPage" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="primefaces-4.0" />
+          <element id="library" level="project" name="jsf2" />
+          <element id="library" level="project" name="javaee-api-7.0" />
+          <element id="library" level="project" name="gson-2.2.4" />
+          <element id="library" level="project" name="log4j" />
+          <element id="library" level="project" name="thumbnailator-0.4.5" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="TravelPage/web/Web" />
+    </root>
+  </artifact>
+</component>

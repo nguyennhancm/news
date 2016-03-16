@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" build-on-make="true" name="Email.ear">
+    <output-path>$PROJECT_DIR$/out/artifacts/Email.ear</output-path>
+    <root id="root">
+      <element id="archive" name="EntityLoader.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/Config/Compile/Email/META-INF/persistence.xml" />
+        </element>
+      </element>
+      <element id="artifact" artifact-name="email" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/Config/Compile/Email/META-INF/application.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/Config/Compile/Email/META-INF/jboss-deployment-structure.xml" />
+      </element>
+    </root>
+  </artifact>
+</component>

@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ear" build-on-make="true" name="News :Exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/AppNews.ear</output-path>
+    <root id="root">
+      <element id="artifact" artifact-name="News" />
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/Config/Compile/News/META-INF/application.xml" />
+        <element id="file-copy" path="$PROJECT_DIR$/Config/Compile/News/META-INF/jboss-deployment-structure.xml" />
+      </element>
+      <element id="archive" name="EntityLoader.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/Config/Compile/News/META-INF/persistence.xml" />
+        </element>
+      </element>
+      <element id="artifact" artifact-name="Model" />
+    </root>
+  </artifact>
+</component>

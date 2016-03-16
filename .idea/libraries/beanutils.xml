@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="beanutils">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/lib/beanutils" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/lib/beanutils" recursive="false" />
+  </library>
+</component>

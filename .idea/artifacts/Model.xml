@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Model">
+    <output-path>$PROJECT_DIR$/out/artifacts/Model</output-path>
+    <root id="archive" name="Model.jar">
+      <element id="module-output" name="CacheData" />
+    </root>
+  </artifact>
+</component>

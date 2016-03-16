@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-ejb" name="WebCore:ejb exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/WebCore_ejb_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="WebCore/ejb/EJB" />
+      <element id="module-output" name="WebCore" />
+    </root>
+  </artifact>
+</component>

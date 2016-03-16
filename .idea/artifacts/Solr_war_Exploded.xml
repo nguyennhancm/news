@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" build-on-make="true" name="Solr:war Exploded">
+    <output-path>$PROJECT_DIR$/Solr/solr.war</output-path>
+    <root id="root">
+      <element id="module-output" name="Solr" />
+    </root>
+  </artifact>
+</component>
