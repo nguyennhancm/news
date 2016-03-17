@@ -1,0 +1,198 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">Quản lý nhóm bài viết</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">Quản lý nhóm bài viết</h4>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+
+        <div class="row">
+            <div class="col-lg-8" style="width: 100%">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="padding: 22px 15px;">
+                        <div class="pull-left" style="margin-top: -17px;">
+                            <h:form id="categoryFilter" prependId="false">
+                                <h:selectOneMenu id="somManageProductCategory"
+                                                 styleClass="selectpicker show-menu-arrow"
+                                                 value="#">
+                                    <f:selectItem itemLabel="Slide trang chủ" itemValue=""/>
+                                </h:selectOneMenu>
+                            </h:form>
+                        </div>
+                        <div class="pull-right" style="margin-top: -17px;">
+                            <p:commandButton value="Thêm bài viết vào nhóm" onclick="addNewsToSlide.show()"/>
+                        </div>
+                        <div class="pull-left" style="margin-top: 25px; width: 100%;">
+                            <p:messages id="messages" showDetail="true" showSummary="false" closable="true"
+                                        autoUpdate="true"/>
+                            <h:form id="frmNewsSlide" prependId="false">
+                                <p:dataTable id="NewsTableList" value="#{ManageSlide.newsSlideData}" var="newsData"
+                                             paginator="true"
+                                             rows="30"
+                                             emptyMessage="Không có bài viết nào đươc tìm thấy">
+                                    <p:column headerText="Id" sortBy="#{newsData.news.productId}">
+                                        #{newsData.news.productId}
+                                    </p:column>
+                                    <p:column headerText="Tiêu đề bài viết" sortBy="#{newsData.news.productName}">
+                                        #{newsData.news.productName}
+                                    </p:column>
+                                    <p:column headerText="Chuyên mục" width="20%"
+                                              sortBy="#{newsData.primaryCategoryName}">
+                                        #{newsData.primaryCategoryName}
+                                    </p:column>
+                                    <p:column headerText="Trạng thái" width="12%" sortBy="#{newsData.news.isActive}">
+                                        <p:selectBooleanCheckbox id="chkShowhome"
+                                                                 value="#{newsData.active}" disabled="true"/>
+                                    </p:column>
+                                    <p:column headerText="Ngày tạo" sortBy="#{newsData.news.createdDate}" width="15%">
+                                        <h:outputText value="#{newsData.news.createdDate}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+                                        </h:outputText>
+
+                                    </p:column>
+                                    <p:column headerText="Vị trí" sortBy="#{newsData.location}" width="15%">
+                                        <h:outputText value="#{newsData.location}">
+
+                                        </h:outputText><p:spacer width="15"/>
+                                        <p:commandLink id="lnkEditLocation" value="Sửa vị trí" update="@form :frmEditLocation"
+                                                       onclick="EditLocation.show()">
+                                            <f:setPropertyActionListener value="#{newsData}"
+                                                                         target="#{ManageSlide.news}"/>
+                                        </p:commandLink>
+
+                                    </p:column>
+                                    <p:column headerText="Tác vụ" width="12%">
+                                        <p:commandLink id="lnkDeleteNews" value="Xóa khỏi slide" update="@form"
+                                                       action="#{ManageSlide.removeNewsFromSlide}">
+                                            <f:setPropertyActionListener value="#{newsData}"
+                                                                         target="#{ManageSlide.news}"/>
+                                        </p:commandLink>
+
+                                    </p:column>
+                                </p:dataTable>
+
+                            </h:form>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel .chat-panel -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+        <!-- /.row -->
+        <!-- Button trigger modal -->
+        <!-- Dialog-->
+        <p:dialog id="dlgAddNewsToSlide" widgetVar="addNewsToSlide" modal="true" position="80,10" resizable="false"
+                  height="600" width="1200" showEffect="clip" hideEffect="fold" closeOnEscape="true"
+                  header="THÊM BÀI VIẾT VÀO SLIDE">
+            <div class="col-lg-8" style="width: 100%">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="padding: 22px 15px;">
+                        <div class="pull-left" style="margin-top: -17px;">
+                            <h:form id="categoryFilterd" prependId="false">
+                                <h:selectOneMenu id="somManageProductCategoryd"
+                                                 styleClass="selectpicker show-menu-arrow"
+                                                 value="#{ManageSlide.categoryFilter}">
+                                    <f:selectItem itemLabel="Tất cả bài viết" itemValue=""/>
+                                    <f:selectItems value="#{Category.allCategory}" var="item"
+                                                   itemLabel="#{item.label}" itemValue="#{item.value}"/>
+                                    <p:ajax event="change" update=":frmNewsList"
+                                            listener="#{ManageSlide.categoryOnChange()}"/>
+                                </h:selectOneMenu>
+                            </h:form>
+                        </div>
+                        <div class="pull-right" style="margin-top: -17px;">
+                            <p:commandButton value="Đóng" onclick="addNewsToSlide.hide()"/>
+                        </div>
+                        <div class="pull-left" style="margin-top: 25px; width: 100%;">
+                            <p:messages id="messages1" showDetail="true" showSummary="false" closable="true"
+                                        autoUpdate="true"/>
+
+                            <h:form id="frmNewsList" prependId="false">
+                                <p:dataTable id="NewsTableListd" value="#{ManageSlide.newsDataList}" var="newsData"
+                                             paginator="true"
+                                             rows="12"
+                                             emptyMessage="Không có bài viết nào đươc tìm thấy">
+                                    <p:column headerText="Id" sortBy="#{newsData.news.productId}">
+                                        #{newsData.news.productId}
+                                    </p:column>
+                                    <p:column headerText="Tiêu đề bài viết" sortBy="#{newsData.news.productName}">
+                                        #{newsData.news.productName}
+                                    </p:column>
+                                    <p:column headerText="Chuyên mục" width="20%"
+                                              sortBy="#{newsData.primaryCategoryName}">
+                                        #{newsData.primaryCategoryName}
+                                    </p:column>
+                                    <p:column headerText="Trạng thái" width="12%" sortBy="#{newsData.news.isActive}">
+                                        <p:selectBooleanCheckbox id="chkShowhomed"
+                                                                 value="#{newsData.active}" disabled="true"/>
+                                    </p:column>
+                                    <p:column headerText="Ngày tạo" sortBy="#{newsData.news.createdDate}"
+                                              width="15%">
+                                        <h:outputText value="#{newsData.news.createdDate}">
+                                            <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+                                        </h:outputText>
+
+                                    </p:column>
+                                    <p:column headerText="Tác vụ" width="15%">
+                                        <p:commandLink id="lnkDeleteNewsd" value="Thêm vào slide"
+                                                       action="#{ManageSlide.addNewsToSlide}" update=":frmNewsSlide">
+                                            <f:setPropertyActionListener value="#{newsData}"
+                                                                         target="#{ManageSlide.news}"/>
+                                        </p:commandLink>
+
+                                    </p:column>
+                                </p:dataTable>
+
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </p:dialog>
+        <p:dialog id="dlgEditLocation" widgetVar="EditLocation" modal="true" position="500,100" resizable="false"
+                  height="100" width="400" showEffect="clip" hideEffect="fold" closeOnEscape="true"
+                  header="SỬA VỊ TRÍ BÀI VIẾT TRONG SLIDE">
+            <p:messages id="messages2" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+
+            <h:form id="frmEditLocation" prependId="false">
+                <table style="border-collapse: inherit; border-spacing: 10px;">
+                    <tr>
+                        <td>
+                            Nhập vị trí
+                        </td>
+                        <td>
+                            <p:inputText id="txtEditLocation" value="#{ManageSlide.news.location}"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <p:commandButton value="Lưu" action="#{ManageSlide.editLocation}" update=":frmNewsSlide"/>
+                            <p:spacer width="10"/>
+                            <p:commandButton value="Đóng" onclick="EditLocation.hide()"/>
+                        </td>
+                    </tr>
+                </table>
+
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+</ui:composition>

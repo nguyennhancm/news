@@ -1,0 +1,57 @@
+.avatarLogoHeader img {
+    width: 36px;
+    height: 36px;
+    /*border: 1px solid #eaeaea;*/
+    border-radius: 100%;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.avatarLogoHeader img:hover {
+    width: 36px;
+    height: 36px;
+    border-radius: 0px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.number {
+    float: left;
+    width: 31px;
+    height: 31px;
+    margin-right: 5px;
+    border: #cbcbcb solid 1px;
+    font-size: 15px;
+    font-weight: bold;
+    -webkit-border-radius: 16px;
+    -moz-border-radius: 16px;
+    border-radius: 16px;
+    text-align: center;
+    line-height: 32px;
+}
+
+.numberTop {
+    float: right;
+    width: 31px;
+    height: 31px;
+    border: #e74c3c solid 1px;
+    font-size: 15px;
+    background: #e74c3c;
+    color: #FFFFFF;
+}
+
+.view_follow_member{
+    margin-right: 10px;
+}
+
+.blog-content-title-hover {
+    text-decoration: none;
+}
+
+.blog-content-title-hover:hover {
+    color: #0a2988;
+}

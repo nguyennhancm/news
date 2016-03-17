@@ -1,0 +1,66 @@
+.daysTitle {
+    display: block;
+    float: left;
+    color: #333;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    line-height: 20px;
+    width: 20%;
+    text-align: center;
+    line-height: 20px;
+    border-right: solid 1px #666;
+    background-color: #e9eaed;
+}
+
+.daysTitle:hover {
+    background: #666!important;
+    color: #cfcfcf!important;
+    cursor: pointer;
+}
+.active_selected{
+    background: #666!important;
+    color: #cfcfcf!important;
+    cursor: default;
+}
+
+.headerLiveScore {
+    height: 40px;
+    line-height: 14px;
+    border: #fff solid 1px;
+    background: #333
+}
+
+.row_livescore {
+    padding: 0 4px;
+    background: #333;
+    color: #aaa;
+    line-height: 18px;
+    border: #fff solid 1px;
+}
+
+.row-tall {
+    padding: 2px 4px;
+    color: #aaa;
+    font-size: 12px;
+}
+
+.row-content {
+    background: #dfdfdf;
+    padding: 2px 4px;
+    border-left: #fff solid 1px;
+    border-right: #fff solid 1px;
+}
+
+.row-content-even{
+    background: #cfcfcf!important;
+    padding: 2px 4px;
+    border-left: #fff solid 1px;
+    border-right: #fff solid 1px;
+}
+
+
+.title-league {
+    font-size: 11px;
+    font-weight: bold;
+}

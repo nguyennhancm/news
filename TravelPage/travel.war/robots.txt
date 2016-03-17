@@ -1,0 +1,6 @@
+# dulichcantho.vn robots.txt
+User-agent: *
+Disallow: /bai-viet/
+Disallow: /danh-muc/
+Disallow: /chuyen-muc/
+Sitemap: http://dulichcantho.vn/sitemap.xml

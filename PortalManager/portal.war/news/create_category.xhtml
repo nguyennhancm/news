@@ -1,0 +1,89 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">Quản lý danh mục</ui:define>
+    <ui:define name="content">
+        <h:form prependId="false">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="page-header">Quản lý danh mục</h4>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+            <h:form prependId="false">
+
+                <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                   aria-expanded="true" aria-controls="collapseOne">
+                                    Thêm mới danh mục chính
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                             aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-lg-2"><strong>Tên danh mục chính</strong></div>
+                                        <div class="col-lg-5"><h:inputText styleClass="form-control" value="#{CreateCategoryBean.categoryName}"
+                                                                           style="width: 80%"/></div>
+                                        <div class="col-lg-3"><h:commandButton
+                                                action="#{CreateCategoryBean.addNewCategory()}"
+                                                styleClass="btn btn-primary" value="Thêm mới"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Thêm danh mục con cho danh mục chính
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                             aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="col-md-3" style="margin-top: 20px;">
+                                            <h:selectOneMenu id="somNewProductCategory" style="width:280px"
+                                                             styleClass="selectpicker show-menu-arrow"
+                                                             value="#{CreateCategoryBean.catalogId}">
+                                                <f:selectItem itemLabel="Chọn chuyên mục" itemValue=""/>
+                                                <f:selectItems value="#{Category.allCatalog}" var="item"
+                                                               itemLabel="#{item.label}" itemValue="#{item.value}"/>
+                                            </h:selectOneMenu>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <strong>Tên danh mục:</strong>
+                                            <h:inputText styleClass="form-control" value="#{CreateCategoryBean.categoryName}"
+                                                         style="width: 80%"/>
+                                        </div>
+                                        <div class="col-md-3" style="margin-top: 19px;">
+                                            <h:commandButton
+                                                    action="#{CreateCategoryBean.addNewCategory()}"
+                                                    styleClass="btn btn-primary" value="Thêm mới"/></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </h:form>
+        </h:form>
+        <!-- /.row -->
+    </ui:define>
+</ui:composition>

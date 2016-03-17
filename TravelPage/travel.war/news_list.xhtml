@@ -1,0 +1,164 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+        template="/template/templates.xhtml">
+    <ui:define name="title">#{NewsTravelList.catName} | Du Lịch Cần Thơ</ui:define>
+    <ui:define name="main">
+        <script type="text/javascript" src="/resources/js/jquery-2.1.1.js"></script>
+        <script type="application/javascript">
+            jQuery(document).ready(function () {
+                var current_page = 0;
+                var max_page = document.getElementById('max_page').value;
+                if (max_page >= current_page) {
+                    jQuery(".page-numbers").hide();
+                    jQuery('.image_loading').show();
+                    var pathName = document.location.pathname;
+                    var viewType = 'catalog';
+                    var divId = 'news_list';
+                    if (pathName.indexOf("/chuyen-muc/") != -1) {
+                        viewType = 'category';
+                    }
+                    var url = "/news_list_loading/news.html";
+                    jQuery.get(
+                            url, {
+                                viewType: viewType,
+                                viewId: pathName,
+                                page: current_page
+                            }, function (response) {
+                                var html = response;
+                                jQuery(response).appendTo("#news_list");
+                            });
+
+                    jQuery(".page-numbers").show();
+                    current_page++;
+                }
+                if (current_page >= max_page) {
+                    jQuery(".page-numbers").hide();
+                }
+                jQuery('.image_loading').hide();
+
+                jQuery(".page-numbers").click(function () {
+                    if (max_page > current_page) {
+                        jQuery(".page-numbers").hide();
+                        jQuery('.image_loading').show();
+                        var pathName = document.location.pathname;
+                        var viewType = 'catalog';
+                        var divId = 'news_list';
+                        if (pathName.indexOf("/chuyen-muc/") != -1) {
+                            viewType = 'category';
+                        }
+                        var url = "/news_list_loading/news.html";
+                        jQuery.get(
+                                url, {
+                                    viewType: viewType,
+                                    viewId: pathName,
+                                    page: current_page
+                                }, function (response) {
+                                    var html = response;
+                                    jQuery(response).appendTo("#news_list");
+                                });
+                        jQuery('.image_loading').hide();
+                        jQuery(".page-numbers").show();
+                        current_page++;
+                    }
+                    if (current_page >= max_page) {
+                        jQuery(".page-numbers").hide();
+                    }
+
+                });
+
+            });
+            //            $(document).ready(function () {
+            //                var current_block = 1;
+            //                var max_block = document.getElementById('max_block').value;
+            //                var divId = 'story_list';
+            //                if (current_block == 1) {
+            //                    $('.image_loading').show();
+            //                    var url = "/story/confession_loading_home/";
+            //                    var divBlock = divId + current_block;
+            //                    jQuery.get(
+            //                            url, {
+            //                                current_block: current_block
+            //                            }, function (res) {
+            //                                var html = res;
+            //                                var EList = document.getElementById(divBlock);
+            //                                EList.innerHTML = res;
+            //                            });
+            //                    $('.image_loading').hide();
+            //                    current_block++;
+            //                }
+            //                $(window).scroll(function () {
+            //                    if ($(window).scrollTop() + $(window).height() + 1200 > $(document).height()) {
+            //                        if (current_block &lt;= max_block) {
+            //                            loading = true;
+            //                            $('.image_loading').show();
+            //                            var url = "/story/confession_loading_home/";
+            //                            var divBlock = divId + current_block;
+            //                            jQuery.get(
+            //                                    url, {
+            //                                        current_block: current_block
+            //                                    }, function (res) {
+            //                                        var html = res;
+            //                                        var EList = document.getElementById(divBlock);
+            //                                        EList.innerHTML = res;
+            //                                    });
+            //                            $('.image_loading').hide();
+            //                        }
+            //                        current_block++;
+            //                    }
+            //                })
+            //
+            //            });
+        </script>
+
+        <h:outputText value="Trang bạn yêu cầu không được tìm thấy"
+                      rendered="#{NewsTravelList.catName eq 'File not found!'}"/>
+
+
+        <!-- BEGIN .main-content-left -->
+        <div class="main-content-left">
+            <h:form prependId="false" id="frm_news_list" rendered="#{NewsTravelList.catName ne 'File not found!'}">
+                <div class="content-article-title" style="border-bottom: 4px solid #6d8b13;color:#6d8b13;">
+                    <h2>#{NewsTravelList.catName}</h2>
+
+                    <div class="right-title-side">
+                        <a href="/"><i class="fa fa-reply"></i>Quay lại trang chủ</a>
+                        <!--<a href="../../index25f6.html?cat=4&amp;feed=rss2" class="orange" target="_blank"><i class="fa fa-rss"></i>Subscribe-->
+                        <!--To RSS Feed</a>-->
+                    </div>
+                </div>
+
+
+                <!-- BEGIN .main-content-split -->
+                <h:inputHidden id="max_page" value="#{NewsTravelList.page}"/>
+
+                <div id="news_list">
+
+                </div>
+                <div class="image_loading" align="center">
+                    <img src="/images/ajax-loader.gif"/>
+                </div>
+
+
+                <!--BEGIN .main-nosplit -->
+                <div class="main-nosplit">
+                    <!-- BEGIN .page-pager -->
+                    <div class="page-pager">
+                        <!--<span class='page-numbers current'>1</span>-->
+                        <a class='page-numbers' style="margin-bottom: 2px; display: none;"
+                           href='#view_more'>XEM THÊM</a>
+                        <!--<a class='page-numbers' href='#'>3</a>-->
+                        <!--<a class="next page-numbers" href="#">Trang tiếp <i class="fa fa-caret-right"></i></a>-->
+                        <!-- END .page-pager -->
+                    </div>
+                    <!-- END .main-nosplit -->
+                </div>
+                <!--END .main-content-left-->
+            </h:form>
+        </div>
+
+
+    </ui:define>
+
+</ui:composition>

@@ -1,0 +1,138 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <h:form prependId="false" id="frm_header">
+        <div class="header">
+
+            <!-- BEGIN .header-very-top -->
+            <div class="header-very-top">
+
+                <!-- BEGIN .wrapper -->
+                <div class="wrapper">
+
+                    <div class="left">
+                        <ul class="ot-menu very-top-menu">
+                            <li><a href="#{request.contextPath}/" class="icon-text"><i class="fa fa-home"></i></a></li>
+
+                            <ui:repeat value="#{NewsTravelBean.catalogList}" var="catalog" varStatus="count">
+                                <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-4 current_page_item menu-item-has-children ot-dropdown single">
+                                    <a href="#{NewsTravelBean.buildCatalogURL(catalog)}"><span>#{catalog.catalogName}</span></a>
+
+                                </li>
+                            </ui:repeat>
+                        </ul>
+                    </div>
+
+                    <div class="right">
+                        <div class="weather-report">
+                        </div>
+                    </div>
+
+                    <div class="clear-float"></div>
+
+                </div>
+                <div class="double-split"></div>
+                <!-- END .header-very-top -->
+            </div>
+
+            <!-- BEGIN .header-middle -->
+            <div class="header-middle">
+                <div class="wrapper">
+                    <div class="logo-image">
+                        <h1>DuLichCanTho</h1>
+                        <a href="/"><img class="logo" src="/content/themes/legatus-theme/images/logo.png"
+                                                  alt="DuLichCanTho"/></a>
+                    </div>
+
+
+                    <div class="banner">
+                        <div class="banner-block">
+                            <!--<a href="#qc"><img-->
+                                    <!--src="/wp-content/themes/legatus-theme/images/banner-468x60.jpg" alt=""/></a>-->
+                    </div>
+
+                        <!--<div class="banner-info">-->
+                            <!--<a href="#pc" class="sponsored"><span-->
+                                    <!--class="icon-default"> </span>Liên hệ quản cáo<span class="icon-default"> </span></a>-->
+                        <!--</div>-->
+                    </div>
+
+
+                    <div class="clear-float"></div>
+
+                </div>
+                <!-- END .header-middle -->
+            </div>
+
+            <!-- BEGIN .header-menu -->
+            <div class="header-menu thisisfixed">
+                <div class="wrapper">
+                    <ul class="menu main-menu">
+                        <ui:repeat value="#{NewsTravelBean.catalogList}" var="catalog" varStatus="count">
+                            <li class="normal-drop   no-description menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children ot-dropdown"
+                                style="background:#338aa6; color:#338aa6;">
+                                <a href="#{NewsTravelBean.buildCatalogURL(catalog)}">#{catalog.catalogName}<span> </span></a>
+                                <h:panelGroup
+                                        rendered="#{NewsTravelBean.getCategoryByCatalog(catalog.prodCatalogId).size() gt 1}">
+                                    <ul class="sub-menu">
+                                        <ui:repeat
+                                                value="#{NewsTravelBean.getCategoryByCatalog(catalog.prodCatalogId)}"
+                                                var="category">
+                                            <li class="normal-drop   no-description menu-item menu-item-type-taxonomy menu-item-object-post_tag">
+                                                <a href="#{NewsTravelBean.buildCategoryURL(catalog, category)}">#{category.categoryName}</a>
+
+                                            </li>
+                                        </ui:repeat>
+                                    </ul>
+                                </h:panelGroup>
+                            </li>
+                        </ui:repeat>
+                    </ul>
+
+                    <div class="right menu-search">
+                        <form method="get" action="#" name="searchform">
+                            <input type="text" value="" placeholder="Tìm kiếm..." name="s" id="s"/>
+                            <input type="submit" class="search-button" value=" "/>
+                        </form>
+                    </div>
+
+                    <div class="clear-float"></div>
+
+                </div>
+                <!-- END .header-menu -->
+            </div>
+
+            <!-- BEGIN .header-undermenu -->
+            <div class="header-undermenu">
+                <div class="wrapper">
+                    <ul class="secondary-menu">
+                        <li id="menu-item-473"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-473"><a
+                                href="/du-lich/tour-du-lich"><i>TOUR DU LỊCH</i></a></li>
+                        <li id="menu-item-474"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-474"><a
+                                href="/du-lich/khach-san-luu-tru"><i>KHÁCH SẠN - LƯU TRÚ</i></a></li>
+                        <li id="menu-item-475"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-475"><a
+                                href="/am-thuc/dia-diem-am-thuc"><i>ĐỊA ĐIỂM ẨM THỰC</i></a></li>
+                        <li id="menu-item-476"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-476"><a
+                                href="/am-thuc/mon-ngon-3-mien"><i>MÓN NGON 3 MIỀN</i></a></li>
+                        <li id="menu-item-477"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-477"><a
+                                href="/du-lich/phuong-tien-di-chuyen"><i>PHƯƠNG TIỆN DI CHUYỂN</i></a></li>
+                        <li id="menu-item-478"
+                            class="menu-item menu-item-type-taxonomy menu-item-object-post_tag menu-item-478"><a
+                                href="/sieu-thi-du-lich/do-dung-ca-nhan"><i>ĐỒ DÙNG CÁ NHÂN</i></a></li>
+                    </ul>
+                    <div class="clear-float"></div>
+
+                </div>
+                <!-- END .header-undermenu -->
+            </div>
+
+
+        </div>
+    </h:form>
+
+</ui:composition>

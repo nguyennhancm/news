@@ -1,0 +1,1094 @@
+<ui:composition
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+        template="template/templates.xhtml">
+<ui:define name="title">Du Lịch Cần Thơ, Tin Tức Mới Nhất Về Du Lịch</ui:define>
+<ui:define name="headerMeta">
+    <meta name="description"
+          content="Cập nhật tin tức mới nhất về địa điểm du lịch, ăn uống, đặc sản, khách sạn , vận chuyển ở các khu du lịch các tỉnh miền tây."/>
+    <meta name="keywords" content="du lịch cần thơ, đặc sản, khách sạn, món ngon, miền tây, tour, tin tức"/>
+    <meta property="og:type" content="website"/>
+	<meta property="fb:app_id" content="851072315000860"/>
+    <meta property="og:url" content="http://dulichcantho.vn/"/>
+    <meta property="og:site_name" content="dulichcantho.vn"/>
+    <meta property="og:image" content="http://dulichcantho.vn/images/dulichcantho.png"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="200"/>
+    <meta property="og:image:height" content="200"/>
+</ui:define>
+
+<ui:define name="main">
+
+<!-- BEGIN .main-content-left -->
+<div class="main-content-left">
+
+<!--<div class="social-icons-float">-->
+
+<!--<span class="soc-header">Share</span>-->
+
+<!--<span class="social-icon">-->
+<!--<span class="social-count"><span class="count">0</span><span class="social-arrow">&nbsp;</span></span>-->
+<!--<a href="http://www.facebook.com/sharer/sharer.php?u=http://legatus.orange-themes.com/" data-url="http://legatus.orange-themes.com/" class="social-button ot-share" style="background:#495fbd;"><i class="fa fa-facebook"></i><font>Share</font></a>-->
+<!--</span>-->
+
+<!--<span class="social-icon">-->
+<!--<span class="social-count"><span class="count">0</span><span class="social-arrow">&nbsp;</span></span>-->
+<!--<a href="#" data-hashtags="" data-url="http://legatus.orange-themes.com/" data-via="orangethemes" data-text="Home" class="social-button ot-tweet" style="background:#43bedd;"><i class="fa fa-twitter"></i><font>Tweet</font></a>-->
+<!--</span>-->
+
+<!--<span class="social-icon">-->
+<!--<span class="social-count">4<span class="social-arrow">&nbsp;</span></span>-->
+<!--<a href="https://plus.google.com/share?url=http://legatus.orange-themes.com/" class="social-button ot-pluss" style="background:#df6149;"><i class="fa fa-google-plus"></i><font>+1</font></a>-->
+<!--</span>-->
+
+<!--<span class="social-icon">-->
+<!--<span class="social-count"><span class="count">0</span><span class="social-arrow">&nbsp;</span></span>-->
+<!--<a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=http://legatus.orange-themes.com/&amp;title=Home" class="social-button ot-link" style="background:#264c84;" data-url="index.html"><i class="fa fa-linkedin"></i><font>Share</font></a>-->
+<!--</span>-->
+
+<!--</div>-->
+
+<!-- BEGIN .slider-container -->
+<div class="slider-container">
+
+    <!-- BEGIN .slider-content -->
+    <ui:include src="/template/include/slider_home_page.xhtml"/>
+    <!-- END .slider-content -->
+
+    <ul class="slider-controls"></ul>
+
+    <!-- END .slider-container -->
+</div>
+
+
+<!-- BEGIN .main-content-split -->
+<div class="main-content-split">
+
+
+    <!-- BEGIN .main-split-left -->
+    <div class="main-split-left">
+
+        <ui:repeat value="#{NewsTravelBean.top3BigBlock}" var="news" varStatus="count">
+            <!-- BEGIN .article-big-block -->
+            <div class="article-big-block post-175 post type-post status-publish format-standard has-post-thumbnail hentry category-technology tag-choro-luptatum tag-cibods tag-dispdo tag-ex-usu-blandit tag-feugiat-epicuri-deterruisset tag-harum-nemore tag-modus-sapientem tag-no-tollit-reprimique tag-patrioque-omntur tag-qui-reque-euismod tag-reprimique tag-repriue-dissentiet"
+                 id="post-175">
+                <div class="article-header">
+                    <h2>
+                        <a href="#{news.url}">#{news.news.productName}</a>
+                    </h2>
+                </div>
+                <div class="article-photo">
+                        <span class="image-hover">
+                                            <span class="drop-icons">
+                                                            <!--<span class="icon-block"><a-->
+                                                <!--href="wp-content/uploads/2013/06/photodune-4519279-shanghai-s12.jpg"-->
+                                                <!--title="Xem hình ảnh"-->
+                                                <!--class="icon-loupe legatus-tooltip lightbox-photo"> </a></span>-->
+                                                        <span class="icon-block"><a
+                                                                href="#{news.url}"
+                                                                title="Xem chi tiết"
+                                                                class="icon-link legatus-tooltip"> </a></span>
+                                </span>
+
+                                        <img class="setborder"
+                                             src="#{news.news.mediumImageUrl}?size=330"
+                                             alt="Du Lịch Cần Thơ"/>
+                        </span>
+
+
+                </div>
+
+
+                <div class="article-content">
+                    <p>#{news.news.description}</p>
+                </div>
+                <div class="article-links">
+                    <!--<a href="qui-wisi-aliquam-gubergren-no-sed-ei-omnes-expetenda-2-3-2/index.html#comments"-->
+                    <!--class="article-icon-link"><i class="fa fa-comment"></i>0 comment</a>-->
+                    <a href="#{news.url}" class="article-icon-link">
+                        <i class="fa fa-reply"></i>Xem thêm...</a>
+                </div>
+
+                <!-- END .article-big-block  -->
+            </div>
+        </ui:repeat>
+
+
+        <!-- BEGIN .content-panel -->
+        <div class="content-panel">
+            <div class="panel-header">
+                <b><i class="fa fa-chain"></i>KHÁM PHÁ ĐIỂM ĐẾN</b>
+
+                <div class="top-right"><a href="/kham-pha-diem-den">XEM TẤT CẢ</a></div>
+            </div>
+            <div class="panel-content">
+
+                <ul class="article-array">
+                    <ui:repeat value="#{NewsTravelBean.top10DiemDen}" var="news" varStatus="count">
+                        <li>
+                            <a href="#{news.url}">#{news.news.productName}</a>
+                            <!--<a href="intellegat-quaerendum-suscipiantur-est-epicurei-delicata-3-2/index.html#comments"-->
+                            <!--class="comment-icon">-->
+                            <!--<i class="fa fa-comment"></i>5 </a>-->
+                        </li>
+                    </ui:repeat>
+
+                </ul>
+
+            </div>
+            <!-- END .content-panel -->
+        </div>
+        <!-- END .main-split-left -->
+
+        <!-- BEGIN .content-panel -->
+        <div class="content-panel">
+            <script type="text/javascript">
+                google_ad_client = "ca-pub-3882701949272466";
+                google_ad_slot = "9414335231";
+                google_ad_width = 336;
+                google_ad_height = 280;
+            </script>
+            <!-- top_right -->
+            <script type="text/javascript"
+                    src="//pagead2.googlesyndication.com/pagead/show_ads.js">
+            </script>
+            <!-- END .content-panel -->
+        </div>
+        <!-- END .main-split-left -->
+    </div>
+
+    <!-- BEGIN .main-split-right -->
+    <div class="main-split-right">
+
+        <!-- BEGIN .article-small-block -->
+        <ui:repeat value="#{NewsTravelBean.top5SmallBlock}" var="news" varStatus="count">
+            <div class="article-small-block post-166 post type-post status-publish format-standard has-post-thumbnail hentry category-gossips category-technology"
+                 id="post-166">
+                <div class="article-header">
+                    <h2>
+                        <a href="#{news.url}">#{news.news.productName}</a>
+                    </h2>
+                </div>
+                <div class="article-photo">
+		<span class="image-hover">
+						<img class="setborder"
+                             src="#{news.news.mediumImageUrl}?size=140"
+                             alt="Du Lịch Cần Thơ"/>		</span>
+                </div>
+
+
+                <div class="article-content">
+                    <p>#{news.news.description}</p>
+                </div>
+                <div class="article-links">
+                    <!--<a href="has-invenire-everti-maiorum-vouptam-omnes-eligendi-erroribus-3-2/index.html#comments"-->
+                    <!--class="article-icon-link"><i class="fa fa-comment"></i>0 comment</a>-->
+                    <a href="#{news.url}" class="article-icon-link"><i
+                            class="fa fa-reply"></i>Xem thêm...</a>
+                </div>
+
+
+            </div>
+        </ui:repeat>
+        <!-- END .article-small-block  -->
+
+        <!-- END .main-split-right -->
+    </div>
+
+</div>
+
+
+<!-- BEGIN .main-content-split -->
+<div class="main-content-split">
+
+    <!-- BEGIN .main-split-left -->
+    <div class="main-split-left">
+
+        <!-- BEGIN .content-panel -->
+        <div class="content-panel">
+            <div class="panel-header">
+                <b style="background:#6D8B13;"><i class="fa fa-soccer-ball-o"></i>ẨM THỰC</b>
+
+                <div class="top-right"><a href="/am-thuc">XEM TẤT CẢ</a></div>
+            </div>
+            <div class="panel-content">
+
+                <!-- BEGIN .article-big-block -->
+                <div class="article-big-block">
+                    <div class="article-photo">
+                                        <span class="image-hover">
+                                                                                            <span class="drop-icons">
+                                                    <!--<span class="icon-block"><a-->
+                                                                                                <!--href="wp-content/uploads/2013/06/photodune-4531879-landscape-of-shanghai-s.jpg"-->
+                                                                                                <!--title="Show Image"-->
+                                                                                                <!--class="icon-loupe legatus-tooltip lightbox-photo"> </a></span>-->
+                                                    <span class="icon-block"><a
+                                                            href="#{NewsTravelBean.firstNewsAmThuc.url}"
+                                                            title="Xem chi tiết"
+                                                            class="icon-link legatus-tooltip"> </a></span>
+                                                </span>
+                                                                                        <img src="#{NewsTravelBean.firstNewsAmThuc.news.mediumImageUrl}?size=330"
+                                                                                             class="setborder"
+                                                                                             alt="Du Lịch Cần Thơ"
+                                                                                             title=""/>
+                                        </span>
+                    </div>
+                    <div class="article-header">
+                        <h2>
+                            <a href="#{NewsTravelBean.firstNewsAmThuc.url}">#{NewsTravelBean.firstNewsAmThuc.news.productName}</a>
+                        </h2>
+                    </div>
+
+                    <div class="article-content">
+                        <p>#{NewsTravelBean.firstNewsAmThuc.news.description}</p>
+                    </div>
+
+                    <div class="article-links">
+                        <!--<a href="intellegat-quaerendum-suscipiantur-est-epicurei-delicata-3-2/index.html#comments"-->
+                        <!--class="article-icon-link">-->
+                        <!--<i class="fa fa-comment"></i>-->
+                        <!--5 comments </a>-->
+                        <!--<a href="#{NewsTravelBean.firstNewsAmThuc.url}"-->
+                           <!--class="article-icon-link"><i class="fa fa-reply"></i>Xem thêm...</a>-->
+                    </div>
+                    <!-- END .article-big-block -->
+                </div>
+
+
+                <!-- BEGIN .article-array -->
+                <ul class="article-array content-category">
+                    <ui:repeat value="#{NewsTravelBean.top8AmThuc}" var="news">
+                        <li>
+                            <a href="#{news.url}">#{news.news.productName}</a>
+                            <!--<a href="has-dico-invenire-everti-maiorum-voluptatum-his-2-3-2/index.html#comments"-->
+                            <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                        </li>
+                    </ui:repeat>
+                    <!-- END .article-array -->
+                </ul>
+                <div class="article-links" style="margin-top: 10px;">
+                    <a href="/am-thuc"
+                       class="article-icon-link"><i class="fa fa-reply"></i>Xem tất cả...</a>
+                </div>
+
+            </div>
+            <!-- END .content-panel -->
+        </div>
+        <!-- END .main-split-right -->
+    </div>
+
+
+    <!-- BEGIN .main-split-right -->
+    <div class="main-split-right">
+
+
+        <!-- BEGIN .content-panel -->
+        <div class="content-panel">
+            <div class="panel-header">
+                <b style="background:#9F3819;"><i class="fa fa-soccer-ball-o"></i>DU LỊCH</b>
+
+                <div class="top-right"><a href="/du-lich">XEM TẤT CẢ</a></div>
+            </div>
+            <div class="panel-content">
+                <!-- BEGIN .article-big-block -->
+                <div class="article-big-block">
+                    <div class="article-photo">
+                                        <span class="image-hover">
+                                                                                            <span class="drop-icons">
+                                                    <!--<span class="icon-block"><a-->
+                                                                                                <!--href="wp-content/uploads/2013/06/photodune-4531879-landscape-of-shanghai-s.jpg"-->
+                                                                                                <!--title="Show Image"-->
+                                                                                                <!--class="icon-loupe legatus-tooltip lightbox-photo"> </a></span>-->
+                                                    <span class="icon-block"><a
+                                                            href="#{NewsTravelBean.firstNewsKhachSan.url}"
+                                                            title="Xem chi tiết"
+                                                            class="icon-link legatus-tooltip"> </a></span>
+                                                </span>
+                                                                                        <img src="#{NewsTravelBean.firstNewsKhachSan.news.mediumImageUrl}?size=330"
+                                                                                             class="setborder"
+                                                                                             alt="Du Lịch Cần Thơ"
+                                                                                             title=""/>
+                                        </span>
+                    </div>
+                    <div class="article-header">
+                        <h2>
+                            <a href="#{NewsTravelBean.firstNewsKhachSan.url}">#{NewsTravelBean.firstNewsKhachSan.news.productName}</a>
+                        </h2>
+                    </div>
+
+                    <div class="article-content">
+                        <p>#{NewsTravelBean.firstNewsKhachSan.news.description}</p>
+                    </div>
+
+                    <div class="article-links">
+                        <!--<a href="intellegat-quaerendum-suscipiantur-est-epicurei-delicata-3-2/index.html#comments"-->
+                        <!--class="article-icon-link">-->
+                        <!--<i class="fa fa-comment"></i>-->
+                        <!--5 comments </a>-->
+                        <!--<a href="#{NewsTravelBean.firstNewsKhachSan.url}"-->
+                           <!--class="article-icon-link"><i class="fa fa-reply"></i>Xem thêm...</a>-->
+                    </div>
+                    <!-- END .article-big-block -->
+                </div>
+
+
+                <!-- BEGIN .article-array -->
+                <ul class="article-array content-category">
+                    <ui:repeat value="#{NewsTravelBean.top8KhachSan}" var="news">
+                        <li>
+                            <a href="#{news.url}">#{news.news.productName}</a>
+                            <!--<a href="qui-wisi-aliquam-gubergren-no-sed-ei-omnes-expetenda-2-3-2/index.html#comments"-->
+                            <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                        </li>
+                    </ui:repeat>
+                    <!-- END .article-array -->
+                </ul>
+                <div class="article-links" style="margin-top: 10px;">
+                    <a href="/du-lich"
+                       class="article-icon-link"><i class="fa fa-reply"></i>Xem tất cả...</a>
+                </div>
+
+            </div>
+            <!-- END .content-panel -->
+        </div>
+        <!-- END .main-split-right -->
+    </div>
+    <div class="clear-float"></div>
+
+    <!-- END ..main-content-split -->
+</div>
+<!-- BEGIN .main-nosplit -->
+<!--<div class="main-nosplit">-->
+    <!--&lt;!&ndash; BEGIN .banner &ndash;&gt;-->
+    <!--<div class="banner">-->
+        <!--<div class="banner-block">-->
+            <!--<p><a href="#qc" ><img-->
+                    <!--src="wp-content/themes/legatus-theme/images/banner-468x60.jpg" alt="" title=""/></a></p>-->
+        <!--</div>-->
+        <!--<div class="banner-info">-->
+            <!--<a href="#qc" class="sponsored">-->
+                <!--<span class="icon-default"> </span>Liên hệ quảng cáo<span class="icon-default"> </span>-->
+            <!--</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; END .banner &ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
+
+
+<!-- BEGIN .main-nosplit -->
+<!--<div class="main-nosplit">-->
+    <!--&lt;!&ndash; BEGIN .content-panel &ndash;&gt;-->
+    <!--<div class="content-panel">-->
+        <!--<div class="panel-header">-->
+            <!--<b style="background:#A21D1D;"><i class="fa fa-soccer-ball-o"></i>News From Sport Section</b>-->
+
+            <!--<div class="top-right"><a href="category/sport-news/index.html">View More Articles</a></div>-->
+        <!--</div>-->
+        <!--<div class="panel-content">-->
+
+            <!--&lt;!&ndash; BEGIN .article-array &ndash;&gt;-->
+            <!--<ul class="article-array content-category">-->
+                <!--<li>-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-3-2/index.html">Everti maiorum voluptatum omnes eligendi vim erroribus disputationi</a>-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-3-2/index.html#comments"-->
+                       <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="has-dico-invenire-everti-maiorum-voluptatum-his-2-3-2/index.html">Has dico invenire everti maiorum voluptatum his</a>-->
+                    <!--<a href="has-dico-invenire-everti-maiorum-voluptatum-his-2-3-2/index.html#comments"-->
+                       <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-3-2/index.html">Quodsi everti ancillae vim qui lorem persius petentium</a>-->
+                    <!--<a href="quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-3-2/index.html#comments"-->
+                       <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="sumo-aliquip-facilisi-temporibus-pri-3-2/index.html">Sumo aliquip facilisi temporibus pri</a>-->
+                    <!--<a href="sumo-aliquip-facilisi-temporibus-pri-3-2/index.html#comments" class="comment-icon"><i-->
+                            <!--class="fa fa-comment"></i>0</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-2-2/index.html">Everti maiorum voluptatum omnes eligendi vim erroribus disputationi</a>-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-2-2/index.html#comments"-->
+                       <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-2-2/index.html">Quodsi everti ancillae vim qui lorem persius petentium</a>-->
+                    <!--<a href="quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-2-2/index.html#comments"-->
+                       <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-3/index.html">Everti maiorum voluptatum omnes eligendi vim erroribus disputationi</a>-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-3/index.html#comments"-->
+                       <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<a href="has-dico-invenire-everti-maiorum-voluptatum-his-2-3/index.html">Has dico invenire everti maiorum voluptatum his</a>-->
+                    <!--<a href="has-dico-invenire-everti-maiorum-voluptatum-his-2-3/index.html#comments"-->
+                       <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                <!--</li>-->
+
+                <!--&lt;!&ndash; END .article-array &ndash;&gt;-->
+            <!--</ul>-->
+
+        <!--</div>-->
+        <!--&lt;!&ndash; END .content-panel &ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
+<!-- BEGIN .content-panel -->
+<!--<div class="content-panel">-->
+    <!--<div class="panel-header">-->
+        <!--<b style="background:#264C84;"><i class="fa fa-star"></i>Latest Reviews</b>-->
+    <!--</div>-->
+    <!--<div class="panel-content">-->
+
+        <!--<div class="review-block">-->
+            <!--&lt;!&ndash; BEGIN .review-item &ndash;&gt;-->
+            <!--<div class="review-item">-->
+
+
+                <!--<div class="review-image">-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-3-2/index.html"-->
+                       <!--class="img-hover-image">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4519279-shanghai-s-148x90_c.jpg"-->
+                             <!--alt="Everti maiorum voluptatum omnes eligendi vim erroribus disputationi"/>-->
+                    <!--</a>-->
+                    <!--<a href="category/business/index.html" class="review-category"-->
+                       <!--style="background:#338aa6;">Business</a>-->
+                <!--</div>-->
+                <!--<div class="review-content">-->
+                    <!--<h2>-->
+                        <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-3-2/index.html">Everti maiorum voluptatum omnes eligendi vim erroribus disputationi</a>-->
+                    <!--</h2>-->
+                                    <!--<span>-->
+                                        <!--<p>Lorem ipsum dolor sit amet,</p>-->
+                                    <!--</span>-->
+
+                                                                            <!--<span class="star-rating rating-large"-->
+                                                                                  <!--title="Rated 4.6 out of 5 stars">-->
+                                            <!--<span style="width:92.5%">-->
+                                                <!--<strong class="rating">4.6</strong> out of 5 stars                                            </span>-->
+                                        <!--</span>-->
+
+                <!--</div>-->
+                <!--<div class="clear-float"></div>-->
+                <!--&lt;!&ndash; END .review-item &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; BEGIN .review-item &ndash;&gt;-->
+            <!--<div class="review-item">-->
+
+
+                <!--<div class="review-image">-->
+                    <!--<a href="quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-3-2/index.html"-->
+                       <!--class="img-hover-image">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4510750-night-view-of-shanghai-s-148x90_c.jpg"-->
+                             <!--alt="Quodsi everti ancillae vim qui lorem persius petentium"/>-->
+                    <!--</a>-->
+                    <!--<a href="category/entertainment/index.html" class="review-category"-->
+                       <!--style="background:#6d8b13;">Entertainment</a>-->
+                <!--</div>-->
+                <!--<div class="review-content">-->
+                    <!--<h2>-->
+                        <!--<a href="quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-3-2/index.html">Quodsi everti ancillae vim qui lorem persius petentium</a>-->
+                    <!--</h2>-->
+                                    <!--<span>-->
+                                        <!--<p>Lorem ipsum dolor sit amet,</p>-->
+                                    <!--</span>-->
+
+                                                                            <!--<span class="star-rating rating-large"-->
+                                                                                  <!--title="Rated 4.1 out of 5 stars">-->
+                                            <!--<span style="width:82.5%">-->
+                                                <!--<strong class="rating">4.1</strong> out of 5 stars                                            </span>-->
+                                        <!--</span>-->
+
+                <!--</div>-->
+                <!--<div class="clear-float"></div>-->
+                <!--&lt;!&ndash; END .review-item &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; BEGIN .review-item &ndash;&gt;-->
+            <!--<div class="review-item">-->
+
+
+                <!--<div class="review-image">-->
+                    <!--<a href="sumo-aliquip-facilisi-temporibus-pri-3-2/index.html" class="img-hover-image">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4250745-panorama-of-shanghai-s-148x90_c.jpg"-->
+                             <!--alt="Sumo aliquip facilisi temporibus pri"/>-->
+                    <!--</a>-->
+                    <!--<a href="category/entertainment/index.html" class="review-category"-->
+                       <!--style="background:#6d8b13;">Entertainment</a>-->
+                <!--</div>-->
+                <!--<div class="review-content">-->
+                    <!--<h2>-->
+                        <!--<a href="sumo-aliquip-facilisi-temporibus-pri-3-2/index.html">Sumo aliquip facilisi temporibus pri</a>-->
+                    <!--</h2>-->
+                                    <!--<span>-->
+                                        <!--<p>Lorem ipsum dolor sit amet,</p>-->
+                                    <!--</span>-->
+
+                                                                            <!--<span class="star-rating rating-large"-->
+                                                                                  <!--title="Rated 4.6 out of 5 stars">-->
+                                            <!--<span style="width:92.5%">-->
+                                                <!--<strong class="rating">4.6</strong> out of 5 stars                                            </span>-->
+                                        <!--</span>-->
+
+                <!--</div>-->
+                <!--<div class="clear-float"></div>-->
+                <!--&lt;!&ndash; END .review-item &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; BEGIN .review-item &ndash;&gt;-->
+            <!--<div class="review-item">-->
+
+
+                <!--<div class="review-image">-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-2-2/index.html"-->
+                       <!--class="img-hover-image">-->
+                        <!--<img src="wp-content/uploads/2013/06/02-148x90_c.jpg"-->
+                             <!--alt="Everti maiorum voluptatum omnes eligendi vim erroribus disputationi"/>-->
+                    <!--</a>-->
+                    <!--<a href="category/business/index.html" class="review-category"-->
+                       <!--style="background:#338aa6;">Business</a>-->
+                <!--</div>-->
+                <!--<div class="review-content">-->
+                    <!--<h2>-->
+                        <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-2-2/index.html">Everti maiorum voluptatum omnes eligendi vim erroribus disputationi</a>-->
+                    <!--</h2>-->
+                                    <!--<span>-->
+                                        <!--<p>Lorem ipsum dolor sit amet,</p>-->
+                                    <!--</span>-->
+
+                                                                            <!--<span class="star-rating rating-large"-->
+                                                                                  <!--title="Rated 3.4 out of 5 stars">-->
+                                            <!--<span style="width:67.5%">-->
+                                                <!--<strong class="rating">3.4</strong> out of 5 stars                                            </span>-->
+                                        <!--</span>-->
+
+                <!--</div>-->
+                <!--<div class="clear-float"></div>-->
+                <!--&lt;!&ndash; END .review-item &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; BEGIN .review-item &ndash;&gt;-->
+            <!--<div class="review-item">-->
+
+
+                <!--<div class="review-image">-->
+                    <!--<a href="qui-wisi-aliquam-gubergren-no-sed-ei-omnes-expetenda-2-3/index.html"-->
+                       <!--class="img-hover-image">-->
+                        <!--<img src="wp-content/uploads/2013/06/04-148x90_c.jpg"-->
+                             <!--alt="Qui wisi aliquam gubergren no, sed ei omnes expetenda"/>-->
+                    <!--</a>-->
+                    <!--<a href="category/technology/index.html" class="review-category"-->
+                       <!--style="background:#9f3819;">Technology</a>-->
+                <!--</div>-->
+                <!--<div class="review-content">-->
+                    <!--<h2>-->
+                        <!--<a href="qui-wisi-aliquam-gubergren-no-sed-ei-omnes-expetenda-2-3/index.html">Qui wisi aliquam gubergren no, sed ei omnes expetenda</a>-->
+                    <!--</h2>-->
+                                    <!--<span>-->
+                                        <!--<p>Lorem ipsum dolor sit amet,</p>-->
+                                    <!--</span>-->
+
+                                                                            <!--<span class="star-rating rating-large"-->
+                                                                                  <!--title="Rated 4.9 out of 5 stars">-->
+                                            <!--<span style="width:97.5%">-->
+                                                <!--<strong class="rating">4.9</strong> out of 5 stars                                            </span>-->
+                                        <!--</span>-->
+
+                <!--</div>-->
+                <!--<div class="clear-float"></div>-->
+                <!--&lt;!&ndash; END .review-item &ndash;&gt;-->
+            <!--</div>-->
+            <!--&lt;!&ndash; BEGIN .review-item &ndash;&gt;-->
+            <!--<div class="review-item">-->
+
+
+                <!--<div class="review-image">-->
+                    <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi/index.html"-->
+                       <!--class="img-hover-image">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4519279-shanghai-s-148x90_c.jpg"-->
+                             <!--alt="Everti maiorum voluptatum omnes eligendi vim erroribus disputationi"/>-->
+                    <!--</a>-->
+                    <!--<a href="category/business/index.html" class="review-category"-->
+                       <!--style="background:#338aa6;">Business</a>-->
+                <!--</div>-->
+                <!--<div class="review-content">-->
+                    <!--<h2>-->
+                        <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi/index.html">Everti maiorum voluptatum omnes eligendi vim erroribus disputationi</a>-->
+                    <!--</h2>-->
+                                    <!--<span>-->
+                                        <!--<p>Lorem ipsum dolor sit amet,</p>-->
+                                    <!--</span>-->
+
+                                                                            <!--<span class="star-rating rating-large"-->
+                                                                                  <!--title="Rated 4.3 out of 5 stars">-->
+                                            <!--<span style="width:86%">-->
+                                                <!--<strong class="rating">4.3</strong> out of 5 stars                                            </span>-->
+                                        <!--</span>-->
+
+                <!--</div>-->
+                <!--<div class="clear-float"></div>-->
+                <!--&lt;!&ndash; END .review-item &ndash;&gt;-->
+            <!--</div>-->
+
+
+        <!--</div>-->
+
+    <!--</div>-->
+    <!--&lt;!&ndash; END .content-panel &ndash;&gt;-->
+<!--</div>-->
+<!-- BEGIN .main-nosplit -->
+<!--<div class="main-nosplit">-->
+    <!--&lt;!&ndash; BEGIN .content-panel &ndash;&gt;-->
+    <!--<div class="content-panel">-->
+        <!--<div class="panel-header">-->
+            <!--<b style="background:#264C84;"><i class="fa fa-video-camera"></i>Most Recent Videos</b>-->
+        <!--</div>-->
+        <!--<div class="panel-content">-->
+
+            <!--<div class="video-blocks">-->
+
+
+                <!--<div class="video-left">-->
+                    <!--<div class="video-large">-->
+                        <!--<div class="video-image">-->
+                            <!--<a href="ut-per-definiebas-nominavi-persecuti-3-2/index.html">-->
+                                <!--<span class="hover-icon icon-text"><i class="fa fa-video-camera"></i></span>-->
+                                <!--<img class="setborder" src="wp-content/uploads/2013/06/01-330x185_c.jpg"-->
+                                     <!--alt="Ut per definiebas nominavi persecuti"/>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<h2>-->
+                            <!--<a href="ut-per-definiebas-nominavi-persecuti-3-2/index.html">Ut per definiebas nominavi persecuti</a>-->
+                        <!--</h2>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="video-right">-->
+
+                    <!--<div class="video-small">-->
+                        <!--<div class="video-image">-->
+                            <!--<a href="intellegat-quaerendum-suscipiantur-est-epicurei-delicata-2-2/index.html">-->
+                                <!--<span class="hover-icon icon-text"><i class="fa fa-video-camera"></i></span>-->
+                                <!--<img class="setborder" src="wp-content/uploads/2013/06/05-155x87_c.jpg"-->
+                                     <!--alt="Intellegat quaerendum suscipiantur est epicurei delicata"/>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<h2>-->
+                            <!--<a href="intellegat-quaerendum-suscipiantur-est-epicurei-delicata-2-2/index.html">Intellegat quaerendum suscipiantur est epicurei delicata</a>-->
+                        <!--</h2>-->
+                    <!--</div>-->
+
+
+                    <!--<div class="video-small">-->
+                        <!--<div class="video-image">-->
+                            <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-2-2/index.html">-->
+                                <!--<span class="hover-icon icon-text"><i class="fa fa-video-camera"></i></span>-->
+                                <!--<img class="setborder" src="wp-content/uploads/2013/06/02-155x87_c.jpg"-->
+                                     <!--alt="Everti maiorum voluptatum omnes eligendi vim erroribus disputationi"/>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<h2>-->
+                            <!--<a href="everti-maiorum-voluptatum-omnes-eligendi-vim-erroribus-disputationi-2-2/index.html">Everti maiorum voluptatum omnes eligendi vim erroribus disputationi</a>-->
+                        <!--</h2>-->
+                    <!--</div>-->
+
+
+                    <!--<div class="video-small">-->
+                        <!--<div class="video-image">-->
+                            <!--<a href="quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-2-2/index.html">-->
+                                <!--<span class="hover-icon icon-text"><i class="fa fa-video-camera"></i></span>-->
+                                <!--<img class="setborder"-->
+                                     <!--src="wp-content/uploads/2013/06/photodune-4510750-night-view-of-shanghai-s-155x87_c.jpg"-->
+                                     <!--alt="Quodsi everti ancillae vim qui lorem persius petentium"/>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<h2>-->
+                            <!--<a href="quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-2-2/index.html">Quodsi everti ancillae vim qui lorem persius petentium</a>-->
+                        <!--</h2>-->
+                    <!--</div>-->
+
+
+                    <!--<div class="video-small">-->
+                        <!--<div class="video-image">-->
+                            <!--<a href="qui-wisi-aliquam-gubergren-no-sed-ei-omnes-expetenda-2-3/index.html">-->
+                                <!--<span class="hover-icon icon-text"><i class="fa fa-video-camera"></i></span>-->
+                                <!--<img class="setborder" src="wp-content/uploads/2013/06/04-155x87_c.jpg"-->
+                                     <!--alt="Qui wisi aliquam gubergren no, sed ei omnes expetenda"/>-->
+                            <!--</a>-->
+                        <!--</div>-->
+                        <!--<h2>-->
+                            <!--<a href="qui-wisi-aliquam-gubergren-no-sed-ei-omnes-expetenda-2-3/index.html">Qui wisi aliquam gubergren no, sed ei omnes expetenda</a>-->
+                        <!--</h2>-->
+                    <!--</div>-->
+
+
+                <!--</div>-->
+
+                <!--<div class="clear-float"></div>-->
+
+            <!--</div>-->
+
+        <!--</div>-->
+        <!--&lt;!&ndash; END .content-panel &ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
+<!-- BEGIN .main-nosplit -->
+<!--<div class="main-nosplit">-->
+    <!--&lt;!&ndash; BEGIN .banner &ndash;&gt;-->
+    <!--<div class="banner">-->
+        <!--<div class="banner-block">-->
+            <!--<p><a href="http://www.orange-themes.com/" target="_blank"><img-->
+                    <!--src="wp-content/themes/legatus-theme/images/banner-468x60.jpg" alt="" title=""/></a></p>-->
+        <!--</div>-->
+        <!--<div class="banner-info">-->
+            <!--<a href="contact-us/index.html" class="sponsored">-->
+                <!--<span class="icon-default"> </span>Sponsored Advert<span class="icon-default"> </span>-->
+            <!--</a>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash; END .banner &ndash;&gt;-->
+    <!--</div>-->
+<!--</div>-->
+
+<!-- BEGIN .main-nosplit -->
+<!--<div class="main-nosplit">-->
+<!--&lt;!&ndash; BEGIN .content-panel &ndash;&gt;-->
+<!--<div class="content-panel">-->
+<!--<div class="panel-header">-->
+    <!--<b style="background:#264C84;"><i class="fa fa-camera"></i>Latest Photo Galleries</b>-->
+
+    <!--<div class="top-right"><a href="photo-gallery/index.html">View More Photo Galleries</a></div>-->
+<!--</div>-->
+<!--<div class="panel-content">-->
+
+<!--<div class="photo-gallery-blocks">-->
+
+<!--<ul class="images-scroll" style="margin-left: 190px;">-->
+    <!--<li class="active"><a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-12/index.html"><img-->
+            <!--src="wp-content/uploads/2013/06/photodune-4531879-landscape-of-shanghai-s12-300x220_c.jpg" class="setborder"-->
+            <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"-->
+            <!--title="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"/></a></li>-->
+    <!--<li><a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-11/index.html"><img-->
+            <!--src="wp-content/uploads/2013/06/photodune-4245062-beautiful-of-shanghai-night-scene-s11-300x220_c.jpg"-->
+            <!--class="setborder" alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"-->
+            <!--title="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"/></a></li>-->
+    <!--<li><a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-10/index.html"><img-->
+            <!--src="wp-content/uploads/2013/06/photodune-4519279-shanghai-s10-300x220_c.jpg" class="setborder"-->
+            <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"-->
+            <!--title="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"/></a></li>-->
+    <!--<li><a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-9/index.html"><img-->
+            <!--src="wp-content/uploads/2013/06/photodune-4519252-shanghai-s12-300x220_c.jpg" class="setborder"-->
+            <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"-->
+            <!--title="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"/></a></li>-->
+    <!--<li><a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-8/index.html"><img-->
+            <!--src="wp-content/uploads/2013/06/photodune-4516889-light-trails-s8-300x220_c.jpg" class="setborder"-->
+            <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"-->
+            <!--title="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER"/></a></li>-->
+
+
+<!--</ul>-->
+
+<!--<div class="clear-float"></div>-->
+
+<!--<ul class="images-content">-->
+<!--<li class="active">-->
+    <!--<div class="gallery-thumbs">-->
+        <!--<div class="d-wrapper">-->
+            <!--<ul>-->
+                <!--<li data-nr="1">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-12/index.html" rel="1"-->
+                       <!--class="light-show" data-id="gallery-322">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4531879-landscape-of-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="1"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="2">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-12/index.html" rel="2"-->
+                       <!--class="light-show" data-id="gallery-322">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275330-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="2"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="3">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-12/index.html" rel="3"-->
+                       <!--class="light-show" data-id="gallery-322">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275216-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="3"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="4">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-12/index.html" rel="4"-->
+                       <!--class="light-show" data-id="gallery-322">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4250745-panorama-of-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="4"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="5">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-12/index.html" rel="5"-->
+                       <!--class="light-show" data-id="gallery-322">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4245062-beautiful-of-shanghai-night-scene-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="5"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="clear-float"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="d-wrapper">-->
+        <!--<div class="article-header">-->
+            <!--<h2>-->
+                <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-12/index.html">NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+
+        <!--<div class="article-links">-->
+            <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-12/index.html"-->
+               <!--class="article-icon-link"><i class="fa fa-reply"></i>View all 10 photos</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</li>-->
+<!--<li>-->
+    <!--<div class="gallery-thumbs">-->
+        <!--<div class="d-wrapper">-->
+            <!--<ul>-->
+                <!--<li data-nr="1">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-11/index.html" rel="1"-->
+                       <!--class="light-show" data-id="gallery-313">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4245062-beautiful-of-shanghai-night-scene-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="1"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="2">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-11/index.html" rel="2"-->
+                       <!--class="light-show" data-id="gallery-313">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275330-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="2"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="3">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-11/index.html" rel="3"-->
+                       <!--class="light-show" data-id="gallery-313">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275216-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="3"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="4">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-11/index.html" rel="4"-->
+                       <!--class="light-show" data-id="gallery-313">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4250745-panorama-of-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="4"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="5">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-11/index.html" rel="5"-->
+                       <!--class="light-show" data-id="gallery-313">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4510750-night-view-of-shanghai-s6-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="5"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="clear-float"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="d-wrapper">-->
+        <!--<div class="article-header">-->
+            <!--<h2>-->
+                <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-11/index.html">NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+
+        <!--<div class="article-links">-->
+            <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-11/index.html"-->
+               <!--class="article-icon-link"><i class="fa fa-reply"></i>View all 10 photos</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</li>-->
+<!--<li>-->
+    <!--<div class="gallery-thumbs">-->
+        <!--<div class="d-wrapper">-->
+            <!--<ul>-->
+                <!--<li data-nr="1">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-10/index.html" rel="1"-->
+                       <!--class="light-show" data-id="gallery-303">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4519279-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="1"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="2">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-10/index.html" rel="2"-->
+                       <!--class="light-show" data-id="gallery-303">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4510750-night-view-of-shanghai-s6-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="2"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="3">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-10/index.html" rel="3"-->
+                       <!--class="light-show" data-id="gallery-303">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275330-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="3"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="4">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-10/index.html" rel="4"-->
+                       <!--class="light-show" data-id="gallery-303">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275216-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="4"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="5">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-10/index.html" rel="5"-->
+                       <!--class="light-show" data-id="gallery-303">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4250745-panorama-of-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="5"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="clear-float"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="d-wrapper">-->
+        <!--<div class="article-header">-->
+            <!--<h2>-->
+                <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-10/index.html">NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+
+        <!--<div class="article-links">-->
+            <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-10/index.html"-->
+               <!--class="article-icon-link"><i class="fa fa-reply"></i>View all 10 photos</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</li>-->
+<!--<li>-->
+    <!--<div class="gallery-thumbs">-->
+        <!--<div class="d-wrapper">-->
+            <!--<ul>-->
+                <!--<li data-nr="1">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-9/index.html" rel="1"-->
+                       <!--class="light-show" data-id="gallery-291">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4519252-shanghai-s3-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="1"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="2">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-9/index.html" rel="2"-->
+                       <!--class="light-show" data-id="gallery-291">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275330-shanghai-s4-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="2"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="3">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-9/index.html" rel="3"-->
+                       <!--class="light-show" data-id="gallery-291">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4250745-panorama-of-shanghai-s3-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="3"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="4">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-9/index.html" rel="4"-->
+                       <!--class="light-show" data-id="gallery-291">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4245062-beautiful-of-shanghai-night-scene-s3-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="4"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="5">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-9/index.html" rel="5"-->
+                       <!--class="light-show" data-id="gallery-291">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4519279-shanghai-s3-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="5"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="clear-float"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="d-wrapper">-->
+        <!--<div class="article-header">-->
+            <!--<h2>-->
+                <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-9/index.html">NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+
+        <!--<div class="article-links">-->
+            <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-9/index.html" class="article-icon-link"><i-->
+                    <!--class="fa fa-reply"></i>View all 10 photos</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</li>-->
+<!--<li>-->
+    <!--<div class="gallery-thumbs">-->
+        <!--<div class="d-wrapper">-->
+            <!--<ul>-->
+                <!--<li data-nr="1">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-8/index.html" rel="1"-->
+                       <!--class="light-show" data-id="gallery-279">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4516889-light-trails-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="1"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="2">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-8/index.html" rel="2"-->
+                       <!--class="light-show" data-id="gallery-279">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275330-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="2"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="3">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-8/index.html" rel="3"-->
+                       <!--class="light-show" data-id="gallery-279">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4275216-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="3"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="4">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-8/index.html" rel="4"-->
+                       <!--class="light-show" data-id="gallery-279">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4250745-panorama-of-shanghai-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="4"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+                <!--<li data-nr="5">-->
+                    <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-8/index.html" rel="5"-->
+                       <!--class="light-show" data-id="gallery-279">-->
+                        <!--<img src="wp-content/uploads/2013/06/photodune-4245062-beautiful-of-shanghai-night-scene-s5-52x40_c.jpg"-->
+                             <!--alt="NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER" class="setborder" data-id="5"/>-->
+                    <!--</a>-->
+                <!--</li>-->
+            <!--</ul>-->
+            <!--<div class="clear-float"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div class="d-wrapper">-->
+        <!--<div class="article-header">-->
+            <!--<h2>-->
+                <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-8/index.html">NE QUOD DESERUNT VOLUTPAT CUM NULLA OBLIQUE AD PER</a>-->
+            <!--</h2>-->
+        <!--</div>-->
+
+        <!--<div class="article-links">-->
+            <!--<a href="gallery/ne-quod-deserunt-volutpat-cum-nulla-oblique-ad-per-8/index.html" class="article-icon-link"><i-->
+                    <!--class="fa fa-reply"></i>View all 10 photos</a>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</li>-->
+
+<!--</ul>-->
+
+<!--</div>-->
+
+<!--</div>-->
+<!--&lt;!&ndash; END .content-panel &ndash;&gt;-->
+<!--</div>-->
+<!--</div>-->
+<!-- END .main-content-left -->
+</div>
+
+</ui:define>
+</ui:composition>

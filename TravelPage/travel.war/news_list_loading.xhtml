@@ -1,0 +1,88 @@
+<h:panelGroup rendered="#{!empty NewsTravelList.leftNewsList}" xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core">
+    <div id="news_list" class="main-content-split">
+
+
+        <!-- BEGIN .main-split-left -->
+        <div class="main-split-left">
+            <!-- BEGIN .article-big-block -->
+            <ui:repeat value="#{NewsTravelList.leftNewsList}" var="news" varStatus="count">
+                <div class="article-big-block post-172 post type-post status-publish format-standard has-post-thumbnail hentry category-entertainment category-technology tag-cibods tag-dispdo tag-feugiat-epicuri-deterruisset tag-no-tollit-reprimique tag-reprimique tag-repriue-dissentiet">
+                    <div class="article-header" style="padding-top: 5px;">
+                        <h2><a href="#{news.url}">#{news.news.productName}</a></h2>
+                    </div>
+                    <div class="article-photo">
+                                    <span class="image-hover">
+                                        <span class="drop-icons">
+                                                        <!--<span class="icon-block"><a-->
+                                            <!--href="/wp-content/uploads/2013/06/photodune-4531879-landscape-of-shanghai-s.jpg"-->
+                                            <!--title="Xem hình ảnh"-->
+                                            <!--class="icon-loupe legatus-tooltip lightbox-photo"> </a></span>-->
+                                                    <span class="icon-block"><a
+                                                            href="#{news.url}"
+                                                            title="Xem chi tiết" class="icon-link legatus-tooltip"> </a></span>
+                                        </span>
+                                        <img class="setborder" width="330px"
+                                             src="#{news.news.mediumImageUrl}?size=330"
+                                             alt="Du Lịch Cần Thơ"/>
+                                    </span>
+                    </div>
+                    <div class="article-content">
+                        <p>#{news.news.description}</p>
+                    </div>
+                    <div class="article-links">
+                        <!--<a href="../../intellegat-quaerendum-suscipiantur-est-epicurei-delicata-3-2/index.html#comments"-->
+                        <!--class="article-icon-link"><i class="fa fa-comment"></i>5 comments</a>-->
+                        <a href="#{news.url}"
+                           class="article-icon-link"><i class="fa fa-reply"></i>Xem thêm...</a>
+                    </div>
+
+                </div>
+            </ui:repeat>
+            <!-- END .article-big-block  -->
+
+            <!-- END .main-split-left -->
+        </div>
+        <!-- BEGIN .main-split-right -->
+        <div class="main-split-right">
+
+            <!-- BEGIN .article-big-block -->
+            <ui:repeat value="#{NewsTravelList.rightNewsList}" var="news" varStatus="count">
+                <div class="article-big-block post-172 post type-post status-publish format-standard has-post-thumbnail hentry category-entertainment category-technology tag-cibods tag-dispdo tag-feugiat-epicuri-deterruisset tag-no-tollit-reprimique tag-reprimique tag-repriue-dissentiet">
+                    <div class="article-header" style="padding-top: 5px;">
+                        <h2><a href="#{news.url}">#{news.news.productName}</a></h2>
+                    </div>
+                    <div class="article-photo">
+		                            <span class="image-hover">
+							            <span class="drop-icons">
+											<!--<span class="icon-block"><a-->
+                                            <!--href="/wp-content/uploads/2013/06/photodune-4531879-landscape-of-shanghai-s.jpg"-->
+                                            <!--title="Xem hình ảnh"-->
+                                            <!--class="icon-loupe legatus-tooltip lightbox-photo"> </a></span>-->
+                                            <span class="icon-block"><a
+                                                    href="#{news.url}"
+                                                    title="Xem chi tiết" class="icon-link legatus-tooltip"> </a></span>
+				                        </span>
+						                <img class="setborder" width="330px"
+                                             src="#{news.news.mediumImageUrl}?size=330"
+                                             alt="Du Lịch Cần Thơ"/>
+                                    </span>
+                    </div>
+
+                    <div class="article-content">
+                        <p>#{news.news.description}</p>
+                    </div>
+                    <div class="article-links">
+                        <!--<a href="../../intellegat-quaerendum-suscipiantur-est-epicurei-delicata-3-2/index.html#comments"-->
+                        <!--class="article-icon-link"><i class="fa fa-comment"></i>5 comments</a>-->
+                        <a href="#{news.url}"
+                           class="article-icon-link"><i class="fa fa-reply"></i>Xem thêm...</a>
+                    </div>
+
+                </div>
+            </ui:repeat>
+            <!-- END .article-big-block  -->
+            <!-- END .main-split-right -->
+        </div>
+    </div>
+</h:panelGroup>

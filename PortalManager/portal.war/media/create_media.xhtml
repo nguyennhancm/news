@@ -1,0 +1,189 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+                template="/template/template_media.xhtml">
+
+    <ui:define name="title">Thêm mới Phim</ui:define>
+    <ui:define name="content">
+        <h:form prependId="false">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="page-header">Thêm mới Phim</h4>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+
+            <div class="row">
+                <table width="75%">
+                    <tbody>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Chuyên mục
+                        </td>
+                        <td style="padding: 5px;">
+                            <h:selectOneMenu id="somNewProductCategory" style="width:280px"
+                                             styleClass="selectpicker show-menu-arrow"
+                                             value="#{CreateMediaBean.newsData.news.primaryProductCategoryId}">
+                                <f:selectItem itemLabel="Chọn chuyên mục" itemValue=""/>
+                                <f:selectItems value="#{Category.allCategory}" var="item"
+                                               itemLabel="#{item.label}" itemValue="#{item.value}"/>
+                            </h:selectOneMenu>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Tên Phim
+                        </td>
+                        <td style="padding: 5px;">
+                            <table>
+                                <tr>
+                                    <td >     <h:inputText value="#{CreateMediaBean.newsData.news.productName}" styleClass="form-control"/></td>
+                                    <td width="100px" align="center">Tên tiếng anh</td>
+                                    <td>
+                                        <h:inputText value="#{CreateMediaBean.nameENG}"  a:placeholder="Nếu có" styleClass="form-control"/></td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Link Phim
+                        </td>
+                        <td style="padding: 5px;">
+                            <i style="font-size: 11px; color: blue">Nếu nhiều link, mỗi link 1 tập và xuống dòng với mỗi link</i>
+                            <h:inputTextarea  styleClass="form-control"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Link Trailer
+                        </td>
+                        <td style="padding: 5px;">
+                            <h:inputText value="#{CreateMediaBean.newsData.news.description}" a:placeholder="Nếu có"  styleClass="form-control"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Chất lượng
+                        </td>
+                        <td style="padding: 5px;">
+                            <table>
+                                <tr>
+                                    <td><h:inputText value="#{CreateMediaBean.quality}"  a:placeholder="Nếu có"  styleClass="form-control"/></td>
+                                    <td width="100px" align="center">Thời lượng</td>
+                                    <td><h:inputText  value="#{CreateMediaBean.lengthEpisodes}"  a:placeholder="Nếu có"  styleClass="form-control"/></td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Tag
+                        </td>
+                        <td style="padding: 5px;">
+                            <h:inputText value="#{CreateMediaBean.tags}" styleClass="form-control"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Title SEO
+                        </td>
+                        <td style="padding: 5px;">
+                            <h:inputText value="#{CreateMediaBean.titleSEO}" styleClass="form-control"/>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td style="padding: 5px;">
+                            Năm sản xuất
+                        </td>
+                        <td style="padding: 5px;">
+                            <table>
+                                <tr>
+                                    <td><h:inputText value="#{CreateMediaBean.productionYear}"  a:placeholder="Nếu có"  styleClass="form-control"/></td>
+                                    <td width="100px" align="center">Quốc gia</td>
+                                    <td><h:inputText value="#{CreateMediaBean.country}" a:placeholder="Nếu có"  styleClass="form-control"/></td>
+                                    <td width="100px"   align="center">Tổng số tập</td>
+                                    <td><h:inputText value="#{CreateMediaBean.totalEpisodes}" a:placeholder="Nếu có" styleClass="form-control"/></td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Thời gian phát sóng
+                        </td>
+                        <td style="padding: 5px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <h:inputText value="#{CreateMediaBean.airtime}" a:placeholder="Nếu có" styleClass="form-control"/>
+                                    </td>
+                                    <td width="100px" align="center">
+                                        Đài phát sóng
+                                    </td>
+                                    <td>
+                                        <h:inputText value="#{CreateMediaBean.broadcaster}"  a:placeholder="Nếu có"  styleClass="form-control"/>
+                                    </td>
+                                </tr>
+                            </table>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Diễn viên
+                        </td>
+                        <td style="padding: 5px;">
+                            <h:inputTextarea value="#{CreateMediaBean.movieActor}" styleClass="form-control"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;">
+                            Upload ảnh
+                        </td>
+                        <td style="padding: 5px;">
+                            <div style="float: left">
+                                <input style="width: 170px;"
+                                       onchange="prepareUpload(event,'#{NewsManager.userData.currentStore}')"
+                                       type="file"
+                                       multiple="true"/>
+                            </div>
+                            <div style="float: left" id="uploadImageProcessing">
+
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td style="padding: 5px;">
+                            Giới thiệu về bộ phim
+                        </td>
+                        <td style="padding: 5px;">
+                            <h:inputTextarea value="#{CreateMediaBean.newsData.news.longDescription}" class="ckeditor"
+                                             cols="100" id="editorNews"
+                                             name="editor1" rows="10"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;"></td>
+                        <td style="padding: 5px;">
+                            <h:commandButton styleClass="btn btn-primary"
+                                             action="#{CreateMediaBean.createMedia}" id="btnSaveNews" value="Thêm mới">
+                            </h:commandButton>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </h:form>
+        <!-- /.row -->
+    </ui:define>
+</ui:composition>

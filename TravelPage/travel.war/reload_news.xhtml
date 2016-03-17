@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                template="/template/templates.xhtml" xmlns:p="http://primefaces.org/ui">
+    <ui:define name="title">Reload | Du Lịch Cần Thơ</ui:define>
+    <ui:define name="main">
+        <div class="main-content-left">
+            <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+            <h:form>
+                <h:commandButton value="Reload cache" action="#{NewsTravelBean.reloadCache}"/>
+            </h:form>
+            <!--<p:dialog position="top" effect="slide" styleClass="top" widgetVar="bar">-->
+                <!--<h:form>-->
+                    <!--<h:commandLink value="PrimeFaces Rocks!" onclick="PF('bar').hide()" style="font-size:36px;" />-->
+                <!--</h:form>-->
+            <!--</p:dialog>-->
+            <!--<p:commandLink value="aaaaaa" onclick="PF('bar').show()" />-->
+            <!--<p:commandLink value="" onclick="PF('bar').hide()" style="display: none;"/>-->
+        </div>
+    </ui:define>
+</ui:composition>

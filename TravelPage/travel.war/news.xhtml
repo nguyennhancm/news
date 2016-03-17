@@ -1,0 +1,350 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://java.sun.com/jsf/html"
+                template="/template/templates.xhtml">
+<ui:define name="title">#{NewsDetailBean.product.productName} | Du Lịch Cần Thơ</ui:define>
+<ui:define name="headerMeta">
+    <meta name="description" content="#{NewsDetailBean.product.description}"/>
+    <meta name="keywords" content="du lịch cần thơ, đặc sản, khách sạn, món ngon, miền tây, tour, tin tức"/>
+    <meta property="og:type" content="website"/>
+    <meta property="fb:app_id" content="851072315000860"/>
+    <meta property="og:url" content="#{NewsDetailBean.getId()}"/>
+    <meta property="og:site_name" content="dulichcantho.vn"/>
+    <meta property="og:image" content="#{NewsDetailBean.product.mediumImageUrl}"/>
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="200"/>
+    <meta property="og:image:height" content="200"/>
+</ui:define>
+<ui:define name="main">
+
+<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400italic,400,700&amp;subset=latin,vietnamese,latin-ext'
+      rel='stylesheet' type='text/css'/>
+<!--<link rel="stylesheet" href="/rs/css/bootstrap.min.css" media="screen"/>-->
+<link rel="stylesheet" href="/rs/css/custom.css" media="screen"/>
+<!--Member css -->
+
+<!-- jquery ui css -->
+<link rel="stylesheet" href="/rs/css/customize.css"/>
+<link rel="stylesheet" href="/rs/css/font-awesome.css"/>
+<!--<link rel="stylesheet" href="/rs/css/style.css"/>-->
+<link rel="stylesheet" href="/rs/css/main.css"/>
+<!-- fancybox -->
+<!--<link rel="stylesheet" href="/resources/css/style.css"/>-->
+
+
+<!-- BEGIN .main-content-left -->
+<div class="main-content-left">
+<div class="content-article-title">
+    <!--<h2>News</h2>-->
+    <div class="left-title-side">
+        <h:form prependId="false" rendered="#{not empty NewsDetailBean.product}">
+            <ul style="text-transform: uppercase; font-weight: bold;">
+                <li style="display: inline;"><a
+                        href="#{NewsDetailBean.catalogUrl}">#{NewsDetailBean.categoryData.catalog.catalogName} </a> /
+                </li>
+                <li style="display: inline;"><a
+                        href="#{NewsDetailBean.categoryUrl}"> #{NewsDetailBean.categoryData.category.categoryName} </a> /
+                </li>
+                <li style="display: inline; color: #474747; "> #{NewsDetailBean.product.productName}</li>
+            </ul>
+        </h:form>
+    </div>
+    <div class="right-title-side">
+        <!--<a href="/"><i class="fa fa-reply"></i>Quay lại trang chủ</a>-->
+        <!--<a href="../feed/rss/index.html" class="orange" target="_blank"><i-->
+        <!--class="fa fa-rss"></i>Subscribe To RSS Feed</a>-->
+    </div>
+</div>
+
+<!-- BEGIN .breaking-news -->
+<!--<div class="breaking-news" style="margin-top:-15px;">-->
+
+<!--<div class="breaking-title"><span class="breaking-icon"> </span><b>Breaking News</b>-->
+
+<!--<div class="the-corner"></div>-->
+<!--</div>-->
+
+<!--<div class="breaking-block">-->
+<!--<ul>-->
+
+
+<!--<li>-->
+<!--<a href="../intellegat-quaerendum-suscipiantur-est-epicurei-delicata-3-2/index.html">Intellegat quaerendum suscipiantur est epicurei delicata</a>-->
+<!--<span>Lorem ipsum dolor sit amet, eu altera suscipit suavitate vix. Cum reformidans consectetuer ei, his melius legimus constituam at. Duo cu sale dignissim, et noluisse luptatum has. In aeque nominati...</span>-->
+<!--</li>-->
+
+<!--<li>-->
+<!--<a href="../has-invenire-everti-maiorum-vouptam-omnes-eligendi-erroribus-3-2/index.html">Has invenire everti maiorum vouptam omnes eligendi erroribus</a>-->
+<!--<span>Lorem ipsum dolor sit amet, eu altera suscipit suavitate vix. Cum reformidans consectetuer ei, his melius legimus constituam at. Duo cu sale dignissim, et noluisse luptatum has. In aeque nominati...</span>-->
+<!--</li>-->
+
+<!--<li>-->
+<!--<a href="../quodsi-everti-ancillae-vim-qui-lorem-persius-petentium-3-2/index.html">Quodsi everti ancillae vim qui lorem persius petentium</a>-->
+<!--<span>Lorem ipsum dolor sit amet, eu altera suscipit suavitate vix. Cum reformidans consectetuer ei, his melius legimus constituam at. Duo cu sale dignissim, et noluisse luptatum has. In aeque nominati...</span>-->
+<!--</li>-->
+
+<!--<li>-->
+<!--<a href="../sumo-aliquip-facilisi-temporibus-pri-3-2/index.html">Sumo aliquip facilisi temporibus pri</a>-->
+<!--<span>Lorem ipsum dolor sit amet, eu altera suscipit suavitate vix. Cum reformidans consectetuer ei, his melius legimus constituam at. Duo cu sale dignissim, et noluisse luptatum has. In aeque nominati...</span>-->
+<!--</li>-->
+
+<!--<li>-->
+<!--<a href="../intellegat-quaerendum-suscipiantur-est-epicurei-delicata-2-2/index.html">Intellegat quaerendum suscipiantur est epicurei delicata</a>-->
+<!--<span>Lorem ipsum dolor sit amet, eu altera suscipit suavitate vix. Cum reformidans consectetuer ei, his melius legimus constituam at. Duo cu sale dignissim, et noluisse luptatum has. In aeque nominati...</span>-->
+<!--</li>-->
+<!--</ul>-->
+<!--</div>-->
+
+<!--<div class="breaking-controls"><a href="#" class="breaking-arrow-left"> </a><a href="#"-->
+<!--class="breaking-arrow-right"> </a>-->
+
+<!--<div class="clear-float"></div>-->
+<!--<div class="the-corner"></div>-->
+<!--</div>-->
+
+<!--</div>-->
+<h:outputText value="Trang bạn yêu cầu không được tìm thấy" rendered="#{NewsDetailBean.product eq null}"/>
+<h:form prependId="false" rendered="#{not empty NewsDetailBean.product}">
+<div class="main-article-content">
+
+
+    <!--<h2 class="article-title">#{NewsDetailBean.product.productName}</h2>-->
+
+    <!--<div class="article-photo">-->
+    <!--<img class="setborder"-->
+    <!--src="http://dulichcantho.vn#{NewsDetailBean.product.mediumImageUrl}"-->
+    <!--alt="DuLichCanTho"/></div>-->
+    <!--BEGIN .article-controls-->
+    <div class="article-controls" style="height: 30px;">
+        <div class="date">
+            <!--<div class="calendar-date">June 17</div>-->
+            <div class="calendar-time">
+                <i
+                        class="icon-calendar"></i>
+                <!--Ngày tạo-->
+                <h:outputText value="#{NewsDetailBean.product.createdDate}">
+                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                </h:outputText>
+            </div>
+        </div>
+        <div class="right-side">
+            <!--<div class="colored">-->
+            <div>
+                <!--<a href="javascript:printArticle();" ><i-->
+                <!--class="fa fa-print"></i>In trang này</a>-->
+                <div id="fb-root"></div>
+                <script>(function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (d.getElementById(id)) return;
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&amp;version=v2.5&amp;appId=851072315000860";
+                    fjs.parentNode.insertBefore(js, fjs);
+                }(document, 'script', 'facebook-jssdk'));</script>
+
+                <div class="fb-share-button" data-href="#{NewsDetailBean.getId()}" data-layout="icon_link"></div>
+
+            </div>
+            <!--</div>-->
+
+            <div>
+                <!--<a href="#" title="" rel="Người viết"><i class="fa fa-user"></i> Người viết: Admin</a>-->
+                <!--<a-->
+                <!--href="#" class="icon-link">-->
+                <!--<i class="fa fa-comment"></i>-->
+                <!--0 Comments </a>-->
+            </div>
+        </div>
+
+        <div class="clear-float"></div>
+
+        <!--END .article-controls-->
+    </div>
+
+    <!-- BEGIN .shortcode-content -->
+    <div class="shortcode-content">
+        <h1><h:outputText value="#{NewsDetailBean.product.productName}" style="line-height:30px;"/>
+        </h1>
+        <h:outputLabel value="#{NewsDetailBean.product.longDescription}" escape="false"
+                       style="word-break: break-word;"/>
+        <!-- END .shortcode-content -->
+    </div>
+
+</div>
+<!-- BEGIN .main-nosplit -->
+<div class="main-nosplit">
+    <div class="article-share-bottom">
+
+        <div class="tag-block">
+            <p:outputLabel value="Tags" rendered="#{NewsDetailBean.tagsList.size() gt 0}"> </p:outputLabel>
+            <ui:repeat value="#{NewsDetailBean.tagsList}" var="tags">
+                <a href="#{tags.tagsLink}">#{tags.tagsName}</a>
+            </ui:repeat>
+            <div style="float: right;">
+                <div class="fb-share-button" data-href="#{NewsDetailBean.getId()}" data-layout="icon_link"></div>
+            </div>
+        </div>
+
+        <div class="clear-float"></div>
+    </div>
+
+    <!--<div class="article-share-bottom" id="share">-->
+
+    <!--<b>Chia sẻ</b>-->
+
+    <!--<span class="social-icon">-->
+    <!--<a href="#"-->
+    <!--data-url="/"-->
+    <!--class="social-button ot-share" style="background:#495fbd;"><i-->
+    <!--class="fa fa-facebook"></i><font>Share</font></a>-->
+    <!--<span class="social-count"><span class="count">0</span><span class="social-arrow"> </span></span>-->
+    <!--</span>-->
+
+    <!--<span class="social-icon">-->
+    <!--<a href="#" data-hashtags=""-->
+    <!--data-url=""-->
+    <!--data-via="orangethemes" data-text="Has dico invenire everti maiorum voluptatum his"-->
+    <!--class="social-button ot-tweet" style="background:#43bedd;"><i-->
+    <!--class="fa fa-twitter"></i><font>Tweet</font></a>-->
+    <!--<span class="social-count"><span class="count">0</span><span class="social-arrow"> </span></span>-->
+    <!--</span>-->
+
+    <!--<span class="social-icon">-->
+    <!--<a href="#"-->
+    <!--class="social-button ot-pluss" style="background:#df6149;"><i-->
+    <!--class="fa fa-google-plus"></i><font>+1</font></a>-->
+    <!--<span class="social-count">0<span class="social-arrow"> </span></span>-->
+    <!--</span>-->
+
+    <!--<span class="social-icon">-->
+    <!--<a href="#"-->
+    <!--data-url=""-->
+    <!--class="social-button ot-pin" style="background:#d23131;"><i-->
+    <!--class="fa fa-pinterest"></i><font>Share</font></a>-->
+    <!--<span class="social-count"><span class="count">0</span><span class="social-arrow"> </span></span>-->
+    <!--</span>-->
+
+    <!--<span class="social-icon">-->
+    <!--<a href="#"-->
+    <!--class="social-button ot-link" style="background:#264c84;" data-url="index.html"><i-->
+    <!--class="fa fa-linkedin"></i><font>Share</font></a>-->
+    <!--<span class="social-count"><span class="count">0</span><span class="social-arrow"> </span></span>-->
+    <!--</span>-->
+
+    <!--<div class="clear-float"></div>-->
+
+    <!--</div>-->
+    <!-- END .main-nosplit -->
+</div>
+<div class="main-content-split">
+
+    <!-- BEGIN .main-split-left -->
+    <div class="main-split-left">
+
+        <!-- BEGIN .content-panel -->
+        <div class="content-panel">
+            <div class="panel-header">
+                <b style="background:#6D8B13;"><i class="fa fa-soccer-ball-o"></i>BÀI ViẾT LIÊN QUAN</b>
+
+                <div class="top-right">
+                    <a href="#{NewsDetailBean.categoryUrl}">XEM TẤT CẢ</a>
+                </div>
+            </div>
+            <div class="panel-content">
+
+
+                <!-- BEGIN .article-array -->
+                <ul class="article-array content-category">
+                    <ui:repeat value="#{NewsDetailBean.productRelated}" var="news">
+                        <li>
+                            <a href="#{news.url}">#{news.news.productName}</a>
+                            <!--<a href="has-dico-invenire-everti-maiorum-voluptatum-his-2-3-2/index.html#comments"-->
+                            <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                        </li>
+                    </ui:repeat>
+                    <!-- END .article-array -->
+                </ul>
+                <div class="article-links" style="margin-top: 10px;">
+                    <a href="#{NewsDetailBean.categoryUrl}"
+                       class="article-icon-link"><i class="fa fa-reply"></i>Xem tất cả...</a>
+                </div>
+
+            </div>
+            <!-- END .content-panel -->
+        </div>
+        <!-- END .main-split-right -->
+    </div>
+
+
+    <!-- BEGIN .main-split-right -->
+    <div class="main-split-right">
+
+
+        <!-- BEGIN .content-panel -->
+        <div class="content-panel">
+            <div class="panel-header">
+                <b style="background:#9F3819;"><i class="fa fa-soccer-ball-o"></i>BÀI VIẾT MỚI NHẤT</b>
+
+                <div class="top-right"><a href="/tin-tuc">XEM TẤT CẢ</a></div>
+            </div>
+            <div class="panel-content">
+                <!-- BEGIN .article-big-block -->
+                <!--<div class="article-big-block">-->
+                <!--<div class="article-header">-->
+                <!--<h2>-->
+                <!--<a href="#{NewsTravelBean.firstNewsKhachSan.url}">#{NewsTravelBean.firstNewsKhachSan.news.productName}</a>-->
+                <!--</h2>-->
+                <!--</div>-->
+
+                <!--<div class="article-content">-->
+                <!--<p>#{NewsTravelBean.firstNewsKhachSan.news.description}</p>-->
+                <!--</div>-->
+
+                <!--<div class="article-links">-->
+                <!--<!-/-<a href="intellegat-quaerendum-suscipiantur-est-epicurei-delicata-3-2/index.html#comments"-->
+                <!--<!-/-class="article-icon-link">-->
+                <!--<!-/-<i class="fa fa-comment"></i>-->
+                <!--<!-/-5 comments </a>-->
+                <!--<a href="#{NewsTravelBean.firstNewsKhachSan.url}"-->
+                <!--class="article-icon-link"><i class="fa fa-reply"></i>Xem thêm...</a>-->
+                <!--</div>-->
+                <!--<!-/- END .article-big-block -->
+                <!--</div>-->
+
+
+                <!-- BEGIN .article-array -->
+                <ul class="article-array content-category">
+                    <ui:repeat value="#{NewsTravelBean.top10NewsLatest}" var="news">
+                        <li>
+                            <a href="#{news.url}">#{news.news.productName}</a>
+                            <!--<a href="qui-wisi-aliquam-gubergren-no-sed-ei-omnes-expetenda-2-3-2/index.html#comments"-->
+                            <!--class="comment-icon"><i class="fa fa-comment"></i>0</a>-->
+                        </li>
+                    </ui:repeat>
+
+                    <!-- END .article-array -->
+                </ul>
+                <div class="article-links" style="margin-top: 10px;">
+                    <a href="/tin-tuc"
+                       class="article-icon-link"><i class="fa fa-reply"></i>Xem tất cả...</a>
+                </div>
+
+            </div>
+            <!-- END .content-panel -->
+        </div>
+        <!-- END .main-split-right -->
+    </div>
+    <div class="clear-float"></div>
+
+    <!-- END ..main-content-split -->
+</div>
+</h:form>
+
+
+</div>
+
+
+</ui:define>
+
+
+</ui:composition>

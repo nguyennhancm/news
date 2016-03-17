@@ -1,0 +1,295 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/template.xhtml">
+<ui:define name="title">Quản lý email</ui:define>
+<ui:define name="main">
+    <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+    <table width="100%">
+        <tr align="top">
+            <td style="vertical-align: top; width: 45%">
+                <!--<p:toolbar id="tbSend">-->
+                <!--<p:toolbarGroup id="tbgSend" align="left" >-->
+                <div style="border:1px solid #bed6f8; padding:2px 2px;">
+                    <table width="100%">
+                        <tbody>
+                        <tr>
+                            <td>
+                                <h:form id="frmFileList" prependId="false">
+
+                                <p:dataList value="#{EmailManager.fileList}" var="file" type="ordered">
+                                    <f:facet name="header">
+                                        Danh sách file upload
+                                    </f:facet>
+                                    <p:outputLabel value=" #{file.fileName}"/>
+                                    <p:spacer width="20px;"/>
+                                    <p:commandLink value="Xóa" action="#{EmailManager.deleteFile}"
+                                                   rendered="#{file.fileName ne 'Manual'}"
+                                                   update=":frmFileList :frmSearch:somFileFilter :frmAllEmail :messages">
+                                        <f:setPropertyActionListener value="#{file}" target="#{EmailManager.fileDelete}"/>
+                                        <p:confirm header="XÓA FILE UPLOAD" message="Tất cả email trong file này sẽ bị xóa. Bạn muốn xóa File?" icon="ui-icon-alert" />
+
+                                    </p:commandLink>
+                                </p:dataList>
+                                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                                        <p:commandButton value="Đồng ý" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                                        <p:commandButton value="Hủy" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                                    </p:confirmDialog>
+                                </h:form>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <!--</p:toolbarGroup>-->
+                <!--</p:toolbar>-->
+            </td>
+            <td style="vertical-align: top; width: 55%">
+                <div style="border:1px solid #bed6f8; padding:2px 2px;">
+                    <table>
+                        <tr>
+                            <td>
+                                <h:form>
+                                    <p:fileUpload fileUploadListener="#{FileUploadView.handleFileUpload}"
+                                                  dragDropSupport="true"
+                                                  multiple="true"
+                                                  sizeLimit="100000000" invalidSizeMessage="dung lượng tối đa 100MB"
+                                                  allowTypes="/(\.|\/)(xls|xlsx)$/"
+                                                  invalidFileMessage="Hệ thống chỉ hỗ trợ file excel!"
+                                                  update=":frmFileList :frmSearch :frmAllEmail"
+                                                  label="Chọn file upload"
+                                                  uploadLabel="Upload"
+                                                  cancelLabel="Hủy"/>
+
+                                </h:form>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h:form>
+                                    <p:outputLabel value="lưu ý: " style="color: rgb(19, 25, 169); text-decoration: underline;font-weight: bold;"/>
+                                    Hệ thống chỉ hỗ trợ upload file email theo các định dạng sau
+                                    (Click vào để tải file mẫu): <p:commandLink value="Excel" ajax="false">
+                                    <p:fileDownload value="#{FileUploadView.fileExcel}"/>
+                                </p:commandLink>.
+                                    Những email không hợp lệ hệ thống sẽ tự động loại bỏ. <br/>
+                                    File upload đã có trong hệ thống sẽ được tự động đổi tên.
+
+                                </h:form>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <p:spacer height="10px;"/>
+    <h:form id="frmSearch" prependId="false">
+        <p:toolbar id="tbSearch">
+            <p:toolbarGroup id="tbgSearch">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h:outputText value="Email"/><p:spacer width="5px;"/>
+                            <h:selectOneMenu id="somSend" value="#{EmailManager.statusSend}">
+                                <p:ajax listener="#{EmailManager.onChangeFilter}" update=":frmAllEmail" />
+                                <f:selectItem itemLabel="Tất cả" itemValue="a"/>
+                                <f:selectItem itemLabel="Chưa gửi" itemValue="0"/>
+                                <f:selectItem itemLabel="Đã gửi" itemValue="-1"/>
+                                <f:selectItem itemLabel="Đang gửi" itemValue="s"/>
+                                <f:selectItem itemLabel="Gửi 1 lần" itemValue="1"/>
+                                <f:selectItem itemLabel="Gửi 2 lần" itemValue="2"/>
+                                <f:selectItem itemLabel="Gửi 3 lần" itemValue="3"/>
+                                <f:selectItem itemLabel="Hơn 3 lần" itemValue="n"/>
+                            </h:selectOneMenu>
+
+                        </td>
+                        <td>
+                            <p:spacer width="25px;"/>
+                            <h:outputText value="Số lượng"/><p:spacer width="5px;"/>
+                            <h:selectOneMenu id="somQuality" value="#{EmailManager.emailQuality}">
+                                <p:ajax listener="#{EmailManager.onChangeFilter}" update=":frmAllEmail" />
+                                <f:selectItem itemLabel="10" itemValue="10"/>
+                                <f:selectItem itemLabel="50" itemValue="50"/>
+                                <f:selectItem itemLabel="100" itemValue="100"/>
+                                <f:selectItem itemLabel="500" itemValue="500"/>
+                                <f:selectItem itemLabel="1000" itemValue="1000"/>
+                                <f:selectItem itemLabel="5000" itemValue="5000"/>
+                                <f:selectItem itemLabel="10000" itemValue="10000"/>
+                                <f:selectItem itemLabel="Tất cả" itemValue="n"/>
+                            </h:selectOneMenu>
+
+                        </td>
+                        <!--<td>-->
+                        <!--<p:spacer width="25px;"/>-->
+                        <!--<h:outputText value="Tài khoản"/><p:spacer width="5px;"/>-->
+                        <!--<h:selectOneMenu id="somAccount" value="#">-->
+                        <!--<f:selectItem itemLabel="Tất cả" itemValue="-1"/>-->
+                        <!--<f:selectItem itemLabel="abc@gmail.com" itemValue="0"/>-->
+                        <!--<f:selectItem itemLabel="def@yahoo.com" itemValue="1"/>-->
+                        <!--</h:selectOneMenu>-->
+
+                        <!--</td>-->
+                        <td>
+                            <p:spacer width="25px;"/>
+                            <h:outputText value="File"/><p:spacer width="5px;"/>
+                            <h:selectOneMenu id="somFileFilter" value="#{EmailManager.fileFilter}" style="width:200px">
+                                <p:ajax listener="#{EmailManager.onChangeFilter}" update=":frmAllEmail" />
+                                <f:selectItem itemLabel="Tất cả" itemValue="0" />
+                                <f:selectItems value="#{EmailManager.fileList}" var="file"
+                                               itemLabel="#{file.fileName}" itemValue="#{file.fileId}"/>
+                            </h:selectOneMenu>
+
+                        </td>
+                        <!--<td>-->
+                        <!--<p:spacer width="25px;"/>-->
+                        <!--<h:outputText value="Template"/><p:spacer width="5px;"/>-->
+                        <!--<h:selectOneMenu id="somTemplate" value="#">-->
+                        <!--<f:selectItem itemLabel="Tất cả" itemValue="-1"/>-->
+                        <!--<f:selectItem itemLabel="template 1" itemValue="0"/>-->
+                        <!--<f:selectItem itemLabel="template 2" itemValue="1"/>-->
+                        <!--</h:selectOneMenu>-->
+
+                        <!--</td>-->
+                        <!--<td>-->
+                            <!--<p:spacer width="25px;"/>-->
+                            <!--<h:outputText value="Tìm email"/><p:spacer width="5px;"/>-->
+                            <!--<p:inputText id="txtName" value="" style="width: 150px;" placeholder="Nhập email">-->
+                            <!--</p:inputText>-->
+                        <!--</td>-->
+                        <td>
+                            <p:spacer width="25px;"/>
+                            <p:commandLink value="Làm mới danh sách" actionListener="#{EmailManager.refreshEmailList()}" update=":frmAllEmail :messages"/>
+
+
+                        </td>
+
+                        <td>
+                            <p:spacer width="25px;"/>
+                            <p:commandButton value="Thêm email" type="button" onclick="PF('addEmailW').show();"/>
+                        </td>
+                        <td>
+                            <p:spacer width="25px;"/>
+                            <p:commandButton value="Xóa email đã chọn" action="#{EmailManager.deleteEmail}" update=":frmAllEmail :messages">
+
+                                <p:confirm header="XÓA EMAIL" message="Xóa tất cả email đã chọn?" icon="ui-icon-alert" />
+                            </p:commandButton>
+                        <p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+                            <p:commandButton value="Đồng ý" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+                            <p:commandButton value="Hủy" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+                        </p:confirmDialog>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </p:toolbarGroup>
+        </p:toolbar>
+    </h:form>
+    <h:form id="frmAllEmail" prependId="false">
+        <p:dataTable id="emailTableList" value="#{EmailManager.emailDetailListFilter}" var="email" rowIndexVar="index"
+                     paginator="true"
+                     rows="30"
+                     emptyMessage="Không có thông tin email">
+            <p:column headerText="STT" width="8%">
+                <p:outputLabel value="#{index + 1}"/>
+            </p:column>
+            <p:column headerText="Email">
+                <p:outputLabel value="#{email.emailAddress}"/>
+            </p:column>
+            <p:column headerText="Số lần gửi" width="10%">
+                <p:outputLabel value="#{email.qualitySend}"/>
+            </p:column>
+            <!--<p:column headerText="Tài khoản">-->
+
+            <!--</p:column>-->
+            <!--<p:column headerText="Templates">-->
+
+            <!--</p:column>-->
+            <p:column headerText="Lần gửi cuối" width="15%">
+                <p:outputLabel value="#{email.dateSendEnd}">
+                    <f:convertDateTime pattern="HH:mm dd/MM/yyyy" timeZone="GMT+7"/>
+                </p:outputLabel>
+            </p:column>
+            <p:column headerText="Trạng thái" width="10%">
+                <p:outputLabel value="#{email.statusSend}"/>
+            </p:column>
+            <!--<p:column headerText="Tác vụ">-->
+            <!--<p:commandLink id="lnkEditEmail" value="Sửa" action="#">-->
+            <!--</p:commandLink><p:spacer width="5px;"/>-->
+            <!--<p:commandLink id="lnkViewDetail" value="Chi tiết" action="#">-->
+            <!--</p:commandLink>-->
+            <!--</p:column>-->
+            <p:column style="width: 55px; text-align: center">
+                <p:selectBooleanCheckbox value="#{email.selected}" disabled="#{email.statusSend eq 'đang gửi...'}">
+                    <p:ajax event="valueChange" listener="#{EmailManager.ajaxAction()}"/>
+                </p:selectBooleanCheckbox>
+                <f:facet name="header">
+                    <p:selectBooleanCheckbox value="#{EmailManager.selectAllEmail}">
+                        <p:ajax listener="#{EmailManager.selectAllAction()}" update=":frmAllEmail"/>
+                    </p:selectBooleanCheckbox>
+
+                </f:facet>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+    <p:dialog id="dlgAddEmail" widgetVar="addEmailW" modal="true" position="400,100"
+              header="Thêm mới email">
+        <p:messages id="messages1" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+        <h:form id="frmAddEmail" prependId="false">
+            <table cellpadding="10px">
+                <tr>
+                    <td>
+                        <p:outputLabel value="Email"/>
+                    </td>
+                    <td>
+                        <p:inputText style="width: 400px;" value="#{EmailManager.addEmailAddress}"/>
+                    </td>
+                </tr>
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<p:outputLabel value="Tên người nhận"/>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<p:outputLabel value="#/{EmailManager.addEmailName}"/>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<p:outputLabel value="Địa chỉ"/>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<p:outputLabel value="#/{EmailManager.addAddress}"/>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <!--<tr>-->
+                    <!--<td>-->
+                        <!--<p:outputLabel value="Số điện thoại"/>-->
+                    <!--</td>-->
+                    <!--<td>-->
+                        <!--<p:outputLabel value="#/{EmailManager.addPhone}"/>-->
+                    <!--</td>-->
+                <!--</tr>-->
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <p:commandButton value="Thêm" style="width: 100px;" action="#{EmailManager.addEmail}" update=":frmAllEmail :messages"
+                                         id="btnAddEmail"/>
+                        <p:spacer width="25px"/>
+                        <p:commandButton value="Đóng" style="width: 100px;" onclick="PF('addEmail').hide();"
+                                         id="btnAddEmailCancel"/>
+                    </td>
+                </tr>
+            </table>
+        </h:form>
+    </p:dialog>
+</ui:define>
+</ui:composition>
+
+

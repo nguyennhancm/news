@@ -1,0 +1,26 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <div class="breaking-news">
+
+        <div class="breaking-title"><span class="breaking-icon"></span><b>TIN MỚI </b><div class="the-corner"></div></div>
+
+        <div class="breaking-block">
+            <ul>
+                <ui:repeat value="#{NewsTravelBean.top10NewsLatest}" var="news" varStatus="count">
+                    <li>
+                        <a href="#{news.url}">#{news.news.productName}</a>
+                        <span>#{news.news.description}...</span>
+                    </li>
+                </ui:repeat>
+
+
+            </ul>
+        </div>
+
+        <div class="breaking-controls"><a href="#" class="breaking-arrow-left"> </a><a href="#" class="breaking-arrow-right"> </a><div class="clear-float"></div><div class="the-corner"></div></div>
+
+
+    </div>
+
+</ui:composition>

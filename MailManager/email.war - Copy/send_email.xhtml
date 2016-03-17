@@ -1,0 +1,199 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/template.xhtml">
+<ui:define name="title">Gửi email</ui:define>
+<ui:define name="main">
+    <p:messages id="messages" showDetail="true" showSummary="false" closable="true"/>
+    <h:form id="frmSend" prependId="false">
+        <table width="100%">
+            <tr align="top">
+                <td style="vertical-align: top; width: 50%">
+                    <p:toolbar id="tbSend">
+                        <p:toolbarGroup id="tbgSend" align="left" >
+                            <table width="100%" cellspacing="10px">
+                                <tbody>
+                                <tr>
+                                    <td >
+                                        <p:outputLabel value="Chọn tài khoản gửi: "/>
+                                    </td>
+                                    <td >
+                                        <h:selectOneMenu id="somAccountSend" value="#{SendMail.fromEmail}">
+                                            <f:selectItem itemLabel="Chọn tài khoản" itemValue="0"/>
+                                            <f:selectItems value="#{EmailAccount.emailAccountList}"
+                                                           var="account" itemLabel="#{account.emailAccount}"
+                                                           itemValue="#{account.emailAccount}"/>
+                                        </h:selectOneMenu>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><p:outputLabel value="Chọn template gửi:"/> </td>
+                                    <td>
+                                        <h:selectOneMenu id="somTemplateSend" value="#{SendMail.templateSelected}">
+                                            <f:selectItem itemLabel="Chọn template" itemValue="0"/>
+                                            <f:selectItems value="#{TemplateManager.templateList}" var="template"
+                                                           itemLabel="#{template.templateName}"
+                                                           itemValue="#{template.templateId}"/>
+
+                                        </h:selectOneMenu>
+                                    </td>
+
+                                </tr>
+                                <tr>
+                                    <td >
+                                        <p:outputLabel value="Thời gian gửi cách nhau: "/>
+                                    </td>
+                                    <td >
+                                        <h:selectOneMenu id="somTimeSend" value="#{SendMail.timeSend}">
+                                            <f:selectItem itemLabel="0s" itemValue="1"/>
+                                            <f:selectItem itemLabel="10s" itemValue="10"/>
+                                            <f:selectItem itemLabel="20s" itemValue="20"/>
+                                            <f:selectItem itemLabel="30s" itemValue="30"/>
+                                            <f:selectItem itemLabel="60s" itemValue="60"/>
+                                            <f:selectItem itemLabel="300s" itemValue="300"/>
+                                        </h:selectOneMenu>
+                                        <p:spacer width="25px;"/>
+                                        <h:outputLink id="fade" value="#">
+                                            <h:outputText value="?"/>
+                                        </h:outputLink>
+                                        <p:tooltip id="toolTipFade" for="fade" value="Để giảm nguy cơ gửi vào thư spam,
+                                                            nên chọn thời gian gửi giữa các email cách xa nhau."/>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                        </p:toolbarGroup>
+                    </p:toolbar>
+                </td>
+                <td style="vertical-align: top; width: 50%">
+
+                    <table>
+                        <tr>
+                            <td>
+                                <div style="margin-left: 125%; margin-top: 17%">
+                                    <p:commandButton value="Bắt đầu gửi" action="#{SendMail.sendMail}" update=":frmAllEmail :messages"
+                                                     style="width: 200px; height: 60px;"/>
+                                </div>
+
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </h:form>
+    <p:spacer height="10px"/>
+    <h:form id="frmSearch" prependId="false">
+        <p:toolbar id="tbSearch">
+            <p:toolbarGroup id="tbgSearch">
+                <table>
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h:outputText value="Email"/><p:spacer width="5px;"/>
+                            <h:selectOneMenu id="somSend" value="#{SendMail.statusSend}">
+                                <f:selectItem itemLabel="Tất cả" itemValue="a"/>
+                                <p:ajax listener="#{SendMail.onChangeFilter}" update=":frmAllEmail" />
+                                <f:selectItem itemLabel="Chưa gửi" itemValue="0"/>
+                                <f:selectItem itemLabel="Đã gửi" itemValue="-1"/>
+                                <f:selectItem itemLabel="Đang gửi" itemValue="s"/>
+                                <f:selectItem itemLabel="Gửi 1 lần" itemValue="1"/>
+                                <f:selectItem itemLabel="Gửi 2 lần" itemValue="2"/>
+                                <f:selectItem itemLabel="Gửi 3 lần" itemValue="3"/>
+                                <f:selectItem itemLabel="Hơn 3 lần" itemValue="n"/>
+                            </h:selectOneMenu>
+
+                        </td>
+                        <td>
+                            <p:spacer width="25px;"/>
+                            <h:outputText value="Số lượng"/><p:spacer width="5px;"/>
+                            <h:selectOneMenu id="somQuality" value="#{SendMail.emailQuality}">
+                                <p:ajax listener="#{SendMail.onChangeFilter}" update=":frmAllEmail" />
+                                <f:selectItem itemLabel="10" itemValue="10"/>
+                                <f:selectItem itemLabel="50" itemValue="50"/>
+                                <f:selectItem itemLabel="100" itemValue="100"/>
+                                <f:selectItem itemLabel="500" itemValue="500"/>
+                                <f:selectItem itemLabel="1000" itemValue="1000"/>
+                                <f:selectItem itemLabel="5000" itemValue="5000"/>
+                                <f:selectItem itemLabel="10000" itemValue="10000"/>
+                                <f:selectItem itemLabel="Tất cả" itemValue="n"/>
+                            </h:selectOneMenu>
+
+                        </td>
+                        <td>
+                            <p:spacer width="25px;"/>
+                            <h:outputText value="File"/><p:spacer width="5px;"/>
+                            <h:selectOneMenu id="somFileFilter" value="#{SendMail.fileFilter}" style="width:300px">
+                                <p:ajax listener="#{SendMail.onChangeFilter}" update=":frmAllEmail" />
+                                <f:selectItem itemLabel="Tất cả" itemValue="0" />
+                                <f:selectItems value="#{EmailManager.fileList}" var="file"
+                                               itemLabel="#{file.fileName}" itemValue="#{file.fileId}"/>
+                            </h:selectOneMenu>
+
+                        </td>
+                        <td>
+                        <p:spacer width="25px;"/>
+                            <p:commandLink value="Làm mới danh sách" action="#" ajax='false' update=":frmAllEmail"/>
+                        </td>
+
+                    </tr>
+                    </tbody>
+                </table>
+            </p:toolbarGroup>
+        </p:toolbar>
+    </h:form>
+    <h:form id="frmAllEmail" prependId="false">
+        <p:dataTable id="emailTableList" value="#{SendMail.emailDetailListFilter}" var="email" rowIndexVar="index"
+                     scrollRows="20" scrollable="true" liveScroll="true" style="margin-bottom:0"
+                     paginator="true"
+                     rows="100"
+                     emptyMessage="Không có thông tin email">
+            <p:column headerText="STT" width="8%">
+                <p:outputLabel value="#{index + 1}"/>
+            </p:column>
+            <p:column headerText="Email">
+                <p:outputLabel value="#{email.emailAddress}"/>
+            </p:column>
+            <p:column headerText="Số lần gửi" width="10%">
+                <p:outputLabel value="#{email.qualitySend}"/>
+            </p:column>
+            <!--<p:column headerText="Tài khoản">-->
+
+            <!--</p:column>-->
+            <!--<p:column headerText="Templates">-->
+
+            <!--</p:column>-->
+            <p:column headerText="Lần gửi cuối" width="12%">
+                <p:outputLabel value="#{email.dateSendEnd}">
+                    <f:convertDateTime pattern="HH:mm dd/MM/yyyy" timeZone="GMT+7"/>
+                </p:outputLabel>
+            </p:column>
+            <p:column headerText="Trạng thái" width="10%">
+                <p:outputLabel value="#{email.statusSend}"/>
+            </p:column>
+            <!--<p:column headerText="Tác vụ">-->
+            <!--<p:commandLink id="lnkEditEmail" value="Sửa" action="#">-->
+            <!--</p:commandLink><p:spacer width="5px;"/>-->
+            <!--<p:commandLink id="lnkViewDetail" value="Chi tiết" action="#">-->
+            <!--</p:commandLink>-->
+            <!--</p:column>-->
+            <p:column style="width: 55px; text-align: center">
+                <p:selectBooleanCheckbox value="#{email.selected}" disabled="#{email.statusSend eq 'đang gửi...'}">
+                    <p:ajax event="valueChange" listener="#{SendMail.ajaxAction()}"/>
+                </p:selectBooleanCheckbox>
+                <f:facet name="header">
+                    <p:selectBooleanCheckbox value="#{SendMail.selectAllEmail}">
+                        <p:ajax listener="#{SendMail.selectAllAction()}" update=":frmAllEmail"/>
+                    </p:selectBooleanCheckbox>
+
+                </f:facet>
+            </p:column>
+        </p:dataTable>
+    </h:form>
+</ui:define>
+</ui:composition>
+
+

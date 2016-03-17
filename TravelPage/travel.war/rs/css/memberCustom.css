@@ -1,0 +1,125 @@
+.coverHeader {
+    border: #cbcbcb solid 1px;
+}
+
+.pfctnbtn {
+    padding: 10px 10px 10px 170px;
+    height: 25px;
+    background: #fff;
+    border: #cbcbcb solid 1px;
+}
+
+.pfctnbtn .edit_desc_member:hover {
+    cursor: pointer;
+}
+
+.pfctnbtn_function {
+    padding: 10px;
+    height: 30px;
+    background: #fff;
+    border: #cbcbcb solid 1px;
+    clear: both;
+}
+.user_setting_function {
+    padding: 10px;
+    background: #fff;
+    border: #cbcbcb solid 1px;
+    clear: both;
+}
+.user_setting_function .title{
+    height: 5px;
+    background: #e6e6e6;
+}
+
+.pfavatar {
+    position: absolute;
+    margin-left: 20px;
+    margin-top: -105px;
+    z-index: 5;
+
+}
+
+.pfavatar .avatarMember img {
+    width: 140px;
+    height: 140px;
+    border: 1px solid #FFFFFF;
+    border-radius: 100%;
+    padding: 3px;
+    background-color: white;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.nameDisplayMember {
+    position: absolute;
+    margin-left: 180px;
+    margin-top: -40px;
+}
+
+.member-edit-cover {
+    -webkit-background-clip: padding-box;
+    background-color: #d2d2d2;
+    opacity: 0.7;
+    border: 1px solid #fff;
+    margin-left: 20px;
+    top: 20px;
+    -webkit-transition: opacity .3s cubic-bezier(.175, .885, .32, 1.275), width .3s step-end;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-weight: bold;
+    position: absolute;
+    padding: 1px 5px;
+}
+
+.member-edit-cover .title {
+    margin-left: 5px;
+    text-align: center;
+}
+
+.member-edit-cover:hover {
+    cursor: pointer;
+    background-color: #000;
+    color: #FFFFFF;
+}
+
+.sp_qcED-f6xcm7 {
+    background-image: url(/images/edit-cover.png);
+    background-size: auto;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    top: -3px;
+    left: 2px;
+}
+
+.member-edit-avatar {
+    -webkit-background-clip: padding-box;
+    opacity: 0.7;
+    margin-left: 5px;
+    -webkit-transition: opacity .3s cubic-bezier(.175, .885, .32, 1.275), width .3s step-end;
+    white-space: nowrap;
+    word-wrap: normal;
+    font-weight: bold;
+    position: absolute;
+    padding: 4px 10px;
+}
+
+.edit_avatar {
+    background-image: url(/images/edit-cover.png);
+    background-size: auto;
+    background-repeat: no-repeat;
+    position: absolute;
+    display: inline-block;
+    width: 32px;
+    height: 32px;
+    top: 3px;
+    left: 6px;
+}
+.choice_input_img:hover{
+    background-color: #e6e6e6;
+    cursor: pointer;
+}

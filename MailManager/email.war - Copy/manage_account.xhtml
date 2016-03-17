@@ -1,0 +1,82 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/template.xhtml">
+    <ui:define name="title">Quản lý tài khoản</ui:define>
+    <ui:define name="main">
+        <p:messages id="messages" showDetail="true" showSummary="false" closable="true"/>
+        <h:form id="frmAccount" prependId="false">
+            <table width="100%">
+            <tr align="top">
+            <td style="vertical-align: top; width: 65%">
+                <p:toolbar id="tbAccount">
+                    <p:toolbarGroup id="tbgAccount">
+                        <table>
+                            <tbody>
+                            <tr>
+
+                                <td>
+                                    <h:outputText value="Danh sách tài khoản"/><p:spacer width="5px;"/>
+                                    <p:spacer width="25px;"/>
+                                    <p:commandButton value="Thêm tài khoản" action="#"/>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </p:toolbarGroup>
+                </p:toolbar>
+                <p:dataTable id="emailTableList" value="#{EmailAccount.emailAccountList}" var="account" rowIndexVar="index"
+                             emptyMessage="Không có thông tin tài khoản">
+                    <p:column headerText="STT" width="8%">
+                        <p:outputLabel value="#{index + 1}"/>
+                    </p:column>
+                    <p:column headerText="Email">
+                        <p:outputLabel value="#{account.emailAccount}"/>
+                    </p:column>
+                    <p:column headerText="smtp">
+                        <p:outputLabel value="#{account.emailSmtp}"/>
+                    </p:column>
+                    <p:column headerText="port" width="8%">
+                        <p:outputLabel value="#{account.port}"/>
+                    </p:column>
+                    <p:column headerText="ssl" width="8%">
+                        <p:selectBooleanCheckbox value="#{EmailAccount.checkSsl(account.ssl)}" disabled="true"/>
+                    </p:column>
+                    <p:column headerText="Tác vụ">
+                    <p:commandLink id="lnkEdit" value="Sửa" action="#">
+                    </p:commandLink><p:spacer width="5px;"/>
+                    <p:commandLink id="lnkDeletel" value="Xóa" action="#">
+                    </p:commandLink>
+                    </p:column>
+
+                </p:dataTable>
+            </td>
+                <td style="vertical-align: top; width: 35%">
+                    <div style="border:1px solid #bed6f8; padding:2px 2px;">
+                        <table>
+                            <tr>
+                                <td>
+                                    <h:form>
+                                        <p:outputLabel value="lưu ý: " style="color: rgb(19, 25, 169); text-decoration: underline;font-weight: bold;"/> <br/>
+                                        Đối với các dịch vụ email thông dụng sau đây mặc định
+                                        sẽ được cấu hình (smtp, ssl, port): <br/>
+                                        + Gmail (ví dụ: abc@gmail.com)<br/>
+                                        + GMX (abc@gmx.com) <br/>
+                                        + HotMail (abc@live.com)<br/>
+                                        + AOL (abc@aol.com) <br/>
+                                        + Yahoo (abc@yahoo.com)
+
+
+                                    </h:form>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+            </table>
+        </h:form>
+    </ui:define>
+</ui:composition>

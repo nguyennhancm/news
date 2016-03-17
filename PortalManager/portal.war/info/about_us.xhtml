@@ -1,0 +1,100 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">Thông tin về chúng tôi</ui:define>
+    <ui:define name="content">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h4 class="page-header">Thông tin về chúng tôi</h4>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+
+            <div class="row">
+                <table width="90%">
+                    <tbody>
+                    <h:form id="frmImg" prependId="false" enctype="multipart/form-data">
+                    <tr>
+                        <td style="padding: 5px;">
+
+                        </td>
+
+                        <td style="vertical-align: top">
+
+
+                            <!--<div style="max-height: 360px;width: 250px; overflow-y: scroll;">-->
+                            <p:fileUpload id="fUpload" style="border:none"
+                                          fileUploadListener="#{AboutUs.handleFileUpload}" update="pnlListImage"
+                                          mode="advanced"
+                                          auto="true"
+                                          sizeLimit="10000000"
+                                          invalidFileMessage="Hình ảnh không hợp lệ"
+                                          invalidSizeMessage="Kích thước ảnh tối đa 10MB"
+                                          label="Upload hình ảnh"
+                                          multiple="true"
+                                          allowTypes="/(\.|\/)(gif|jpe?g|png|GIF|JPE?G|PNG)$/"/>
+                            <!--</div>-->
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;" width="12%">
+                            Chọn ảnh
+                        </td>
+                        <td style="vertical-align: top;">
+                            <h:panelGroup id="pnlListImage">
+                                <div style="max-height: 180px; overflow-y: scroll; border: 1px solid #7d8ca0; margin-top: 10px; margin-bottom: 5px;">
+                                    <ui:repeat value="#{AboutUs.imagesList}" var="image">
+                                        <div style="float: left; border: 1px solid #dfdfdf; width:90px; height:120px;margin: 3px 3px 3px 3px;">
+                                            <img src="/upload/images/#{AboutUs.party.partyId}/#{image.attrValue}"
+                                                 style="width: 80px; height: 80px; margin: 5px;"
+                                                 title="Xem ảnh"/>
+                                            <p:commandLink style="font-weight: bold;"
+                                                           onclick="choiceImage(event,'/upload/images/#{AboutUs.party.partyId}/#{image.attrValue}')"
+                                                           value="Chọn" title="Thêm vào bài viết"/> |
+                                            <p:commandLink style="color: red;" update=":frmAddNews" ajax="false" actionListener="#{CreateNews.removeImage(image)}"
+                                                           value="Xóa" title="Xóa ảnh"/>
+                                        </div>
+
+
+                                    </ui:repeat>
+
+                                </div>
+                            </h:panelGroup>
+                        </td>
+                    </tr>
+                        </h:form>
+                    <h:form id="frmAddNews" prependId="false">
+                    <tr>
+
+                        <td style="padding: 5px;">
+                            Nội dung
+                        </td>
+                        <td>
+                            <h:inputTextarea value="#{AboutUs.party.description}" class="ckeditor"
+                                             cols="100" id="editorNews"
+                                             name="editor1" rows="40"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="padding: 5px;"></td>
+                        <td style="padding: 5px;">
+                            <h:commandButton styleClass="btn btn-primary"
+                                             action="#{AboutUs.updateInfo()}" id="btnSaveNews" value="Lưu">
+                            </h:commandButton>
+                        </td>
+                    </tr>
+        </h:form>
+                    </tbody>
+                </table>
+            </div>
+
+        <!-- /.row -->
+    </ui:define>
+</ui:composition>

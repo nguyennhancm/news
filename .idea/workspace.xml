@@ -33,8 +33,18 @@
       <file leaf-file-name="GetImageServlet.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TravelPage/src/tv/servlet/GetImageServlet.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="2346">
-              <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="2142">
+              <caret line="44" column="42" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="standalone.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Config/Deploy/configurations/standalone.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="1.7094972" vertical-offset="0" max-vertical-offset="9078">
+              <caret line="54" column="56" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -53,7 +63,7 @@
       <file leaf-file-name="index.xhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TravelPage/travel.war/index.xhtml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="107" max-vertical-offset="18683">
+            <state vertical-scroll-proportion="0.0" vertical-offset="204" max-vertical-offset="18683">
               <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
               <folding />
             </state>
@@ -80,16 +90,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="news_list.xhtml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TravelPage/travel.war/news_list.xhtml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2362" max-vertical-offset="2873">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="news_list_loading.xhtml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TravelPage/travel.war/news_list_loading.xhtml">
           <provider selected="true" editor-type-id="text-editor">
@@ -110,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NewsBean.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="NewsBean.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/TravelPage/src/tv/bean/NewsBean.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.8545455" vertical-offset="289" max-vertical-offset="4199">
-              <caret line="80" column="110" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="110" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="1326" max-vertical-offset="4199">
+              <caret line="81" column="53" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -145,7 +145,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/WebCore/src/tv/web/entities/WebSiteContent.java" />
         <option value="$PROJECT_DIR$/WebCore/src/tv/web/entities/WebSiteContentType.java" />
         <option value="$PROJECT_DIR$/WebCore/src/tv/web/entities/WebSitePathAlias.java" />
         <option value="$PROJECT_DIR$/WebCore/src/tv/web/entities/WebSitePublishPoint.java" />
@@ -196,6 +195,7 @@
         <option value="$PROJECT_DIR$/TravelPage/travel.war/news_list_loading.xhtml" />
         <option value="$PROJECT_DIR$/TravelPage/travel.war/template/include/main_right.xhtml" />
         <option value="$PROJECT_DIR$/TravelPage/travel.war/template/include/slider_home_page.xhtml" />
+        <option value="$PROJECT_DIR$/Config/Deploy/configurations/standalone.xml" />
       </list>
     </option>
   </component>
@@ -236,6 +236,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -247,7 +248,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -261,13 +261,13 @@
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="recentsLimit" value="5" />
     <property name="dynamic.classpath" value="false" />
-    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="FullScreen" value="false" />
     <property name="OverrideImplement.combined" value="true" />
     <property name="OverrideImplement.overriding.sorted" value="false" />
-    <property name="last_opened_file_path" value="D:/backup/deploy/ztp/temp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/NewsManager" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="DefaultHtmlFileTemplate" value="Xhtml" />
     <property name="options.lastSelected" value="File.Encoding" />
@@ -694,7 +694,7 @@
     </configuration>
     <configuration default="false" name="Travel" type="JBossConfiguration" factoryName="Local" APPLICATION_SERVER_NAME="JBoss 7.4.0.Final-redhat-191" ALTERNATIVE_JRE_ENABLED="false" ALTERNATIVE_JRE_PATH="">
       <option name="OPEN_IN_BROWSER" value="false" />
-      <option name="COMMON_VM_ARGUMENTS" value="-Xms1024M -Xmx2048M -XX:MaxPermSize=512M -Dorg.apache.coyote.http11.Http11Protocol.COMPRESSION=on -Djboss.server.config.dir=D:\Projects\Travel\Config\Deploy\configurations" />
+      <option name="COMMON_VM_ARGUMENTS" value="-Xms1024M -Xmx2048M -XX:MaxPermSize=512M -Dorg.apache.coyote.http11.Http11Protocol.COMPRESSION=on -Djboss.server.config.dir=D:\Projects\News\Config\Deploy\configurations" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="NewsCore.ear">
@@ -1080,19 +1080,18 @@
       </ConfigurationWrapper>
       <method>
         <option name="BuildArtifacts" enabled="true">
-          <artifact name="Airline:war explored" />
           <artifact name="NewsCore.ear" />
         </option>
       </method>
     </configuration>
     <list size="7">
-      <item index="0" class="java.lang.String" itemvalue="JBoss Server.Travel" />
-      <item index="1" class="java.lang.String" itemvalue="JBoss Server.Email" />
-      <item index="2" class="java.lang.String" itemvalue="JBoss Server.Portal" />
-      <item index="3" class="java.lang.String" itemvalue="JBoss Server.Airline" />
-      <item index="4" class="java.lang.String" itemvalue="Application.TestSendEmail" />
-      <item index="5" class="java.lang.String" itemvalue="Application.CreateNewsBean" />
-      <item index="6" class="java.lang.String" itemvalue="Application.ScreenSizeExample" />
+      <item index="0" class="java.lang.String" itemvalue="Application.TestSendEmail" />
+      <item index="1" class="java.lang.String" itemvalue="Application.CreateNewsBean" />
+      <item index="2" class="java.lang.String" itemvalue="Application.ScreenSizeExample" />
+      <item index="3" class="java.lang.String" itemvalue="JBoss Server.Travel" />
+      <item index="4" class="java.lang.String" itemvalue="JBoss Server.Email" />
+      <item index="5" class="java.lang.String" itemvalue="JBoss Server.Portal" />
+      <item index="6" class="java.lang.String" itemvalue="JBoss Server.Airline" />
     </list>
     <recent_temporary>
       <list size="3">
@@ -1265,11 +1264,13 @@
       <workItem from="1457421040835" duration="322000" />
       <workItem from="1457871845418" duration="888000" />
       <workItem from="1458096385848" duration="747000" />
+      <workItem from="1458099655281" duration="2085000" />
+      <workItem from="1458184616236" duration="3486000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="864429000" />
+    <option name="totallyTimeSpent" value="870000000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -1298,6 +1299,7 @@
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.42881072" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32663316" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2620846" sideWeight="0.44974446" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
@@ -1311,7 +1313,6 @@
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32663316" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32663316" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Regex" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
     </layout>
@@ -1340,12 +1341,6 @@
           <line>74</line>
           <properties />
           <option name="timeStamp" value="321" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/TravelPage/src/tv/servlet/GetImageServlet.java</url>
-          <line>49</line>
-          <properties />
-          <option name="timeStamp" value="354" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="355" />
@@ -1554,13 +1549,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/FootballPage/src/ntd/bean/bean/DataApplicationBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="561">
-          <caret line="2" column="14" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TravelPage/src/tv/bean/NewsDetailBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1989">
@@ -1583,55 +1571,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/TravelPage/src/tv/bean/ReWriteURLBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AirlineTicket/src/tv/servlet/SiteMapHtmlServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1955">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AirlineTicket/src/tv/bean/NewsBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4114">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AirlineTicket/src/tv/bean/BaseNewsBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1416" max-vertical-offset="3553">
-          <caret line="102" column="63" selection-start-line="102" selection-start-column="63" selection-end-line="102" selection-end-column="63" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AirlineTicket/src/tv/bean/NewsListBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2538" max-vertical-offset="3145">
-          <caret line="174" column="16" selection-start-line="174" selection-start-column="16" selection-end-line="174" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AirlineTicket/src/tv/bean/NewsDetailBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="4" max-vertical-offset="1700">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AirlineTicket/src/tv/servlet/SiteMapServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2023">
-          <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AirlineTicket/src/tv/bean/ReWriteURLBean.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1241">
           <caret line="3" column="14" selection-start-line="3" selection-start-column="14" selection-end-line="3" selection-end-column="14" />
@@ -1797,25 +1736,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AirlineTicket/airline.war/gioi-thieu-ve-dai-ly-may-bay-phong-ve-sieu-bay.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7671233" vertical-offset="305" max-vertical-offset="918">
-          <caret line="41" column="39" selection-start-line="41" selection-start-column="39" selection-end-line="41" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/TravelPage/travel.war/template/include/slider_home_page.xhtml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="170" max-vertical-offset="425">
           <caret line="10" column="38" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TravelPage/src/tv/servlet/GetImageServlet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="348" max-vertical-offset="2142">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1846,11 +1770,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/TravelPage/src/tv/bean/NewsBean.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.8545455" vertical-offset="289" max-vertical-offset="4199">
-          <caret line="80" column="110" selection-start-line="80" selection-start-column="46" selection-end-line="80" selection-end-column="110" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1326" max-vertical-offset="4199">
+          <caret line="81" column="53" selection-start-line="81" selection-start-column="27" selection-end-line="81" selection-end-column="27" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/TravelPage/src/tv/servlet/GetImageServlet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="2142">
+          <caret line="44" column="42" selection-start-line="44" selection-start-column="0" selection-end-line="44" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Config/Deploy/configurations/standalone.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="1.7094972" vertical-offset="0" max-vertical-offset="9078">
+          <caret line="54" column="56" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1919,7 +1859,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>News</last-edited>
+          <last-edited>API</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

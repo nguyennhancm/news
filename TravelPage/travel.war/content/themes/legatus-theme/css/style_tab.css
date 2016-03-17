@@ -1,0 +1,136 @@
+@import url(http://fonts.googleapis.com/css?family=Dosis:600,200|Great+Vibes);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+*, *:after, *:before {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+* {margin:0;padding:0;border: 0 none;position: relative;}
+[class*="fontawesome-"]:before {font-family: 'fontawesome', sans-serif;}
+
+html {
+  background: #33485E;
+  width: 100%;
+  height: 100%;
+  font-family: dosis, sans-serif;
+  font-weight: 300;
+  color: #fff;
+}
+
+section {
+  background: rgba(248, 249, 249, 0);
+  width: 100%;
+  min-width: 0px;
+  height: 25rem;
+  box-shadow: 0 0 6px rgba(0,0,0,.4);
+}
+article {
+  position: absolute;
+  left: 0;
+  top: 20px;
+  right: 0;
+  bottom: 0;
+  padding: 1rem 2rem 0;
+  overflow: auto;
+  transition: .7s;
+  transform: scale(0);
+  transform-origin: center right;
+  transition-delay: .1s;
+}
+article:before {
+  color: rgba(0,0,0,.2);
+  font-size: 4rem;
+  font-weight: 100;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+}
+
+footer ul {
+  width: 100%;
+  color: #037B49;
+}
+footer li {
+  list-style-type: none;
+  float: left;
+  width: 20%;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 100;  
+}
+p, dl, ol {
+  line-height: 1.5;
+  font-size: 1.3rem;
+}
+ol li {margin: 0 0 .5rem 1rem;}
+dt {
+  font-size: 1.6rem;
+  font-weight: 600;
+  text-indent: 1.5rem;
+}
+nav {
+  background: #fff;
+  width: 100%;
+  height: 25px;
+  box-shadow: 0 0 6px rgba(0,0,0,.4);
+}
+nav:after {
+  content:'';
+  width: 33.33%;
+  height: 25px;
+  background: rgba(0, 186, 0, 0.69);
+  position: absolute;
+  transition: .5s;
+}
+input {
+  display: none;
+}
+label {
+  width: 33.33%;
+  float: left;
+  color: #6985ff;
+  text-align: center;
+  cursor: pointer;
+  transition: .5s;
+  z-index: 2;
+}
+label:hover {color: #1E6743;}
+label:before {
+  display: block;
+  font-size: 3rem;
+  line-height: 5rem;
+  z-index: 2;
+}
+#profile:checked ~ nav [for='profile'],
+#settings:checked ~ nav [for='settings'],
+#posts:checked ~ nav [for='posts'],
+#books:checked ~ nav [for='books'] {
+  color: white;
+  font-weight: 600;
+}
+#settings:checked ~ nav [for='settings'] {}
+#profile:checked ~ nav [for='profile'] {}
+
+#profile:checked ~ nav:after {
+  left: 0;
+}
+#settings:checked ~ nav:after {
+  left:33.33%;
+  border-top: 0 none;
+}
+#posts:checked ~ nav:after {
+    left: 67%;
+}
+#books:checked ~ nav:after {
+  left: 75%;
+}
+
+#profile:checked ~ .uno,
+#settings:checked ~ .dos,
+#posts:checked ~ .tres,
+#books:checked ~ .cuatro {
+  display: block;
+  transform: scale(1);
+  transition-delay: .5s; 
+}
+a {color: rgba(0,0,0,.4)}
+a:hover {color: rgba(0,0,0,.2)}

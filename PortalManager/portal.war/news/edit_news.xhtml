@@ -1,0 +1,267 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                xmlns:upload="http://java.sun.com/jsf/composite/news"
+                template="/template/template.xhtml">
+
+<ui:define name="title">Chỉnh sửa bài viết</ui:define>
+<ui:define name="content">
+
+<h:form id="frmEditNews" prependId="false">
+    <div class="row">
+        <div class="col-lg-12">
+            <h4 class="page-header">Sửa bài viết</h4>
+        </div>
+        <!-- /.col-lg-12 -->
+        <link href="/css/jquery.tagit.css" rel="stylesheet" type="text/css" property=""/>
+        <link href="/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css" property=""/>
+        <script src="/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>
+            $(function () {
+                var sampleTags = [#{EditNews.allTags}];
+
+                $('#singleFieldTags2').tagit({
+                    availableTags: sampleTags,
+                    allowSpaces: true
+                });
+            });
+        </script>
+    </div>
+    <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+
+    <div class="row">
+        <table width="90%">
+            <tbody>
+
+            <tr>
+                <td style="padding: 5px;">
+                    Chuyên mục
+                </td>
+                <td style="padding: 5px;">
+                    <table>
+                        <tr>
+                            <td width="50%">
+                                <h:selectOneMenu id="somNewProductCategory" style="width:280px"
+                                                 styleClass="selectpicker show-menu-arrow"
+                                                 value="#{EditNews.newsData.news.primaryProductCategoryId}">
+                                    <f:selectItem itemLabel="Chọn chuyên mục" itemValue=""/>
+                                    <f:selectItems value="#{Category.allCategory}" var="item"
+                                                   itemLabel="#{item.label}" itemValue="#{item.value}"/>
+                                </h:selectOneMenu>
+                            </td>
+                            <td width="10%"></td>
+                            <td width="20%">
+                                <p:graphicImage id="imgAvatar" value="#{EditNews.avatar}"
+                                                style="width: 100px; height: 100px;"
+                                                title="Xem ảnh"/>
+
+                            </td>
+                            <td width="20%">
+                                <p:commandLink value="Nhập link ảnh đại diện" onclick="widgetDialogLinkAvatar.show()">
+
+                                </p:commandLink>
+
+                                <div style="padding-top: 5px">
+
+                                    <p:commandButton value="Chọn ảnh đại diện" onclick="widgetDialogAvatar.show()">
+
+                                    </p:commandButton>
+                                </div>
+
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Tiêu đề
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputText styleClass="nameInput form-control"
+                                 value="#{EditNews.newsData.news.productName}"
+                                 id="txtTitle"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Mô tả ngắn
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputText styleClass="nameInput form-control"
+                                 value="#{EditNews.newsData.news.description}"
+                                 id="txtDescription"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Hiển thị
+                </td>
+                <td style="padding: 5px;">
+                    <p:selectBooleanCheckbox id="chkShowhome"
+                                             value="#{EditNews.newsData.active}"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Tags
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputText name="tags" id="singleFieldTags2" value="#{EditNews.tags}"/>
+
+                </td>
+            </tr>
+            <!--<tr>-->
+            <!--<td style="padding: 5px;">-->
+            <!--Chọn ảnh-->
+            <!--</td>-->
+            <!--<td style="padding: 5px;">-->
+            <!--<div style="float: left">-->
+            <!--<input style="width: 170px;" onchange="prepareUpload(event,'#{NewsManager.userData.currentStore}')"-->
+            <!--type="file"-->
+            <!--multiple="true"/>-->
+            <!--</div>-->
+            <!--<div style="float: left" id="uploadImageProcessing">-->
+
+            <!--</div>-->
+            <!--</td>-->
+            <!--</tr>-->
+
+            <tr>
+                <td style="padding: 5px;" width="12%">
+                    Chọn ảnh
+                </td>
+                <td style="vertical-align: top;">
+                    <p:commandButton style="" value="Upload hình ảnh" id="btnUpload"
+                                     onclick="saveProductAction()"/>
+                    <script type="text/javascript">
+                        function saveProductAction() {
+                            var elementId = 'fUpload_input';
+                            var selectedElement = document.getElementById(elementId);
+                            if (null != selectedElement) {
+                                selectedElement.click();
+                            }
+                        }
+                    </script>
+                    <h:panelGroup id="pnlListImage">
+                        <div style="max-height: 180px; overflow-y: scroll; border: 1px solid #7d8ca0; margin-top: 10px; margin-bottom: 5px;">
+                            <ui:repeat value="#{EditNews.getNewsData().productAttributes}" var="image">
+                                <div style="float: left; border: 1px solid #dfdfdf; width:90px; height:120px;margin: 3px 3px 3px 3px;">
+                                    <img src="/upload/images/#{EditNews.getNewsData().news.productId}/#{image.attrValue}"
+                                         style="width: 80px; height: 80px; margin: 5px;"
+                                         title="Xem ảnh"/>
+                                    <p:commandLink style="font-weight: bold;"
+                                                   onclick="choiceImage(event,'/upload/images/#{EditNews.getNewsData().news.productId}/#{image.attrValue}')"
+                                                   value="Chọn" title="Thêm vào bài viết"/> |
+                                    <p:commandLink style="color: red;" update=":frmEditNews:pnlListImage :frmAvatar:pnlListImageFace"
+                                                   actionListener="#{EditNews.removeImage(image)}"
+                                                   value="Xóa" title="Xóa ảnh"/>
+                                </div>
+
+
+                            </ui:repeat>
+
+                        </div>
+                    </h:panelGroup>
+
+                </td>
+            </tr>
+            <tr>
+
+                <td style="padding: 5px;">
+                    Nội dung
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputTextarea value="#{EditNews.newsData.news.longDescription}" class="ckeditor"
+                                     cols="100" id="editorNews"
+                                     name="editor1" rows="50"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;"></td>
+                <td style="padding: 5px;">
+                    <h:commandButton styleClass="btn btn-primary" style="width: 100px"
+                                     action="#{EditNews.updateNews}" id="btnSaveNews" value="Lưu">
+                    </h:commandButton>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+    <!-- /.row -->
+</h:form>
+
+<div style="max-height: 140px; overflow-y: auto; display: none">
+    <h:form id="frmfileUpload" enctype="multipart/form-data" prependId="false">
+        <p:fileUpload id="fUpload" style="border:none"
+                      fileUploadListener="#{EditNews.handleFileUpload}"
+                      update=":frmEditNews:pnlListImage :frmAvatar:pnlListImageFace"
+                      mode="advanced"
+                      auto="true"
+                      sizeLimit="10000000"
+                      invalidFileMessage="Hình ảnh không hợp lệ"
+                      invalidSizeMessage="Kích thước ảnh tối đa 10MB"
+                      label="Upload hình ảnh"
+                      multiple="true"
+                      allowTypes="/(\.|\/)(gif|jpe?g|png|GIF|JPE?G|PNG)$/"/>
+    </h:form>
+</div>
+<p:dialog header="Chọn ảnh đại diện"
+          widgetVar="widgetDialogAvatar" width="600" modal="true" resizable="false" showEffect="clip" hideEffect="fold" closeOnEscape="true">
+    <h:form id="frmAvatar">
+        <h:panelGroup id="pnlListImageFace">
+            <div style="max-height: 180px; overflow-y: scroll; border: 1px solid #7d8ca0; margin-top: 10px; margin-bottom: 5px;">
+                <ui:repeat value="#{EditNews.getNewsData().productAttributes}" var="image">
+                    <div style="float: left; border: 1px solid #dfdfdf; width:90px; height:120px;margin: 3px 3px 3px 3px;">
+                        <p:graphicImage value="/upload/images/#{EditNews.getNewsData().news.productId}/#{image.attrValue}"
+                                        style="width: 80px; height: 80px; margin: 5px;"
+                                        title="Xem ảnh"/>
+                        <p:commandLink style="font-weight: bold; color: #337ab7" update=":frmEditNews:imgAvatar"
+                                       actionListener="#{EditNews.chooseAvatar(image)}"
+                                       value="Chọn" title="Chọn làm ảnh đại diện"/>
+                    </div>
+                </ui:repeat>
+            </div>
+            <p:commandButton style="" value="Upload hình ảnh" id="btnUploadAvatar"
+                             onclick="saveProductAction()"/>
+            <p:commandButton style="" value="Đóng"
+                             onclick="widgetDialogAvatar.hide()"/>
+            <script type="text/javascript">
+                function saveProductAction() {
+                    var elementId = 'fUpload_input';
+                    var selectedElement = document.getElementById(elementId);
+                    if (null != selectedElement) {
+                        selectedElement.click();
+                    }
+                }
+            </script>
+        </h:panelGroup>
+    </h:form>
+</p:dialog>
+<p:dialog  header="Chọn ảnh đại diện"
+           widgetVar="widgetDialogLinkAvatar" width="600" modal="true" resizable="false" showEffect="clip" hideEffect="fold" closeOnEscape="true">
+    <h:form id="frmSetLinkAvatar">
+        <p:messages id="messages1" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+        <table width="100%">
+            <tr>
+                <td>
+                    Nhập link
+                </td>
+                <td style="padding: 5px;">
+                    <p:inputText style="width: 100%" value="#{EditNews.linkAvatar}"></p:inputText>
+                </td>
+                <td style="padding: 5px;">
+                    <p:commandButton value="Lưu" action="#{EditNews.saveLink()}" update="@form :frmEditNews:imgAvatar"/>
+                </td>
+            </tr>
+        </table>
+
+    </h:form>
+</p:dialog>
+</ui:define>
+</ui:composition>

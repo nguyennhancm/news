@@ -3,21 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/API/API.iml" filepath="$PROJECT_DIR$/API/API.iml" />
-      <module fileurl="file://$PROJECT_DIR$/AirlineTicket/AirlineTicket.iml" filepath="$PROJECT_DIR$/AirlineTicket/AirlineTicket.iml" />
       <module fileurl="file://$PROJECT_DIR$/Config/Config.iml" filepath="$PROJECT_DIR$/Config/Config.iml" />
       <module fileurl="file://$PROJECT_DIR$/Core/Core.iml" filepath="$PROJECT_DIR$/Core/Core.iml" />
       <module fileurl="file://$PROJECT_DIR$/Email/Email.iml" filepath="$PROJECT_DIR$/Email/Email.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FootballPage/FootballPage.iml" filepath="$PROJECT_DIR$/FootballPage/FootballPage.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FrontPageResources/FrontPageResources.iml" filepath="$PROJECT_DIR$/FrontPageResources/FrontPageResources.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LiveScore/LiveScore.iml" filepath="$PROJECT_DIR$/LiveScore/LiveScore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/LivevlPage/LivevlPage.iml" filepath="$PROJECT_DIR$/LivevlPage/LivevlPage.iml" />
       <module fileurl="file://$PROJECT_DIR$/MailManager/MailManager.iml" filepath="$PROJECT_DIR$/MailManager/MailManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/News/News.iml" filepath="$PROJECT_DIR$/News/News.iml" />
       <module fileurl="file://$PROJECT_DIR$/PortalManager/PortalManager.iml" filepath="$PROJECT_DIR$/PortalManager/PortalManager.iml" />
       <module fileurl="file://$PROJECT_DIR$/ReportManager/ReportManager.iml" filepath="$PROJECT_DIR$/ReportManager/ReportManager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Solr/Solr.iml" filepath="$PROJECT_DIR$/Solr/Solr.iml" />
       <module fileurl="file://$PROJECT_DIR$/SystemManager/SystemManager.iml" filepath="$PROJECT_DIR$/SystemManager/SystemManager.iml" />
-      <module fileurl="file://$PROJECT_DIR$/TranCoding/TranCoding.iml" filepath="$PROJECT_DIR$/TranCoding/TranCoding.iml" />
       <module fileurl="file://$PROJECT_DIR$/TravelPage/TravelPage.iml" filepath="$PROJECT_DIR$/TravelPage/TravelPage.iml" />
       <module fileurl="file://$PROJECT_DIR$/User/User.iml" filepath="$PROJECT_DIR$/User/User.iml" />
       <module fileurl="file://$PROJECT_DIR$/WebCore/WebCore.iml" filepath="$PROJECT_DIR$/WebCore/WebCore.iml" />

@@ -1,0 +1,18 @@
+<jboss-deployment-structure>
+    <!-- Make sub deployments isolated by default, so they cannot see each others classes without a Class-Path entry -->
+
+    <!-- This corresponds to the top level deployment. For a war this is the war's module, for an ear -->
+    <!-- This is the top level ear module, which contains all the classes in the EAR's lib folder     -->
+    <deployment>
+
+        <dependencies>
+            <module name="org.jboss.as.naming"/>
+            <module name="org.jboss.as.messaging"/>
+            <module name="org.jboss.as.remoting"/>
+            <module name="deployment.NewsCore.ear.News.jar" export="true"/>
+        </dependencies>
+        <!-- These add additional classes to the module. In this case it is the same as including the jar in the EAR's lib directory -->
+    </deployment>
+
+
+</jboss-deployment-structure>

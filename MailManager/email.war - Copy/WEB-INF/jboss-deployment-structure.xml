@@ -1,0 +1,27 @@
+<jboss-deployment-structure>
+    <!-- Make sub deployments isolated by default, so they cannot see each others classes without a Class-Path entry -->
+
+    <!-- This corresponds to the top level deployment. For a war this is the war's module, for an ear -->
+    <!-- This is the top level ear module, which contains all the classes in the EAR's lib folder     -->
+    <deployment>
+
+        <dependencies>
+            <module name="javax.api" export="true"/>
+            <module name="org.apache.log4j" export="true"/>
+            <module name="org.slf4j" export="true"/>
+            <module name="org.jboss.as.naming"/>
+            <module name="org.jboss.as.messaging"/>
+            <module name="org.jboss.as.remoting"/>
+            <module name="deployment.Email.ear.Email.jar" export="true"/>
+            <system export="true">
+                <paths>
+                    <path name="com/sun/net/ssl/internal/ssl" />
+                    <path name="com/sun/net/ssl" />
+                </paths>
+            </system>
+        </dependencies>
+        <!-- These add additional classes to the module. In this case it is the same as including the jar in the EAR's lib directory -->
+    </deployment>
+
+
+</jboss-deployment-structure>

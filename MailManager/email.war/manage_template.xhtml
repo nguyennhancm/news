@@ -1,0 +1,179 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                template="/templates/template.xhtml">
+    <ui:define name="title">Quản lý template</ui:define>
+    <ui:define name="main">
+        <p:messages id="messages" showDetail="true" showSummary="false" closable="true"/>
+        <h:form id="frmTemplate" prependId="false">
+            <table width="100%">
+                <tr align="top">
+                    <td style="vertical-align: top; width: 65%">
+                        <p:toolbar id="tbTemplate">
+                            <p:toolbarGroup id="tbgTemplate">
+                                <table>
+                                    <tbody>
+                                    <tr>
+
+                                        <td>
+                                            <h:outputText value="Danh sách template"/><p:spacer width="5px;"/>
+                                            <p:spacer width="25px;"/>
+                                            <p:commandButton value="Tạo template" type="button" onclick="PF('addTemplate').show();" />
+                                            <p:spacer width="25px;"/>
+                                            <p:commandButton value="Upload template" type="button" onclick="PF('uploadTemplate').show();"/>
+                                        </td>
+
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </p:toolbarGroup>
+                        </p:toolbar>
+                        <p:dataTable id="emailTableList" value="#{TemplateManager.templateList}" var="template" rowIndexVar="index"
+                                     emptyMessage="Không có thông tin tài khoản">
+                            <p:column headerText="STT" width="8%">
+                                <p:outputLabel value="#{index + 1}"/>
+                            </p:column>
+                            <p:column headerText="Tên template">
+                                <p:lightBox iframe="true" id="lighboxView">
+                                    <h:outputLink value="/email/resources/email_templates/ben_ninh_kieu.ftl" title="Click vào để xem trước">
+                                        <h:outputText value="#{template.templateName}" />
+                                    </h:outputLink>
+                                </p:lightBox>
+                            </p:column>
+                            <p:column headerText="Tiêu đề">
+                                <p:outputLabel value="#{template.title}"/>
+                            </p:column>
+                            <p:column headerText="Sửa lần cuối">
+                                <p:outputLabel value="#{template.updateTime}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+                                </p:outputLabel>
+                            </p:column>
+                            <p:column headerText="Tác vụ">
+                                <p:commandLink id="lnkEdit" value="Sửa" action="#">
+                                </p:commandLink><p:spacer width="5px;"/>
+                                <p:commandLink id="lnkDelete" value="Xóa" action="#">
+                                </p:commandLink>
+                            </p:column>
+
+                        </p:dataTable>
+                    </td>
+                    <td style="vertical-align: top; width: 35%">
+                        <div style="border:1px solid #bed6f8; padding:2px 2px;">
+                            <table>
+                                <tr>
+                                    <td>
+                                        <p:outputLabel value="lưu ý: " style="color: rgb(19, 25, 169); text-decoration: underline;font-weight: bold;"/> <br/>
+                                        Hệ thống chỉ hỗ trợ gửi email tĩnh (không chèn dữ liệu vào nội dung email).<br/>
+                                        Các yêu cầu nâng cao (nội dung động, hình ảnh,
+                                        tập tin đính kèm,...), vui lòng liên hệ.
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+
+        </h:form>
+
+        <p:dialog id="dlgAddTemplate" widgetVar="addTemplate" modal="true" position="250,40"
+                  header="THÊM MỚI TEMPLATE">
+        <p:messages id="messages1" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+            <h:form id="frmAddTemplate" prependId="false">
+                <table cellpadding="10px">
+                    <tr>
+                        <td>
+                            <p:outputLabel value="Tên Template"/>
+                        </td>
+                        <td>
+                            <p:inputText id="idTemplateName" value="#"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p:outputLabel value="Tiêu đề"/>
+                        </td>
+                        <td>
+                            <p:inputText id="idSubject" value="#" style="width: 600px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p:outputLabel value="Nội dung"/>
+                        </td>
+                        <td>
+                            <p:editor id="editorContent" value="#" width="600" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <p:commandButton value="Thêm mới" style="width: 200px;" action="#"
+                                             id="btnAddTemplate"/>
+                            <p:spacer width="15px"/>
+                            <p:commandButton value="Hủy" style="width: 200px;" onclick="PF('addTemplate').hide();"
+                                             id="btnAddCancel"/>
+                        </td>
+                    </tr>
+                </table>
+            </h:form>
+        </p:dialog>
+        <p:dialog id="dlgUploadTemplate" widgetVar="uploadTemplate" modal="true" position="250,40"
+                  header="Upload TEMPLATE">
+            <p:messages id="messages2" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+            <h:form id="frmUploadTemplate" prependId="false">
+                <table cellpadding="10px">
+                    <tr>
+                        <td>
+                            <p:outputLabel value="Tên Template"/>
+                        </td>
+                        <td>
+                            <p:inputText id="idUploadTemplateName" value="#"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <p:outputLabel value="Tiêu đề"/>
+                        </td>
+                        <td>
+                            <p:inputText id="idUploadSubject" value="#" style="width: 600px"/>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Template file
+                        </td>
+                        <td>
+                                <p:fileUpload fileUploadListener="#{TemplateManager.handleFileUpload}"
+                                              dragDropSupport="true"
+                                              multiple="false"
+                                              sizeLimit="1000000" invalidSizeMessage="dung lượng tối đa 1MB"
+                                              allowTypes="/(\.|\/)(ftl|html)$/"
+                                              invalidFileMessage="Hệ thống chỉ hỗ trợ file ftl,html!"
+                                              label="Chọn file upload"
+                                              uploadLabel="Upload"
+                                              cancelLabel="Hủy"/>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                        </td>
+                        <td>
+                            <p:commandButton value="Thêm mới" style="width: 200px;" action="#"
+                                             id="btnUploadTemplate"/>
+                            <p:spacer width="15px"/>
+                            <p:commandButton value="Hủy" style="width: 200px;" onclick="PF('uploadTemplate').hide();"
+                                             id="btnUploadCancel"/>
+                        </td>
+                    </tr>
+
+                </table>
+            </h:form>
+        </p:dialog>
+    </ui:define>
+</ui:composition>

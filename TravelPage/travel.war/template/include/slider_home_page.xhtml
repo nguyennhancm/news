@@ -1,0 +1,20 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <h:form prependId="false" id="frm_slider_home">
+        <div class="slider-content">
+            <ul>
+                <ui:repeat value="#{NewsTravelBean.newsSlideList}" var="news" varStatus="count">
+                    <li>
+                        <a href="#{news.url}">
+                            <span class="slider-info">#{news.news.productName}</span>
+                            <img src="#{news.news.mediumImageUrl}" class="setborder"
+                                 alt="#{news.news.productName}"/>
+                        </a>
+                    </li>
+                </ui:repeat>
+            </ul>
+
+        </div>
+    </h:form>
+</ui:composition>
