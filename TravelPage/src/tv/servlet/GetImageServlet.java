@@ -1,12 +1,17 @@
 package tv.servlet;
 
+import org.apache.commons.validator.GenericValidator;
 import org.apache.log4j.Logger;
+import tv.utils.ImageResize;
+import tv.utils.RequestDevice;
 
+import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -32,36 +37,110 @@ public class GetImageServlet extends HttpServlet {
     protected long expires = -1;
     private static final long DEFAULT_EXPIRE_TIME = 604800000L; // ..ms = 1 week.
 
-    private String pathDir;
-    private String pathDirForum;
+    private String mediumPath; // w640
+    private String originalPath;
+    private String smallPath; // w330
+    private String iconPath; // w140
+    private String defaultImagePath;
+    private String fixedPath; // width X height
 
-
-    public String getPath() {
-        if (null == pathDir) {
-            pathDir = System.getProperty("news.upload.images.original");
-        }
-        return pathDir;
+    public String getMediumPath() {
+        if (null == mediumPath) mediumPath = System.getProperty("news.upload.images.medium");
+        return mediumPath;
     }
 
+    public String getOriginalPath() {
+        if (null == originalPath) originalPath = System.getProperty("news.upload.images.original");
+        return originalPath;
+    }
+
+    public String getSmallPath() {
+        if (null == smallPath) smallPath = System.getProperty("news.upload.images.small");
+        return smallPath;
+    }
+
+    public String getIconPath() {
+        if (null == iconPath) iconPath = System.getProperty("news.upload.images.icon");
+        return iconPath;
+    }
+
+    public String getDefaultImagePath() {
+        if (null == defaultImagePath) defaultImagePath = "news.upload.images.default";
+        return defaultImagePath;
+    }
+
+    public String getFixedPath() {
+        if (null == fixedPath) fixedPath = System.getProperty("news.upload.images.fixed");
+        return fixedPath;
+    }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            String pathSub = request.getRequestURI();
-            if (null != pathSub) {
-                String imagePath = pathSub.substring(pathSub.indexOf("/upload/images/") + 14, pathSub.length());
-                imagePath = getPath() + File.separator + imagePath;
-                File image = new File(imagePath);
-//                if (!image.exists()) {
-//                    ResizeImage.resizeImage(imagePath, imagePath.substring(0, imagePath.length() - 4) + "tourvn" + ".jpg", 0, 0);
-//                    image = new File(imagePath.substring(0, imagePath.length() - 4) + "tourvn" + ".jpg");
-//                }
+            RequestDevice uAgentInfo = new RequestDevice(request.getHeader("user-agent"), "*/*");
+            boolean mobile = uAgentInfo.detectMobileQuick();
+            if (!mobile) {
+                String pathSub = request.getRequestURI();
+                if (null != pathSub) {
+                    String imagePath = pathSub.substring(pathSub.indexOf("/upload/images/") + 14, pathSub.length());
+                    String locatePath = "";
+                    String imageSize = request.getParameter("size");
+                    if (!GenericValidator.isBlankOrNull(imageSize)) {
+                        if (imageSize.equals("medium")) locatePath = getMediumPath();
+                        else if (imageSize.equals("small")) locatePath = getSmallPath();
+                        else if (imageSize.equals("icon")) locatePath = getIconPath();
+//                else if (imagePath.startsWith("/lager/")) locatePath = getOriginalPath();
+//                else if (imagePath.startsWith("/default/")) locatePath = getDefaultImagePath();
+                        // check Width X Height -> get fixed .........
+                    } else {
+                        imageSize = "medium";
+                        locatePath = getMediumPath(); //tam thoi chi lay max width = medium
+                    }
+                    File image;
+                    if (!GenericValidator.isBlankOrNull(locatePath)) {
+                        String toPath = locatePath + File.separator + imagePath;
+                        image = new File(toPath);
+                        if (!image.exists()) {
+                            image.getParentFile().mkdirs(); // tạo thư mục mới để copy sang
+                            String imageOriginalPath = getOriginalPath() + File.separator + imagePath;
+                            image = new File(imageOriginalPath);
+                            if (image.exists()) {
+                                int toWidth = 500;
+                                if (imageSize.equals("medium")) {
+                                    toWidth = 680;
+                                } else if (imageSize.equals("small")) {
+                                    toWidth = 330;
+                                } else if (imageSize.equals("icon")) {
+                                    toWidth = 140;
+                                }
+                                BufferedImage bImg = ImageIO.read(image);
+                                int widthOriginal = bImg.getWidth();
+                                if (widthOriginal > toWidth) {
 
+                                    ImageResize.resizeWidth(imageOriginalPath, toPath, toWidth);
+                                    image = new File(toPath);
+                                }
+                            } else {
+                                image = new File(getOriginalPath() + "/default_image.jpg");
+                            }
 
-                response.reset();
-                response.setContentType("image/jpeg");
-                Files.copy(image.toPath(), response.getOutputStream());
-                return;
+                        }
+
+                    } else {
+                        imagePath = getOriginalPath() + File.separator + imagePath;
+                        image = new File(imagePath);
+                        if (!image.exists()) {
+                            image = new File(getOriginalPath() + "/default_image.jpg");
+                        }
+                    }
+
+                    response.reset();
+                    response.setContentType("image/jpeg");
+                    Files.copy(image.toPath(), response.getOutputStream());
+                    return;
+                }
+            } else {
+                // chuyen sang m.dulichcantho.vn
             }
         } catch (Exception e) {
             logger.warn("Could not get image upload: " + e.getMessage());

@@ -159,7 +159,7 @@ public class NewsBean  extends BaseNewsBean{
                 }
             });
             Collections.reverse(tmpNewsDataList);
-            top10DiemDen = tmpNewsDataList.subList(1,9);
+            top10DiemDen = tmpNewsDataList.subList(1,15);
         }
         return top10DiemDen;
     }

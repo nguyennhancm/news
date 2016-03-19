@@ -5292,7 +5292,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .summary .variations label {
-    display: inline-block;
+    /*display: inline-block;*/
     padding-top: 5px;
 }
 
@@ -6189,7 +6189,7 @@ table.cart tr:nth-child(even) {
 }
 
 label {
-    display: inline-block;
+    /*display: inline-block;*/
     margin-bottom: 5px;
     font-weight: bold;
 }
@@ -6236,11 +6236,11 @@ form.login input.input-text {
 }
 
 p.form-row label {
-    display: inline-block;
+    /*display: inline-block;*/
 }
 
 p.form-row label[for="rememberme"] {
-    display: inline-block;
+    /*display: inline-block;*/
     padding: 12px 13px;
 }
 
@@ -6911,6 +6911,7 @@ button.button {
     padding: 10px;
 }
 .hover-effect img {
+    text-align: center;
     width: 100%;
     height: auto;
 }
