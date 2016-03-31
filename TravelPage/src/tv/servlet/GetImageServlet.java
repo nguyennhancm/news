@@ -80,74 +80,154 @@ public class GetImageServlet extends HttpServlet {
             RequestDevice uAgentInfo = new RequestDevice(request.getHeader("user-agent"), "*/*");
             boolean mobile = uAgentInfo.detectMobileQuick();
             if (!mobile) {
-                String pathSub = request.getRequestURI();
-                if (null != pathSub) {
-                    String imagePath = pathSub.substring(pathSub.indexOf("/upload/images/") + 14, pathSub.length());
-                    String locatePath = "";
-                    String imageSize = request.getParameter("size");
-                    if (!GenericValidator.isBlankOrNull(imageSize)) {
-                        if (imageSize.equals("medium")) locatePath = getMediumPath();
-                        else if (imageSize.equals("small")) locatePath = getSmallPath();
-                        else if (imageSize.equals("icon")) locatePath = getIconPath();
-//                else if (imagePath.startsWith("/lager/")) locatePath = getOriginalPath();
-//                else if (imagePath.startsWith("/default/")) locatePath = getDefaultImagePath();
-                        // check Width X Height -> get fixed .........
-                    } else {
-                        imageSize = "medium";
-                        locatePath = getMediumPath(); //tam thoi chi lay max width = medium
-                    }
-                    File image;
-                    if (!GenericValidator.isBlankOrNull(locatePath)) {
-                        String toPath = locatePath + File.separator + imagePath;
-                        image = new File(toPath);
-                        if (!image.exists()) {
-                            image.getParentFile().mkdirs(); // tạo thư mục mới để copy sang
-                            String imageOriginalPath = getOriginalPath() + File.separator + imagePath;
-                            image = new File(imageOriginalPath);
-                            if (image.exists()) {
-                                int toWidth = 500;
-                                if (imageSize.equals("medium")) {
-                                    toWidth = 680;
-                                } else if (imageSize.equals("small")) {
-                                    toWidth = 330;
-                                } else if (imageSize.equals("icon")) {
-                                    toWidth = 140;
-                                }
-                                BufferedImage bImg = ImageIO.read(image);
-                                int widthOriginal = bImg.getWidth();
-                                if (widthOriginal > toWidth) {
-
-                                    ImageResize.resizeWidth(imageOriginalPath, toPath, toWidth);
-                                    image = new File(toPath);
-                                }
-                            } else {
-                                image = new File(getOriginalPath() + "/default_image.jpg");
-                            }
-
-                        }
-
-                    } else {
-                        imagePath = getOriginalPath() + File.separator + imagePath;
-                        image = new File(imagePath);
-                        if (!image.exists()) {
-                            image = new File(getOriginalPath() + "/default_image.jpg");
-                        }
-                    }
-
-                    response.reset();
-                    response.setContentType("image/jpeg");
-                    Files.copy(image.toPath(), response.getOutputStream());
-                    return;
-                }
+                // tra ve hinh anh init
+                returnImagePC(request, response);
             } else {
-                // chuyen sang m.dulichcantho.vn
+                // tra ve hinh anh mobile
+                returnImageMobile(request, response);
             }
         } catch (Exception e) {
             logger.warn("Could not get image upload: " + e.getMessage());
             return;
         }
-        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
+//        response.sendError(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
         return;
+    }
+
+    public void returnImagePC(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String pathSub = request.getRequestURI();
+            if (null != pathSub) {
+                String imagePath = pathSub.substring(pathSub.indexOf("/upload/images/") + 14, pathSub.length());
+                String locatePath = "";
+                String imageSize = request.getParameter("size");
+                if (!GenericValidator.isBlankOrNull(imageSize)) {
+                    if (imageSize.equals("medium")) locatePath = getMediumPath();
+                    else if (imageSize.equals("small")) locatePath = getSmallPath();
+                    else if (imageSize.equals("icon")) locatePath = getIconPath();
+//                else if (imagePath.startsWith("/lager/")) locatePath = getOriginalPath();
+//                else if (imagePath.startsWith("/default/")) locatePath = getDefaultImagePath();
+                    // check Width X Height -> get fixed .........
+                } else {
+                    imageSize = "medium";
+                    locatePath = getMediumPath(); //tam thoi chi lay max width = medium
+                }
+                File image;
+                if (!GenericValidator.isBlankOrNull(locatePath)) {
+                    String toPath = locatePath + File.separator + imagePath;
+                    image = new File(toPath);
+                    if (!image.exists()) {
+                        image.getParentFile().mkdirs(); // tạo thư mục mới để copy sang
+                        String imageOriginalPath = getOriginalPath() + File.separator + imagePath;
+                        image = new File(imageOriginalPath);
+                        if (image.exists()) {
+                            int toWidth = 500;
+                            if (imageSize.equals("medium")) {
+                                toWidth = 680;
+                            } else if (imageSize.equals("small")) {
+                                toWidth = 330;
+                            } else if (imageSize.equals("icon")) {
+                                toWidth = 140;
+                            }
+                            BufferedImage bImg = ImageIO.read(image);
+                            int widthOriginal = bImg.getWidth();
+                            if (widthOriginal > toWidth) {
+
+                                ImageResize.resizeWidth(imageOriginalPath, toPath, toWidth);
+                                image = new File(toPath);
+                            }
+                        } else {
+                            image = new File(getOriginalPath() + "/default_image.jpg");
+                        }
+
+                    }
+
+                } else {
+                    imagePath = getOriginalPath() + File.separator + imagePath;
+                    image = new File(imagePath);
+                    if (!image.exists()) {
+                        image = new File(getOriginalPath() + "/default_image.jpg");
+                    }
+                }
+
+                response.reset();
+                response.setContentType("image/jpeg");
+                Files.copy(image.toPath(), response.getOutputStream());
+                return;
+            }
+        } catch (Exception e) {
+            logger.warn("Could not get image upload: " + e.getMessage());
+            return;
+        }
+    }
+
+    public void returnImageMobile(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            String pathSub = request.getRequestURI();
+            if (null != pathSub) {
+                String imagePath = pathSub.substring(pathSub.indexOf("/upload/images/") + 14, pathSub.length());
+                String locatePath = "";
+                String imageSize = request.getParameter("size");
+                if (!GenericValidator.isBlankOrNull(imageSize)) {
+                    if (imageSize.equals("medium")) locatePath = getFixedPath();
+                    else if (imageSize.equals("small")) locatePath = getSmallPath();
+                    else if (imageSize.equals("icon")) locatePath = getIconPath();
+//                else if (imagePath.startsWith("/lager/")) locatePath = getOriginalPath();
+//                else if (imagePath.startsWith("/default/")) locatePath = getDefaultImagePath();
+                    // check Width X Height -> get fixed .........
+                } else {
+                    imageSize = "medium";
+                    locatePath = getFixedPath(); //tam thoi chi lay max width = medium
+                }
+                File image;
+                if (!GenericValidator.isBlankOrNull(locatePath)) {
+                    String toPath = locatePath + File.separator + imagePath;
+                    image = new File(toPath);
+                    if (!image.exists()) {
+                        image.getParentFile().mkdirs(); // tạo thư mục mới để copy sang
+                        String imageOriginalPath = getOriginalPath() + File.separator + imagePath;
+                        image = new File(imageOriginalPath);
+                        if (image.exists()) {
+                            int toWidth = 500;
+                            if (imageSize.equals("medium")) {
+                                toWidth = 400;
+                                // rename W x H de luu vao fixed
+
+                            } else if (imageSize.equals("small")) {
+                                toWidth = 330;
+                            } else if (imageSize.equals("icon")) {
+                                toWidth = 140;
+                            }
+                            BufferedImage bImg = ImageIO.read(image);
+                            int widthOriginal = bImg.getWidth();
+                            if (widthOriginal > toWidth) {
+
+                                ImageResize.resizeWidth(imageOriginalPath, toPath, toWidth);
+                                image = new File(toPath);
+                            }
+                        } else {
+                            image = new File(getOriginalPath() + "/default_image.jpg");
+                        }
+
+                    }
+
+                } else {
+                    imagePath = getOriginalPath() + File.separator + imagePath;
+                    image = new File(imagePath);
+                    if (!image.exists()) {
+                        image = new File(getOriginalPath() + "/default_image.jpg");
+                    }
+                }
+
+                response.reset();
+                response.setContentType("image/jpeg");
+                Files.copy(image.toPath(), response.getOutputStream());
+                return;
+            }
+        } catch (Exception e) {
+            logger.warn("Could not get image upload: " + e.getMessage());
+            return;
+        }
     }
 
 
