@@ -30,5 +30,25 @@
             <to-view-id>/video/create_video.xhtml</to-view-id>
             <redirect/>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>manage_video</from-outcome>
+            <to-view-id>/video/manage_video.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>edit_video</from-outcome>
+            <to-view-id>/video/edit_video.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>manage_site</from-outcome>
+            <to-view-id>/system/manage_site.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>detail_site</from-outcome>
+            <to-view-id>/system/detail_site.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
     </navigation-rule>
 </faces-config>

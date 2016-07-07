@@ -22,6 +22,16 @@ import java.util.List;
 @Stateless
 public class UserManager extends BaseManager implements IUserManager {
     @Override
+    public UserLogin save(UserLogin userLogin) {
+        return null;
+    }
+
+    @Override
+    public Person save(Person person) {
+        return null;
+    }
+
+    @Override
     public UserLogin login(String username, String password) {
         Query query = getEntityManager().createQuery("select u from UserLogin u where u.id=:username and u.currentPassword=:password");
         query.setParameter("username", username);

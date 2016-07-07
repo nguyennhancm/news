@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/template/template.xhtml">
+
+    <ui:define name="title">Chi tiết website</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">Thông tin website</h4>
+            </div>
+
+        </div>
+        <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+
+        <!-- /.row -->
+        <div class="row">
+
+            <div class="col-lg-8" style="width: 100%">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="padding: 22px 15px;">
+                        <div class="pull-left" style="margin-top: -17px;">
+                            <h:form id="categoryAction" prependId="false">
+                                <h:commandLink value="Thêm Site"/>
+
+
+                            </h:form>
+                        </div>
+                        <div class="pull-right">
+
+                        </div>
+                        <div class="pull-left" style="margin-top: 25px; width: 100%;">
+                            <ui:include src="../template/include/detail_site.xhtml"/>
+
+
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel .chat-panel -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+    </ui:define>
+</ui:composition>

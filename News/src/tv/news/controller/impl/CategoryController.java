@@ -44,17 +44,17 @@ public class CategoryController extends BaseController implements ICategoryContr
 
     @Override
     public ProductCategory createCategory(ProductCategory category) {
-        return getCategoryManager().createCategory(category);
+        return getCategoryManager().save(category);
     }
 
     @Override
     public ProductCategoryRole createProductCategoryRole(ProductCategoryRole productCategoryRole) {
-        return getCategoryManager().createProductCategoryRole(productCategoryRole);
+        return getCategoryManager().save(productCategoryRole);
     }
 
     @Override
     public ProductCategoryMember createProductCategoryMember(ProductCategoryMember productCategoryMember) {
-        return getCategoryManager().createProductCategoryMember(productCategoryMember);
+        return getCategoryManager().save(productCategoryMember);
     }
 
     @Override

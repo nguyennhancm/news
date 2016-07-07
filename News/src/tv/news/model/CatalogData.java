@@ -3,6 +3,7 @@ package tv.news.model;
 import tv.news.entities.ProdCatalog;
 import tv.news.entities.ProductCategory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class CatalogData {
     }
 
     public List<ProductCategory> getCategoryMenuList() {
+        if(null == categoryMenuList) categoryMenuList = new ArrayList<ProductCategory>();
         return categoryMenuList;
     }
 

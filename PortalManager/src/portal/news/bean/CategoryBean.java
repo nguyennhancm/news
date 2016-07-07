@@ -5,6 +5,7 @@ import org.primefaces.model.TreeNode;
 import portal.utils.BasePortalBean;
 import tv.news.entities.ProdCatalog;
 import tv.news.entities.ProductCategory;
+import tv.news.enums.CategoryType;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -26,14 +27,16 @@ import java.util.List;
 @ManagedBean(name = "Category")
 public class CategoryBean extends BasePortalBean {
 
-    List<SelectItem> categoryItems = new ArrayList<SelectItem>();
-    List<SelectItem> catalogItems = new ArrayList<SelectItem>();
-    List<ProductCategory> categoryTree = new ArrayList<ProductCategory>();
+    private List<SelectItem> categoryItems = new ArrayList<SelectItem>();
+    private List<SelectItem> catalogItems = new ArrayList<SelectItem>();
+    private List<ProductCategory> categoryTree = new ArrayList<ProductCategory>();
     private TreeNode categoryNode;
-    MessageFormat messageFormat = new MessageFormat("{0}   {1}");
+    private MessageFormat messageFormat = new MessageFormat("{0}   {1}");
     public List<ProductCategory> categories;
-    List<ProdCatalog> catalogs;
+    private List<ProdCatalog> catalogs;
     private String tags;
+    private List<ProductCategory> videoCategory;
+
 
     @ManagedProperty(value = "#{NewsManager}")
     private NewsManagerBean newsManagerBean;
@@ -150,6 +153,24 @@ public class CategoryBean extends BasePortalBean {
 
     public void setTags(String tags) {
         this.tags = tags;
+    }
+
+    public List<ProductCategory> getVideoCategory() {
+        if (null == videoCategory) {
+            videoCategory = new ArrayList<ProductCategory>();
+            List<ProductCategory> productCategoryList = getCategoryManager().getAllCategoryByStoreAndType(
+                    getNewsManagerBean().getUserData().getCurrentStore(), CategoryType.VIDEO_CATEGORY.name());
+            if (null != productCategoryList){
+                for (ProductCategory productCategory: productCategoryList) {
+                    videoCategory.addAll(getCategoryManager().getCategoryByParent(productCategory.getProductCategoryId()));
+                }
+            }
+        }
+        return videoCategory;
+    }
+
+    public void setVideoCategory(List<ProductCategory> videoCategory) {
+        this.videoCategory = videoCategory;
     }
 
     @Override

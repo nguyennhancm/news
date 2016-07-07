@@ -1,11 +1,7 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-                xmlns:h="http://xmlns.jcp.org/jsf/html"
-                xmlns:f="http://xmlns.jcp.org/jsf/core"
-                xmlns:p="http://primefaces.org/ui"
-                xmlns:c="http://java.sun.com/jsp/jstl/core"
-                xmlns:upload="http://java.sun.com/jsf/composite/news"
-                template="/template/template.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xml:lang="en" lang="en"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../template/template.xhtml">
 
 <ui:define name="title">Chỉnh sửa bài viết</ui:define>
 <ui:define name="content">
@@ -46,6 +42,7 @@
                         <tr>
                             <td width="50%">
                                 <h:selectOneMenu id="somNewProductCategory" style="width:280px"
+                                                 rendered="#{EditNews.newsData.news.productTypeId eq 'NEWS'}"
                                                  styleClass="selectpicker show-menu-arrow"
                                                  value="#{EditNews.newsData.news.primaryProductCategoryId}">
                                     <f:selectItem itemLabel="Chọn chuyên mục" itemValue=""/>
@@ -95,6 +92,16 @@
                     <h:inputText styleClass="nameInput form-control"
                                  value="#{EditNews.newsData.news.description}"
                                  id="txtDescription"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Link video
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputText styleClass="nameInput form-control"
+                                 value="#{EditNews.newsData.news.largeImageUrl}" converter="#{StringTrimmer}"
+                                 id="txtVideoLink"/>
                 </td>
             </tr>
             <tr>

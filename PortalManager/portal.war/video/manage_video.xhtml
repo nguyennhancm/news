@@ -1,0 +1,243 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:c="http://java.sun.com/jsp/jstl/core"
+                template="/template/template.xhtml">
+
+<ui:define name="title">Quản lý video</ui:define>
+<ui:define name="content">
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-header">Quản lý video</h4>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+
+<div class="row">
+    <!--<div class="col-lg-8" style="width: 60%">-->
+    <!--<div class="panel panel-default">-->
+    <!--<div class="panel-heading">-->
+    <!--<i></i> Tìm kiếm bài viết-->
+    <!--<div class="pull-left" style="margin-top: 25px; width: 100%;">-->
+    <!--<h:form id="frmSearch" prependId="false">-->
+    <!--<p:toolbar id="tbSearch">-->
+    <!--<p:toolbarGroup id="tbgSearch" align="left">-->
+    <!--<table>-->
+    <!--<tbody>-->
+    <!--<tr>-->
+    <!--<td style="padding: 5px;">-->
+    <!--Mã bài viết-->
+    <!--</td>-->
+    <!--<td style="padding: 5px;">-->
+    <!--<p:inputText value="" id="txtNewsId"/>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td style="padding: 5px;">-->
+    <!--Ngày tạo-->
+    <!--</td>-->
+    <!--<td style="padding: 5px;">-->
+    <!--<p:calendar id="calFromDate" selectOtherMonths="true"-->
+    <!--converterMessage="'Từ ngày' không hợp lệ"-->
+    <!--yearRange="2000:2050" navigator="true"-->
+
+    <!--pattern="dd/MM/yyyy">-->
+    <!--<f:convertDateTime pattern="dd/MM/yyyy"/>-->
+    <!--</p:calendar>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td style="padding: 5px;">-->
+    <!--Đến ngày-->
+    <!--</td>-->
+    <!--<td style="padding: 5px;">-->
+    <!--<p:calendar id="calToDate" selectOtherMonths="true"-->
+    <!--converterMessage="'Đến ngày' không hợp lệ"-->
+    <!--yearRange="2000:2050" navigator="true"-->
+
+    <!--pattern="dd/MM/yyyy">-->
+    <!--<f:convertDateTime pattern="dd/MM/yyyy"/>-->
+    <!--</p:calendar>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td style="padding: 5px;">-->
+    <!--Trạng thái-->
+    <!--</td>-->
+    <!--<td style="padding: 5px;">-->
+    <!--<h:selectOneMenu id="somStatus" value="#" style="width: 126px">-->
+    <!--<f:selectItem itemLabel="Tất cả" itemValue=""/>-->
+    <!--<f:selectItem itemValue="Y" itemLabel="Công khai"/>-->
+    <!--<f:selectItem itemValue="N" itemLabel="Ẩn"/>-->
+    <!--</h:selectOneMenu>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td style="padding: 5px;">-->
+    <!--Người tạo-->
+    <!--</td>-->
+    <!--<td style="padding: 5px;">-->
+    <!--<h:selectOneMenu style="margin-right: 10px; width: 127px" id="somUserCreate"-->
+    <!--value="#">-->
+    <!--<f:selectItem itemLabel="Tất cả" itemValue=""/>-->
+    <!--</h:selectOneMenu>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--<tr>-->
+    <!--<td style="padding: 5px;">-->
+
+    <!--</td>-->
+    <!--<td style="padding: 5px;">-->
+    <!--<p:commandButton value="Tìm kiếm" action="#}" id="btnSearchAction"-->
+    <!--ajax="false"/>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</tbody>-->
+    <!--</table>-->
+    <!--</p:toolbarGroup>-->
+    <!--</p:toolbar>-->
+    <!--</h:form>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.panel-heading &ndash;&gt;-->
+    <!--<div class="panel-body">-->
+    <!--<div></div>-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.panel-body &ndash;&gt;-->
+    <!--</div>-->
+    <!--&lt;!&ndash; /.panel .chat-panel &ndash;&gt;-->
+    <!--</div>-->
+    <div class="col-lg-8" style="width: 100%">
+        <div class="panel panel-default">
+            <div class="panel-heading" style="padding: 22px 15px;">
+                <!--<p:outputLabel value="Danh sách bài viết"/>-->
+                <div class="pull-left" style="margin-top: -17px;">
+                    <h:form id="categoryFilter" prependId="false">
+                        <h:selectOneMenu id="somManageProductCategory"
+                                         styleClass="selectpicker show-menu-arrow"
+                                         value="#{VideoManager.categoryFilter}">
+                            <f:selectItem itemLabel="Tất cả video" itemValue=""/>
+                            <f:selectItems value="#{Category.videoCategory}" var="item"
+                                           itemLabel="#{item.categoryName}" itemValue="#{item.productCategoryId}"/>
+                            <p:ajax event="change" update=":frmAllNews"
+                                    listener="#{VideoManager.categoryOnChange()}"/>
+                        </h:selectOneMenu>
+                    </h:form>
+                </div>
+                <div class="pull-right">
+                    <a href="/video/create_video.xhtml">Thêm mới video</a>
+                </div>
+                <div class="pull-left" style="margin-top: 25px; width: 100%;">
+                    <h:form id="frmAllNews" prependId="false">
+                        <p:dataTable id="NewsTableList" value="#{VideoManager.videoDataList}" var="newsData"
+                                     paginator="true"
+                                     rows="30"
+                                     emptyMessage="Không có bài viết nào đươc tìm thấy">
+                            <p:column headerText="Id" sortBy="#{newsData.news.productId}">
+                                #{newsData.news.productId}
+                            </p:column>
+                            <p:column headerText="Tiêu đề bài viết" sortBy="#{newsData.news.productName}">
+                                #{newsData.news.productName}
+                            </p:column>
+                            <p:column headerText="Chuyên mục" width="20%" sortBy="#{newsData.primaryCategoryName}">
+                                #{newsData.primaryCategoryName}
+                            </p:column>
+                            <p:column headerText="Trạng thái" sortBy="#{newsData.news.isActive}">
+                                <p:selectBooleanCheckbox id="chkShowhome"
+                                                         value="#{newsData.active}" disabled="true"/>
+                            </p:column>
+                            <p:column headerText="Ngày tạo" sortBy="#{newsData.news.createdDate}" width="15%">
+                                <h:outputText value="#{newsData.news.createdDate}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy HH:mm"/>
+                                </h:outputText>
+
+                            </p:column>
+                            <p:column headerText="Tác vụ" width="10%">
+                                <p:commandLink id="lnkEditNews" value="Sửa" action="#{EditVideo.onLoadEditVideo()}">
+                                    <f:setPropertyActionListener value="#{newsData}"
+                                                                 target="#{EditVideo.newsData}"/>
+                                </p:commandLink>
+                                <p:spacer width="10px"/>
+                                <p:commandLink id="lnkDeleteNews" value="Xóa"
+                                               onclick="confirmDeleteNewsWidget.show()">
+                                    <f:setPropertyActionListener value="#{newsData}"
+                                                                 target="#{VideoManager.news}"/>
+                                </p:commandLink>
+
+                                <!--<button type="button" style="line-height: 5px;" class="btn btn-primary btn-lg"-->
+                                <!--data-toggle="modal"-->
+                                <!--data-target="#myModal-ToCategoryPosition"-->
+                                <!--onclick="$('#productId-modal').val('#{newsData.news.productId}');">-->
+                                <!--Category SEO-->
+                                <!--</button>-->
+
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                    <p:confirmDialog id="confirmNewsDelete" message="Bạn muốn xóa bài viết?"
+                                     severity="alert" widgetVar="confirmDeleteNewsWidget">
+                        <h:form>
+                            <div align="center">
+                                <p:commandButton value="Đồng ý"
+                                                 oncomplete="confirmDeleteNewsWidget.hide()"
+                                                 update=":frmAllNews"
+                                                 action="#{VideoManager.deleteVideo()}"/>
+                                <p:commandButton value="Hủy bỏ" onclick="confirmDeleteNewsWidget.hide()"
+                                                 type="button"/>
+                            </div>
+                        </h:form>
+                    </p:confirmDialog>
+                </div>
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div></div>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel .chat-panel -->
+    </div>
+    <!-- /.col-lg-4 -->
+</div>
+<!-- /.row -->
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal-ToCategoryPosition" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel">
+    <h:form prependId="false">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true"></span></button>
+                    <h4 class="modal-title" id="myModalLabel">Thêm bài viết vào category </h4>
+                </div>
+                <div class="modal-body">
+                    <div align="center">
+                        <h:inputHidden id="productId-modal" value="#{EditNews.productId}"/>
+                        <h:selectOneMenu id="somNewProductCategory" style="width:280px"
+                                         styleClass="selectpicker show-menu-arrow"
+                                         value="#{EditNews.productCategoryId}">
+                            <f:selectItem itemLabel="Chọn chuyên mục" itemValue=""/>
+                            <f:selectItems value="#{Category.allCategory}" var="item"
+                                           itemLabel="#{item.label}" itemValue="#{item.value}"/>
+                        </h:selectOneMenu>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Hủy</button>
+                    <h:commandButton styleClass="btn btn-primary" value="Lưu"
+                                     action="#{EditNews.addToCategoryPosition}">
+
+                    </h:commandButton>
+                </div>
+            </div>
+        </div>
+    </h:form>
+</div>
+</ui:define>
+</ui:composition>

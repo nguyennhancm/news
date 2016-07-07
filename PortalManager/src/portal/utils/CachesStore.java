@@ -21,7 +21,7 @@ public class CachesStore extends BasePortalBean {
     public StoreData getStoreById(String storeId){
         StoreData storeData1 = storeMap.get(storeId);
         if (null == storeData1){
-            storeData1 = buildData(storeId);
+            storeData1 = getStoreDataInCache(storeId);
             storeMap.put(storeId, storeData1);
         }
         return storeData1;

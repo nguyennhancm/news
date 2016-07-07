@@ -16,6 +16,11 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public interface IUserManager {
+
+    public UserLogin save(UserLogin userLogin);
+
+    public Person save(Person person);
+
     public UserLogin login(String username, String password);
 
     public Person getPersonById(String partyId);
@@ -29,6 +34,8 @@ public interface IUserManager {
     public Party getParty(String partyId);
 
     public List<PartyAttribute> getImagesList(String partyId, String attrName);
+
+//    public List<String> getAllPartyIdByStoreId
 
     @Deprecated
     public String getPartyIdByStore(String storeId);

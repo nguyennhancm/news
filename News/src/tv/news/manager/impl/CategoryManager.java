@@ -53,23 +53,23 @@ public class CategoryManager extends BaseManager implements ICategoryManager {
 
     @Override
     public List<ProductCategory> getCategoryByParent(String categoryParentId) {
-        Query query = getEntityManager().createQuery("select pc from ProductCategory pc where pc.productCategoryId in (select pcr.productCategoryId from ProductCategoryRollup pcr where pcr.parentProductCategoryId=:parentProductCategoryId)");
+        Query query = getEntityManager().createQuery("select pc from ProductCategory pc where pc.productCategoryId in (select pcr.productCategoryId from ProductCategoryRollup pcr where pcr.parentProductCategoryId=:parentProductCategoryId) order by pc.productCategoryId desc ");
         query.setParameter("parentProductCategoryId", categoryParentId);
         return query.getResultList();
     }
 
     @Override
-    public ProductCategory createCategory(ProductCategory category) {
+    public ProductCategory save(ProductCategory category) {
         return getEntityManager().merge(category);
     }
 
     @Override
-    public ProductCategoryRole createProductCategoryRole(ProductCategoryRole productCategoryRole) {
+    public ProductCategoryRole save(ProductCategoryRole productCategoryRole) {
         return getEntityManager().merge(productCategoryRole);
     }
 
     @Override
-    public ProductCategoryMember createProductCategoryMember(ProductCategoryMember productCategoryMember) {
+    public ProductCategoryMember save(ProductCategoryMember productCategoryMember) {
         return getEntityManager().merge(productCategoryMember);
     }
 
@@ -239,5 +239,27 @@ public class CategoryManager extends BaseManager implements ICategoryManager {
             //TODO
         }
         return "Add Error!!!";
+    }
+
+    @Override
+    public ProductStoreCatalog save(ProductStoreCatalog productStoreCatalog) {
+        return null;
+    }
+
+    @Override
+    public ProdCatalogCategory save(ProdCatalogCategory prodCatalogCategory) {
+        return null;
+    }
+
+    @Override
+    public ProdCatalog save(ProdCatalog prodCatalog) {
+        return null;
+    }
+
+    @Override
+    public List<ProductCategory> getProductCategoryByParentId(String productCategoryId) {
+        Query query = getEntityManager().createQuery("select pc from ProductCategory pc where pc.primaryParentCategoryId=:primaryParentCategoryId order by pc.productCategoryId desc ");
+        query.setParameter("primaryParentCategoryId", productCategoryId);
+        return query.getResultList();
     }
 }

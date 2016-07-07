@@ -1,9 +1,6 @@
 package tv.news.manager;
 
-import tv.news.entities.ProdCatalog;
-import tv.news.entities.ProductCategory;
-import tv.news.entities.ProductCategoryMember;
-import tv.news.entities.ProductCategoryRole;
+import tv.news.entities.*;
 
 import javax.ejb.Local;
 import java.util.List;
@@ -29,11 +26,11 @@ public interface ICategoryManager {
 
     public List<ProductCategory> getCategoryByParent(String categoryParentId);
 
-    public ProductCategory createCategory(ProductCategory category);
+    public ProductCategory save(ProductCategory category);
 
-    public ProductCategoryRole createProductCategoryRole(ProductCategoryRole productCategoryRole);
+    public ProductCategoryRole save(ProductCategoryRole productCategoryRole);
 
-    public ProductCategoryMember createProductCategoryMember(ProductCategoryMember productCategoryMember);
+    public ProductCategoryMember save(ProductCategoryMember productCategoryMember);
 
     public List<ProductCategory> getAllCategoryByStoreAndType(String storeId, String categoryType);
 
@@ -50,5 +47,16 @@ public interface ICategoryManager {
     public String addNewCategory(String storeId, String catalogId, String categoryName, boolean createCatalog);
 
     public String addNewCategoryPosition(String storeId, String catalogId, String categoryName, boolean createCatalog, String categoryType);
+
+    public ProductStoreCatalog save(ProductStoreCatalog productStoreCatalog);
+
+    public ProdCatalogCategory save(ProdCatalogCategory prodCatalogCategory);
+
+    public ProdCatalog save(ProdCatalog prodCatalog);
+
+    public List<ProductCategory> getProductCategoryByParentId(String productCategoryId);
+
+
+
 
 }

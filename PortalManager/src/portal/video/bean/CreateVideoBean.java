@@ -1,17 +1,17 @@
-package portal.video;
+package portal.video.bean;
 
-import tv.news.enums.CategoryType;
-import tv.news.model.NewsData;
 import org.apache.commons.validator.GenericValidator;
+import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
 import org.primefaces.model.UploadedFile;
-import portal.news.bean.NewsManagerBean;
 import portal.utils.BasePortalBean;
 import portal.utils.UnicodeUtils;
 import tv.news.entities.Product;
 import tv.news.entities.ProductAttribute;
 import tv.news.entities.ProductCategory;
 import tv.news.entities.ProductCategoryMember;
+import tv.news.enums.CategoryType;
+import tv.news.model.NewsData;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -41,27 +41,33 @@ public class CreateVideoBean extends BasePortalBean {
     private String[] tagsList;
     private int sequenceImage = 0;
     private String allTags;
-    private String tags="";
+    private String tags = "";
+    private String avatar;
+    private String linkAvatar;
 
-    @ManagedProperty(value = "#{NewsManager}")
-    private NewsManagerBean newsManagerBean;
+    @ManagedProperty(value = "#{VideoManager}")
+    private VideoManagerBean videoManagerBean;
 
     public String createVideo() {
-        if (validateNews(newsData.getNews().getPrimaryProductCategoryId(), newsData.getNews().getProductName(),
-                newsData.getNews().getDescription(), newsData.getNews().getLongDescription(), "NEWS")) {
+        if (validateVideo(newsData.getNews().getPrimaryProductCategoryId(), newsData.getNews().getProductName(),
+                newsData.getNews().getDescription(), newsData.getNews().getLongDescription())) {
             Product product = newsData.getNews();
+            product.setCreatedByUserLogin(videoManagerBean.getUserData().getUserLogin().getUserLoginId());
             if (newsData.isActive()) product.setIsActive("Y");
             else product.setIsActive("N");
-            String imageDefault = getImageDefault(product.getLongDescription());
-            if (imageDefault.length() > 4) product.setMediumImageUrl(imageDefault);
+            if (avatar.equals(IMAGE_DEFAULT)) {
+                String imageDefault = getImageDefault(product.getLongDescription());
+                if (imageDefault.length() > 4) product.setMediumImageUrl(imageDefault);
+                else product.setMediumImageUrl(IMAGE_DEFAULT);
+            } else product.setMediumImageUrl(avatar);
             try {
-                newsManagerBean.getNewsController().createNews(product, newsManagerBean.getUserData().getCurrentStore(), "NEWS", getImagesList());
+                videoManagerBean.getNewsController().createNews(product, videoManagerBean.getUserData().getCurrentStore(), "VIDEO", getImagesList());
                 //add tags
-                if(null != getTagsList()){
+                if (null != getTagsList()) {
 
-                    for (String tags: tagsList){
-                        String tagsId = newsManagerBean.getStoreData().getTagsFromMap(tags);
-                        if (null != tagsId){
+                    for (String tags : tagsList) {
+                        String tagsId = videoManagerBean.getStoreData().getTagsFromMap(tags);
+                        if (null != tagsId) {
                             // save news tags
                             ProductCategoryMember productTags = new ProductCategoryMember();
                             productTags.setProductId(product.getProductId());
@@ -69,13 +75,13 @@ public class CreateVideoBean extends BasePortalBean {
                             productTags.setFromDate(new Timestamp(new Date().getTime()));
                             productTags.setCreatedStamp(new Timestamp(new Date().getTime()));
                             getCategoryController().createProductCategoryMember(productTags);
-                        }else {
+                        } else {
                             // create tags
-                            ProductCategory productCategory= new ProductCategory();
+                            ProductCategory productCategory = new ProductCategory();
                             productCategory.setProductCategoryId(getSequenceValue().getSequenceValueItem(ProductCategory.class));
                             productCategory.setCategoryName(tags);
                             productCategory.setProductCategoryTypeId(CategoryType.TAGS_CATEGORY.getValue());
-                            productCategory.setDescription(newsManagerBean.getUserData().getCurrentStore());
+                            productCategory.setDescription(videoManagerBean.getUserData().getCurrentStore());
                             productCategory.setCreatedStamp(new Timestamp(new Date().getTime()));
                             getCategoryController().createCategory(productCategory);
                             //save news tags
@@ -87,21 +93,22 @@ public class CreateVideoBean extends BasePortalBean {
                             getCategoryController().createProductCategoryMember(productTags);
                         }
                     }
-                    tags="";
+                    tags = "";
                 }
                 newsData = new NewsData();
                 imagesList = new ArrayList<ProductAttribute>();
                 sequenceImage = 0;
-                newsManagerBean.reloadStore();
-                newsManagerBean.loadAllNewsData();
+                setAvatar(IMAGE_DEFAULT);
+                videoManagerBean.reloadStore();
+//                newsManagerBean.loadAllNewsData();
                 allTags = buildAllTags();
-            } catch (Exception e){
-                addValidateError(null, "có lỗi khi tạo bài viết, vui lòng liên hệ system admin!");
-                getLogger().log(Level.WARNING,"error create news: " + e.getMessage());
+            } catch (Exception e) {
+                addValidateError(null, "có lỗi khi tạo video, vui lòng liên hệ system admin!");
+                getLogger().log(Level.WARNING, "error create news: " + e.getMessage());
                 return "";
             }
 
-            return "manage_news";
+            return "manage_video";
         }
         return "";
     }
@@ -120,14 +127,48 @@ public class CreateVideoBean extends BasePortalBean {
         return newsId;
     }
 
-    public String removeImage(ProductAttribute image){
-        for (ProductAttribute ima: imagesList){
-            if (ima.getAttrName().equals(image.getAttrName())){
+    public String removeImage(ProductAttribute image) {
+        for (ProductAttribute ima : imagesList) {
+            if (ima.getAttrName().equals(image.getAttrName())) {
                 imagesList.remove(ima);
                 return "";
             }
         }
         return "";
+    }
+
+    public String getLinkAvatar() {
+        return linkAvatar;
+    }
+
+    public void setLinkAvatar(String linkAvatar) {
+        this.linkAvatar = linkAvatar;
+    }
+
+    public String saveLink() {
+        if (GenericValidator.isBlankOrNull(linkAvatar)) {
+            addValidateError(null, "Vui lòng nhập link hình ảnh");
+            return "";
+        }
+        avatar = linkAvatar;
+        linkAvatar = "";
+        RequestContext.getCurrentInstance().execute("widgetDialogLinkAvatar.hide()");
+        return "";
+    }
+
+    public String chooseAvatar(ProductAttribute image) {
+        avatar = "/upload/images/" + getNewsData().getNews().getProductId() + "/" + image.getAttrValue();
+        RequestContext.getCurrentInstance().execute("widgetDialogAvatar.hide()");
+        return "";
+    }
+
+    public String getAvatar() {
+        if (null == avatar) setAvatar(IMAGE_DEFAULT);
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public boolean validateImage(UploadedFile file) {
@@ -202,7 +243,7 @@ public class CreateVideoBean extends BasePortalBean {
         }
     }
 
-    public void ajax(){
+    public void ajax() {
         System.out.println("test");
     }
 
@@ -214,12 +255,12 @@ public class CreateVideoBean extends BasePortalBean {
         this.newsData = newsData;
     }
 
-    public NewsManagerBean getNewsManagerBean() {
-        return newsManagerBean;
+    public VideoManagerBean getVideoManagerBean() {
+        return videoManagerBean;
     }
 
-    public void setNewsManagerBean(NewsManagerBean newsManagerBean) {
-        this.newsManagerBean = newsManagerBean;
+    public void setVideoManagerBean(VideoManagerBean videoManagerBean) {
+        this.videoManagerBean = videoManagerBean;
     }
 
     public List<ProductAttribute> getImagesList() {
@@ -228,7 +269,7 @@ public class CreateVideoBean extends BasePortalBean {
     }
 
     public String[] getTagsList() {
-        if (!GenericValidator.isBlankOrNull(tags)){
+        if (!GenericValidator.isBlankOrNull(tags)) {
             tagsList = tags.split(",");
         }
         return tagsList;
@@ -238,12 +279,12 @@ public class CreateVideoBean extends BasePortalBean {
         this.tagsList = tagsList;
     }
 
-    public String buildAllTags(){
-        List<String> tagsList = new ArrayList<String>(newsManagerBean.getStoreData().getAllTags());
+    public String buildAllTags() {
+        List<String> tagsList = new ArrayList<String>(videoManagerBean.getStoreData().getAllTags());
         String tagsNames = "";
         if (null != tagsList) {
             for (String tags : tagsList) {
-                tagsNames+="'"+tags+"',";
+                tagsNames += "'" + tags + "',";
             }
 
         }
@@ -251,7 +292,7 @@ public class CreateVideoBean extends BasePortalBean {
     }
 
     public String getAllTags() {
-        if (null == allTags)allTags = buildAllTags();
+        if (null == allTags) allTags = buildAllTags();
         return allTags;
     }
 
@@ -266,7 +307,6 @@ public class CreateVideoBean extends BasePortalBean {
     public void setTags(String tags) {
         this.tags = tags;
     }
-
 
 
     public void setImagesList(List<ProductAttribute> imagesList) {

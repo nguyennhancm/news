@@ -1,8 +1,5 @@
 package portal.news.bean;
 
-import tv.news.enums.CategoryType;
-import tv.news.model.NewsData;
-import tv.news.model.Tags;
 import org.apache.commons.validator.GenericValidator;
 import org.primefaces.context.RequestContext;
 import org.primefaces.event.FileUploadEvent;
@@ -13,6 +10,9 @@ import tv.news.entities.Product;
 import tv.news.entities.ProductAttribute;
 import tv.news.entities.ProductCategory;
 import tv.news.entities.ProductCategoryMember;
+import tv.news.enums.CategoryType;
+import tv.news.model.NewsData;
+import tv.news.model.Tags;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -51,7 +51,6 @@ public class EditNewsBean extends BasePortalBean {
 
     @ManagedProperty(value = "#{NewsManager}")
     private NewsManagerBean newsManagerBean;
-
 
     public String onLoadEditNews() {
         tags = buildNewsTags();
@@ -127,8 +126,9 @@ public class EditNewsBean extends BasePortalBean {
                 getLogger().log(Level.WARNING, "error edit news: " + e.getMessage());
                 return "";
             }
-            addMessagesInfo(null, "Đã lưu bài viết!");
-            return "manage_news";
+
+                return "manage_news";
+
         }
         return "";
     }

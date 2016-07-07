@@ -4,6 +4,8 @@ import tv.news.controller.ICategoryController;
 import tv.news.controller.INewsController;
 import tv.news.manager.ICategoryManager;
 import tv.news.manager.INewsManager;
+import tv.system.manager.IProductStoreManager;
+import tv.system.manager.IWebSiteManager;
 import tv.user.controller.IUserController;
 import tv.user.manager.IUserManager;
 import tv.utils.valueItem.manager.ISequenceValue;
@@ -59,4 +61,11 @@ public class LocalLookup {
         return (IUserController) getBean("News/UserController");
     }
 
+    public static IProductStoreManager getProductStoreManager(){
+        return (IProductStoreManager) getBean("News/ProductStoreManager");
+    }
+
+    public static IWebSiteManager getWebSiteManager(){
+        return (IWebSiteManager) getBean("News/WebSiteManager");
+    }
 }

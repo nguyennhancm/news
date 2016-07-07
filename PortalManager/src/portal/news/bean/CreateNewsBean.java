@@ -45,6 +45,7 @@ public class CreateNewsBean extends BasePortalBean {
     private String avatar;
     private String linkAvatar;
 
+
     @ManagedProperty(value = "#{NewsManager}")
     private NewsManagerBean newsManagerBean;
 
@@ -117,6 +118,7 @@ public class CreateNewsBean extends BasePortalBean {
         if (null == newsData) {
             newsData = new NewsData();
             newsData.setActive(true);
+            //get catalog
         }
         return newsData;
     }

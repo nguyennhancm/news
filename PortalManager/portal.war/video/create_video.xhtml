@@ -6,177 +6,287 @@
                 xmlns:c="http://java.sun.com/jsp/jstl/core"
                 template="/template/template.xhtml">
 
-    <ui:define name="title">Thêm mới video</ui:define>
-    <ui:define name="content">
-        <div class="row">
-            <div class="col-lg-12">
-                <h4 class="page-header">Thêm mới video</h4>
-            </div>
-            <!-- /.col-lg-12 -->
-            <link href="/css/jquery.tagit.css" rel="stylesheet" type="text/css" property=""/>
-            <link href="/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css" property=""/>
-            <script src="/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+<ui:define name="title">Thêm Video</ui:define>
+<ui:define name="content">
+<div class="row">
+    <div class="col-lg-12">
+        <h4 class="page-header">Thêm Video</h4>
+    </div>
+    <!-- /.col-lg-12 -->
+    <link href="/css/jquery.tagit.css" rel="stylesheet" type="text/css" property=""/>
+    <link href="/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css" property=""/>
+    <script src="/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
 
-            <script>
-                $(function(){
-                    var sampleTags = [#{CreateVideo.allTags}];
+    <script>
+        $(function(){
+            var sampleTags = [#{CreateVideo.allTags}];
 
-                    $('#singleFieldTags2').tagit({
-                        availableTags: sampleTags,
-                        allowSpaces: true
-                    });
-                });
-            </script>
-        </div>
-        <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+            $('#singleFieldTags2').tagit({
+                availableTags: sampleTags,
+                allowSpaces: true
+            });
+        });
+    </script>
+</div>
+<p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
 
-        <h:form id="frmAddNews" prependId="false">
-            <!--<p:defaultCommand target="btnSaveNews" />-->
-            <div class="row">
-                <table width="90%">
-                    <tbody>
-                    <tr>
-                        <td style="padding: 5px;">
-                            Ảnh đại diện
-                        </td>
-                        <td style="padding: 5px;">
-                            <table>
-                                <tr>
-                                    <td width="20%">
-                                        <img src="/images/default_image.jpg"
-                                             style="width: 100px; height: 100px;"
-                                             title="Xem ảnh"/>
-                                    </td>
-                                    <td width="20%">
-                                        <p:commandLink value="Nhập link ảnh đại diện">
+<h:form id="frmAddNews" prependId="false">
+    <!--<p:defaultCommand target="btnSaveNews" />-->
+    <div class="row">
+        <table width="90%">
+            <tbody>
+            <tr>
+                <td style="padding: 5px;">
+                    Chuyên mục
+                </td>
+                <td style="padding: 5px;">
 
-                                        </p:commandLink>
-                                        <div style="padding-top: 5px">
+                    <table>
+                        <tr>
+                            <td width="50%">
+                                <h:selectOneMenu id="somNewProductCategory" style="width:280px"
+                                                 styleClass="selectpicker show-menu-arrow"
+                                                 value="#{CreateVideo.newsData.news.primaryProductCategoryId}">
+                                    <f:selectItem itemLabel="Chọn chuyên mục" itemValue=""/>
+                                    <f:selectItems value="#{Category.videoCategory}" var="item"
+                                                   itemLabel="#{item.categoryName}" itemValue="#{item.productCategoryId}"/>
+                                </h:selectOneMenu>
+                            </td>
+                            <td width="10%"></td>
+                            <td width="20%">
+                                <p:graphicImage id="imgAvatar" value="#{CreateVideo.avatar}"
+                                                style="width: 100px; height: 100px;"
+                                                title="Xem ảnh"/>
+                            </td>
+                            <td width="20%">
+                                <p:commandLink value="Nhập link ảnh đại diện" onclick="widgetDialogLinkAvatar.show()">
 
-                                            <p:commandLink value="Up ảnh đại diện">
+                                </p:commandLink>
+                                <div style="padding-top: 5px">
 
-                                            </p:commandLink>
-                                        </div>
+                                    <p:commandButton value="Chọn ảnh đại diện" onclick="widgetDialogAvatar.show()">
 
-                                    </td>
-                                    <td width="60%"></td>
-                                </tr>
-                            </table>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;">
-                            Tiêu đề
-                        </td>
-                        <td style="padding: 5px;">
-                            <h:inputText styleClass="nameInput form-control"
-                                         value="#{CreateVideo.newsData.news.productName}" converter="#{StringTrimmer}"
-                                         id="txtTitle"/>
-                        </td>
-                    </tr>
-                    <!--<tr>-->
-                        <!--<td style="padding: 5px;">-->
-                            <!--Mô tả ngắn-->
-                        <!--</td>-->
-                        <!--<td style="padding: 5px;">-->
-                            <!--<h:inputText styleClass="nameInput form-control"-->
-                                         <!--value="#{CreateVideo.newsData.news.description}" converter="#{StringTrimmer}"-->
-                                         <!--id="txtDescription"/>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <tr>
-                        <td style="padding: 5px;">
-                            Hiển thị
-                        </td>
-                        <td style="padding: 5px;">
-                            <p:selectBooleanCheckbox id="chkShowhome"
-                                                     value="#{CreateVideo.newsData.active}"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;">
-                            Tags
-                        </td>
-                        <td style="padding: 5px;">
-                            <h:inputText name="tags" id="singleFieldTags2" value="#{CreateVideo.tags}"/>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;" width="12%">
-                            Chọn ảnh
-                        </td>
-                        <td style="vertical-align: top;">
-                            <p:commandButton style="" value="Upload hình ảnh" id="btnUpload"
-                                             onclick="saveProductAction()"/>
-                            <script type="text/javascript">
-                                function saveProductAction() {
-                                    var elementId = 'fUpload_input';
-                                    var selectedElement = document.getElementById(elementId);
-                                    if (null != selectedElement) {
-                                        selectedElement.click();
-                                    }
-                                }
-                            </script>
-                            <h:panelGroup id="pnlListImage">
-                                <div style="max-height: 180px; overflow-y: scroll; border: 1px solid #7d8ca0; margin-top: 10px; margin-bottom: 5px;">
-                                    <ui:repeat value="#{CreateVideo.imagesList}" var="image">
-                                        <div style="float: left; border: 1px solid #dfdfdf; width:90px; height:120px;margin: 3px 3px 3px 3px;">
-                                            <img src="/upload/images/#{CreateVideo.getNewsData().news.productId}/#{image.attrValue}"
-                                                 style="width: 80px; height: 80px; margin: 5px;"
-                                                 title="Xem ảnh"/>
-                                            <p:commandLink style="font-weight: bold;"
-                                                           onclick="choiceImage(event,'/upload/images/#{CreateVideo.getNewsData().news.productId}/#{image.attrValue}')"
-                                                           value="Chọn" title="Thêm vào bài viết"/> |
-                                            <p:commandLink style="color: red;" update=":frmAddNews" ajax="false"
-                                                           actionListener="#{CreateVideo.removeImage(image)}"
-                                                           value="Xóa" title="Xóa ảnh"/>
-                                        </div>
-
-
-                                    </ui:repeat>
-
+                                    </p:commandButton>
                                 </div>
-                            </h:panelGroup>
-                        </td>
-                    </tr>
-                    <tr>
 
-                        <td style="padding: 5px;">
-                            Nội dung
-                        </td>
-                        <td>
-                            <h:inputTextarea value="#{CreateVideo.newsData.news.longDescription}" class="ckeditor"
-                                             cols="100" id="editorNews" converter="#{StringTrimmer}"
-                                             name="editor1" rows="40"/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="padding: 5px;"></td>
-                        <td style="padding: 5px;">
-                            <h:commandButton styleClass="btn btn-primary"
-                                             action="#{CreateVideo.createVideo()}" id="btnSaveNews" value="Lưu" onfocus="">
-                            </h:commandButton>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Tiêu đề
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputText styleClass="nameInput form-control"
+                                 value="#{CreateVideo.newsData.news.productName}" converter="#{StringTrimmer}"
+                                 id="txtTitle"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Mô tả ngắn
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputText styleClass="nameInput form-control"
+                                 value="#{CreateVideo.newsData.news.description}" converter="#{StringTrimmer}"
+                                 id="txtDescription"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Link video
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputText styleClass="nameInput form-control"
+                                 value="#{CreateVideo.newsData.news.largeImageUrl}" converter="#{StringTrimmer}"
+                                 id="txtVideoLink"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Hiển thị
+                </td>
+                <td style="padding: 5px;">
+                    <p:selectBooleanCheckbox id="chkShowhome"
+                                             value="#{CreateVideo.newsData.active}"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;">
+                    Tags
+                </td>
+                <td style="padding: 5px;">
+                    <h:inputText name="tags" id="singleFieldTags2" value="#{CreateVideo.tags}"/>
+
+                </td>
+            </tr>
+            <!--<tr>-->
+            <!--<td style="padding: 5px;">-->
+            <!--Chọn ảnh-->
+            <!--</td>-->
+            <!--<td style="padding: 5px;">-->
+            <!--<div style="float: left">-->
+            <!--<input style="width: 170px;" onchange="prepareUpload(event,'#{NewsManager.userData.currentStore}')"-->
+            <!--type="file"-->
+            <!--multiple="true"/>-->
+            <!--</div>-->
+            <!--<div style="float: left" id="uploadImageProcessing">-->
+
+            <!--</div>-->
+            <!--</td>-->
+            <!--</tr>-->
+
+            <!--<tr>-->
+            <!--<td style="padding: 5px;">-->
+
+            <!--</td>-->
+
+            <!--<td style="vertical-align: top">-->
+
+
+            <!--<p:fileUpload id="fUpload" style="border:none"-->
+            <!--fileUploadListener="#{CreateVideo.handleFileUpload}" update="pnlListImage"-->
+            <!--mode="advanced"-->
+            <!--auto="true"-->
+            <!--sizeLimit="10000000"-->
+            <!--invalidFileMessage="Hình ảnh không hợp lệ"-->
+            <!--invalidSizeMessage="Kích thước ảnh tối đa 10MB"-->
+            <!--label="Upload hình ảnh"-->
+            <!--multiple="true"-->
+            <!--allowTypes="/(\.|\/)(gif|jpe?g|png|GIF|JPE?G|PNG)$/"/>-->
+
+            <!--</td>-->
+            <!--</tr>-->
+            <tr>
+                <td style="padding: 5px;" width="12%">
+                    Chọn ảnh
+                </td>
+                <td style="vertical-align: top;">
+                    <p:commandButton style="" value="Upload hình ảnh" id="btnUpload"
+                                     onclick="saveProductAction()"/>
+                    <script type="text/javascript">
+                        function saveProductAction() {
+                            var elementId = 'fUpload_input';
+                            var selectedElement = document.getElementById(elementId);
+                            if (null != selectedElement) {
+                                selectedElement.click();
+                            }
+                        }
+                    </script>
+                    <h:panelGroup id="pnlListImage">
+                        <div style="max-height: 180px; overflow-y: scroll; border: 1px solid #7d8ca0; margin-top: 10px; margin-bottom: 5px;">
+                            <ui:repeat value="#{CreateVideo.imagesList}" var="image">
+                                <div style="float: left; border: 1px solid #dfdfdf; width:90px; height:120px;margin: 3px 3px 3px 3px;">
+                                    <img src="/upload/images/#{CreateVideo.getNewsData().news.productId}/#{image.attrValue}"
+                                         style="width: 80px; height: 80px; margin: 5px;"
+                                         title="Xem ảnh"/>
+                                    <p:commandLink style="font-weight: bold;"
+                                                   onclick="choiceImage(event,'/upload/images/#{CreateVideo.getNewsData().news.productId}/#{image.attrValue}')"
+                                                   value="Chọn" title="Thêm vào bài viết"/> |
+                                    <p:commandLink style="color: red;" update=":frmAddNews:pnlListImage :frmAvatar:pnlListImageFace"
+                                                   actionListener="#{CreateVideo.removeImage(image)}"
+                                                   value="Xóa" title="Xóa ảnh"/>
+                                </div>
+
+
+                            </ui:repeat>
+
+                        </div>
+                    </h:panelGroup>
+                </td>
+            </tr>
+            <tr>
+
+                <td style="padding: 5px;">
+                    Nội dung
+                </td>
+                <td>
+                    <h:inputTextarea value="#{CreateVideo.newsData.news.longDescription}" class="ckeditor"
+                                     cols="100" id="editorNews" converter="#{StringTrimmer}"
+                                     name="editor1" rows="40"/>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 5px;"></td>
+                <td style="padding: 5px;">
+                    <h:commandButton styleClass="btn btn-primary" style="width: 100px"
+                                     action="#{CreateVideo.createVideo()}" id="btnSaveNews" value="Lưu" onfocus="">
+                    </h:commandButton>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</h:form>
+<!-- /.row -->
+<div style="max-height: 140px; overflow-y: auto; display: none">
+    <h:form id="frmUpload" prependId="false" enctype="multipart/form-data">
+        <p:fileUpload id="fUpload" style="border:none"
+                      fileUploadListener="#{CreateVideo.handleFileUpload}"
+                      update=":frmAddNews:pnlListImage :frmAvatar:pnlListImageFace"
+                      mode="advanced"
+                      auto="true"
+                      sizeLimit="10000000"
+                      invalidFileMessage="Hình ảnh không hợp lệ"
+                      invalidSizeMessage="Kích thước ảnh tối đa 10MB"
+                      label="Upload hình ảnh"
+                      multiple="true"
+                      allowTypes="/(\.|\/)(gif|jpe?g|png|GIF|JPE?G|PNG)$/"/>
+    </h:form>
+</div>
+<p:dialog  header="Chọn ảnh đại diện"
+           widgetVar="widgetDialogAvatar" width="600" modal="true" resizable="false" showEffect="clip" hideEffect="fold" closeOnEscape="true">
+    <h:form id="frmAvatar">
+        <h:panelGroup id="pnlListImageFace">
+            <div style="max-height: 180px; overflow-y: scroll; border: 1px solid #7d8ca0; margin-top: 10px; margin-bottom: 5px;">
+                <ui:repeat value="#{CreateVideo.imagesList}" var="image">
+                    <div style="float: left; border: 1px solid #dfdfdf; width:90px; height:120px;margin: 3px 3px 3px 3px;">
+                        <img src="/upload/images/#{CreateVideo.getNewsData().news.productId}/#{image.attrValue}"
+                             style="width: 80px; height: 80px; margin: 5px;"
+                             title="Xem ảnh"/>
+                        <p:commandLink style="font-weight: bold; color: #337ab7" update=":frmAddNews:imgAvatar"
+                                       actionListener="#{CreateVideo.chooseAvatar(image)}"
+                                       value="Chọn" title="Chọn làm ảnh đại diện"/>
+                    </div>
+                </ui:repeat>
             </div>
-        </h:form>
-        <!-- /.row -->
-        <div style="max-height: 140px; overflow-y: auto; display: none">
-            <h:form id="frmUpload" prependId="false" enctype="multipart/form-data">
-                <p:fileUpload id="fUpload" style="border:none"
-                              fileUploadListener="#{CreateVideo.handleFileUpload}" update=":frmAddNews:pnlListImage"
-                              mode="advanced"
-                              auto="true"
-                              sizeLimit="10000000"
-                              invalidFileMessage="Hình ảnh không hợp lệ"
-                              invalidSizeMessage="Kích thước ảnh tối đa 10MB"
-                              label="Upload hình ảnh"
-                              multiple="true"
-                              allowTypes="/(\.|\/)(gif|jpe?g|png|GIF|JPE?G|PNG)$/"/>
-            </h:form>
-        </div>
-    </ui:define>
+            <p:commandButton style="" value="Upload hình ảnh" id="btnUploadAvatar"
+                             onclick="saveProductAction()"/>
+            <p:commandButton style="" value="Đóng"
+                             onclick="widgetDialogAvatar.hide()"/>
+            <script type="text/javascript">
+                function saveProductAction() {
+                    var elementId = 'fUpload_input';
+                    var selectedElement = document.getElementById(elementId);
+                    if (null != selectedElement) {
+                        selectedElement.click();
+                    }
+                }
+            </script>
+        </h:panelGroup>
+    </h:form>
+</p:dialog>
+<p:dialog  header="Chọn ảnh đại diện"
+           widgetVar="widgetDialogLinkAvatar" width="600" modal="true" resizable="false" showEffect="clip" hideEffect="fold" closeOnEscape="true">
+    <h:form id="frmSetLinkAvatar">
+        <p:messages id="messages1" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+        <table width="100%">
+            <tr>
+                <td>
+                    Nhập link
+                </td>
+                <td style="padding: 5px;">
+                    <p:inputText style="width: 100%" value="#{CreateVideo.linkAvatar}"></p:inputText>
+                </td>
+                <td style="padding: 5px;">
+                    <p:commandButton value="Lưu" action="#{CreateVideo.saveLink()}" update="@form :frmAddNews:imgAvatar"/>
+                </td>
+            </tr>
+        </table>
+
+    </h:form>
+</p:dialog>
+</ui:define>
 </ui:composition>

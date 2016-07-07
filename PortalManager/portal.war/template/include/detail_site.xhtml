@@ -1,0 +1,102 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+    <h:form id="frmAddNews" prependId="false">
+        <!--<p:defaultCommand target="btnSaveNews" />-->
+        <div class="row">
+            <p:tabView>
+                <p:tab title="Thông tin Website">
+                    <table width="90%">
+                        <tbody>
+                        <tr>
+                            <td style="padding: 5px;">
+                                Tên site
+                            </td>
+                            <td style="padding: 5px;">
+                             <p:inputText value="#{DetailWebSite.webStoreDetail.productStore.storeName}"/>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;">
+                                Địa chỉ
+                            </td>
+                            <td style="padding: 5px;">
+                                <p:inputText value="#{DetailWebSite.webStoreDetail.website.siteName}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;">
+                                Mô tả ngắn
+                            </td>
+                            <td style="padding: 5px;">
+                                <p:inputText value="#{DetailWebSite.webStoreDetail.productStore.storeName}"/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 5px;">
+
+                            </td>
+                            <td style="padding: 5px;">
+
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </p:tab>
+                <p:tab title="Tài khoản quản lý">
+                    <table width="90%">
+                        <tbody>
+                        <tr>
+                            <td style="padding: 5px;">
+                                Danh sách tài khoản
+                            </td>
+                            <td style="padding: 5px;">
+
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </p:tab>
+                <p:tab title="Danh mục - Chuyên mục">
+                    <table width="90%">
+                        <tbody>
+                        <tr>
+                            <td style="padding: 5px;">
+
+                            </td>
+                            <td style="padding: 5px;">
+
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </p:tab>
+                <p:tab title="Bài viết">
+                    <table width="90%">
+                        <tbody>
+                        <tr>
+                            <td style="padding: 5px;">
+
+                            </td>
+                            <td style="padding: 5px;">
+
+
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </p:tab>
+            </p:tabView>
+
+        </div>
+    </h:form>
+
+
+
+</ui:composition>

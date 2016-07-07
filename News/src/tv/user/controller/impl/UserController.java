@@ -5,6 +5,7 @@ import tv.user.entities.Party;
 import tv.user.entities.PartyAttribute;
 import tv.user.entities.Person;
 import tv.user.entities.UserLogin;
+import tv.user.model.UserProfile;
 import tv.utils.controller.BaseController;
 
 import javax.ejb.Stateless;
@@ -53,6 +54,25 @@ public class UserController extends BaseController implements IUserController {
     @Override
     public List<PartyAttribute> getImagesList(String partyId, String attrName) {
         return getUserManager().getImagesList(partyId, attrName);
+    }
+
+    @Override
+    public UserProfile createUser(UserProfile userProfile) {
+        // create party
+        Party party = new Party();
+        party.setPartyId(getSequenceValue().getSequenceValueItem(Party.class));
+        getUserManager().save(party);
+        //create userlogin
+        UserLogin userLogin = userProfile.getUserLogin();
+        userLogin.setPartyId(party.getPartyId());
+        getUserManager().save(userLogin);
+        //create person
+        Person person = userProfile.getPerson();
+        person.setPartyId(party.getPartyId());
+        getUserManager().save(person);
+        userProfile.setUserLogin(userLogin);
+        userProfile.setPerson(person);
+        return userProfile;
     }
 
     @Override

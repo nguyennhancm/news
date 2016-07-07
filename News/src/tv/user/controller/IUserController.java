@@ -4,6 +4,7 @@ import tv.user.entities.Party;
 import tv.user.entities.PartyAttribute;
 import tv.user.entities.Person;
 import tv.user.entities.UserLogin;
+import tv.user.model.UserProfile;
 
 import java.util.List;
 
@@ -29,6 +30,8 @@ public interface IUserController {
     public Party getParty(String partyId);
 
     public List<PartyAttribute> getImagesList(String partyId, String attrName);
+
+    public UserProfile createUser(UserProfile userProfile);
 
     @Deprecated
     public String getPartyIdByStore(String productStoreId);

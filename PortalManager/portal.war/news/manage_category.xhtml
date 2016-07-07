@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui" xml:lang="en" lang="en"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                template="../template/template.xhtml">
+
+    <ui:define name="title">Quản lý danh mục - chuyên mục</ui:define>
+    <ui:define name="content">
+        <div class="row">
+            <div class="col-lg-12">
+                <h4 class="page-header">Quản lý danh mục - chuyên mục</h4>
+            </div>
+
+        </div>
+        <p:messages id="messages" showDetail="true" showSummary="false" closable="true" autoUpdate="true"/>
+
+        <!-- /.row -->
+        <div class="row">
+
+            <div class="col-lg-8" style="width: 100%">
+                <div class="panel panel-default">
+                    <div class="panel-heading" style="padding: 22px 15px;">
+                        <div class="pull-left" style="margin-top: -17px;">
+                            <h:form id="categoryAction" prependId="false">
+                                <h:commandLink value="Thêm danh mục"/> <p:spacer width="20px;"/>
+                                <h:commandLink value="Thêm chuyên mục"
+                                               disabled="#{ManageCategory.selectedNode1 eq null}"/><p:spacer
+                                    width="20px;"/>
+                                <h:commandLink value="Sửa" disabled="#{ManageCategory.selectedNode1 eq null}"/> <p:spacer
+                                    width="20px;"/>
+                                <h:commandLink value="Xóa" disabled="#{ManageCategory.selectedNode1 eq null}"/>
+
+                            </h:form>
+                        </div>
+                        <div class="pull-right">
+
+                        </div>
+                        <div class="pull-left" style="margin-top: 25px; width: 100%;">
+                            <h:form id="frmAllNews" prependId="false">
+                                <table width="90%">
+                                    <tbody>
+                                    <tr>
+                                        <td style="padding: 5px;">
+
+                                            <h:panelGrid columns="3">
+                                                <p:tree id="tree1" value="#{ManageCategory.root1}" var="node"
+                                                        selectionMode="single"
+                                                        selection="#{ManageCategory.selectedNode1}"
+                                                        draggable="true" droppable="true" dragdropScope="demo">
+                                                    <p:ajax event="dragdrop" listener="#{ManageCategory.onDragDrop}"/>
+                                                    <p:ajax event="select" update=":categoryAction" listener="#{ManageCategory.onNodeSelect}" />
+                                                    <p:ajax event="unselect" update=":categoryAction" listener="#{ManageCategory.onNodeUnselect}" />
+                                                    <p:treeNode>
+                                                        <h:outputText value="#{node.label}"/>
+                                                    </p:treeNode>
+
+                                                </p:tree>
+
+                                            </h:panelGrid>
+
+                                        </td>
+                                    </tr>
+
+
+                                    </tbody>
+                                </table>
+                            </h:form>
+                        </div>
+                    </div>
+                    <!-- /.panel-heading -->
+                    <div class="panel-body">
+                        <div></div>
+                    </div>
+                    <!-- /.panel-body -->
+                </div>
+                <!-- /.panel .chat-panel -->
+            </div>
+            <!-- /.col-lg-4 -->
+        </div>
+    </ui:define>
+</ui:composition>
